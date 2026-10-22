@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090a11">
+  <meta name="theme-color" content="#05060b">
 
   <meta name="description" content="FreeGameDrop annonce les jeux gratuits GOG sur Discord : rôle 🟣 GOG à la demande, salon dédié en lecture seule et alertes personnelles optionnelles.">
   <meta property="og:type" content="website">
@@ -38,38 +38,38 @@
     </div>
   </header>
 <main id="main-content">
-  <section class="page-hero container">
+  <section class="page-hero container" data-reveal>
     <p class="eyebrow"><a href="../../../discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> GOG</p>
     <h1>Les jeux gratuits GOG<br><span>dans ton salon Discord.</span></h1>
     <p class="hero-lead narrow">Les offres GOG (jeux gratuits ponctuels et promotions) sont détectées par l&#x27;agrégation GamerPower. Comme pour les autres plateformes, la plateforme d&#x27;une offre est reconnue par mots-clés, jamais devinée.</p>
     <div class="catalogue-meta"><span class="platform-meta-icon platform-gog" aria-hidden="true">🟣</span> GOG <span class="meta-divider"></span> Source : API GamerPower <span class="meta-divider"></span> Salon #jeux-gog</div>
   </section>
 
-  <section class="section container section-compact">
+  <section class="section container section-compact" data-reveal>
     <div class="section-heading"><p class="eyebrow">CE QUE FAIT LE BOT</p><h2>GOG, sans effort<br><span>et sans spam.</span></h2></div>
     <div class="platform-facts">
-      <article class="platform-fact"><span aria-hidden="true">✓</span><p>Le rôle 🟣 GOG débloque le salon #jeux-gog ; sans lui, le salon reste invisible pour les membres.</p></article>
-      <article class="platform-fact"><span aria-hidden="true">✓</span><p>Les salons du bot se lisent, ils ne s&#x27;écrivent pas : lecture seule pour tout le monde, annonces signées FreeGameDrop.</p></article>
-      <article class="platform-fact"><span aria-hidden="true">✓</span><p>/preferences permet de filtrer par plateforme, type d&#x27;offre, valeur minimale et genre, pour /free et les alertes.</p></article>
-      <article class="platform-fact"><span aria-hidden="true">✓</span><p>Les offres publiques non favorites quittent le catalogue après 90 jours sans nouvelle observation.</p></article>
+      <article class="platform-fact" data-spotlight><span aria-hidden="true">✓</span><p>Le rôle 🟣 GOG débloque le salon #jeux-gog ; sans lui, le salon reste invisible pour les membres.</p></article>
+      <article class="platform-fact" data-spotlight><span aria-hidden="true">✓</span><p>Les salons du bot se lisent, ils ne s&#x27;écrivent pas : lecture seule pour tout le monde, annonces signées FreeGameDrop.</p></article>
+      <article class="platform-fact" data-spotlight><span aria-hidden="true">✓</span><p>/preferences permet de filtrer par plateforme, type d&#x27;offre, valeur minimale et genre, pour /free et les alertes.</p></article>
+      <article class="platform-fact" data-spotlight><span aria-hidden="true">✓</span><p>Les offres publiques non favorites quittent le catalogue après 90 jours sans nouvelle observation.</p></article>
     </div>
     <div class="platform-cta-row"><a class="button button-primary" data-install-cta href="https://discord.com/oauth2/authorize?client_id=1556443310053130260&amp;permissions=268528656&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank" rel="noopener noreferrer">Ajouter FreeGameDrop <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="../../../discord-bots/freegamedrop/index.html">Toutes les fonctionnalités <span aria-hidden="true">→</span></a></div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" data-reveal>
     <div class="container two-column-section">
       <div><p class="eyebrow">EN PRATIQUE</p><h2>Un rôle,<br><span>un salon.</span></h2><p class="section-intro">Après /setup-auto, la plateforme GOG existe comme les autres : un rôle 🟣 GOG obtenu par le panneau de boutons, un salon #jeux-gog en lecture seule, des annonces avec prix barré et compte à rebours.</p><a class="text-link" href="../../../docs/index.html#configuration">Configurer les salons <span aria-hidden="true">→</span></a></div>
-      <div class="command-pills"><span><code>/setup-auto</code><small>crée rôle et salon GOG</small></span><span><code>/preferences</code><small>filtrer plateformes et genres</small></span><span><code>/alertes</code><small>alertes privées GOG</small></span><span><code>/rappel-salon</code><small>rappel de fin d'offre</small></span></div>
+      <div class="command-pills"><span data-spotlight><code>/setup-auto</code><small>crée rôle et salon GOG</small></span><span data-spotlight><code>/preferences</code><small>filtrer plateformes et genres</small></span><span data-spotlight><code>/alertes</code><small>alertes privées GOG</small></span><span data-spotlight><code>/rappel-salon</code><small>rappel de fin d'offre</small></span></div>
     </div>
   </section>
 
-  <section class="section container">
+  <section class="section container" data-reveal>
     <div class="section-heading section-heading-split"><div><p class="eyebrow">LES AUTRES PLATEFORMES</p><h2>Et si tu suis<br><span>plusieurs boutiques ?</span></h2></div><p class="section-intro">Chaque plateforme a sa propre page : compare les sources et les salons créés par le bot.</p></div>
     <div class="platform-grid">
-      <a class="platform-tile platform-steam" href="../../../discord-bots/freegamedrop/steam/index.html"><span class="platform-tile-icon" aria-hidden="true">🔵</span><strong>Steam</strong><small>API GamerPower</small></a>
-      <a class="platform-tile platform-epic" href="../../../discord-bots/freegamedrop/epic-games/index.html"><span class="platform-tile-icon" aria-hidden="true">⚪</span><strong>Epic Games Store</strong><small>API officielle Epic + GamerPower</small></a>
-      <a class="platform-tile platform-ubisoft" href="../../../discord-bots/freegamedrop/ubisoft/index.html"><span class="platform-tile-icon" aria-hidden="true">🔷</span><strong>Ubisoft</strong><small>API GamerPower</small></a>
-      <a class="platform-tile platform-tile-more" href="../../../discord-bots/freegamedrop/index.html"><span class="platform-tile-icon" aria-hidden="true">＋</span><strong>FreeGameDrop</strong><small>la fiche complète du bot</small></a>
+      <a class="platform-tile platform-steam" data-spotlight href="../../../discord-bots/freegamedrop/steam/index.html"><span class="platform-tile-icon" aria-hidden="true">🔵</span><strong>Steam</strong><small>API GamerPower</small></a>
+      <a class="platform-tile platform-epic" data-spotlight href="../../../discord-bots/freegamedrop/epic-games/index.html"><span class="platform-tile-icon" aria-hidden="true">⚪</span><strong>Epic Games Store</strong><small>API officielle Epic + GamerPower</small></a>
+      <a class="platform-tile platform-ubisoft" data-spotlight href="../../../discord-bots/freegamedrop/ubisoft/index.html"><span class="platform-tile-icon" aria-hidden="true">🔷</span><strong>Ubisoft</strong><small>API GamerPower</small></a>
+      <a class="platform-tile platform-tile-more" data-spotlight href="../../../discord-bots/freegamedrop/index.html"><span class="platform-tile-icon" aria-hidden="true">＋</span><strong>FreeGameDrop</strong><small>la fiche complète du bot</small></a>
     </div>
   </section>
 </main>

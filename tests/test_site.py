@@ -109,6 +109,16 @@ class OverLoadDownloadTests(unittest.TestCase):
         self.assertNotIn("data-install-cta", render("overload/index.html"))
         self.assertNotIn("data-discord-install", render("overload/index.html"))
 
+    def test_overload_visuals_use_real_application_captures(self) -> None:
+        home_html = render("index.html")
+        overload_html = render("overload/index.html")
+        self.assertIn('src="assets/overload/accueil.png"', home_html)
+        self.assertIn('src="assets/overload/telechargements.png"', home_html)
+        for screen in build_site.OVERLOAD_SCREENS:
+            with self.subTest(screen=screen["id"]):
+                self.assertIn(f'src="../{screen["image"]}"', overload_html)
+                self.assertTrue((ROOT / screen["image"]).is_file())
+
 
 class ProjectHubTests(unittest.TestCase):
     def test_home_is_the_overx_project_hub(self) -> None:

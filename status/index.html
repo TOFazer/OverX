@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090a11">
+  <meta name="theme-color" content="#05060b">
 
   <meta name="description" content="État de transparence OverX : le panneau de santé se branche sur /api/health du bot dès qu&#x27;une URL publique est configurée ; aucune valeur inventée en attendant.">
   <meta property="og:type" content="website">
@@ -38,13 +38,13 @@
     </div>
   </header>
 <main id="main-content">
-  <section class="page-hero container status-hero">
+  <section class="page-hero container status-hero" data-reveal>
     <p class="eyebrow">OVERX <span class="crumb-slash">/</span> STATUS</p>
     <h1>Un statut clair.<br><span>Même quand il manque des données.</span></h1>
     <p class="hero-lead narrow">Nous n'affichons pas de pastilles vertes sans vérification. Quand <code>healthApiUrl</code> est renseigné, ce panneau lit <code>/api/health</code> du bot ; sinon tout reste « non mesuré ».</p>
   </section>
-  <section class="section container section-compact">
-    <div class="status-summary"><div class="status-summary-icon">—</div><div><p class="eyebrow">ÉTAT ACTUEL DE LA PAGE</p><h2 data-health-title>Non mesuré en temps réel</h2><p>Dernière vérification automatique : <strong data-health-updated>aucune sonde configurée</strong>.</p></div><span class="status-pill status-neutral"><span></span> Données non connectées</span></div>
+  <section class="section container section-compact" data-reveal>
+    <div class="status-summary" data-spotlight><div class="status-summary-icon">—</div><div><p class="eyebrow">ÉTAT ACTUEL DE LA PAGE</p><h2 data-health-title>Non mesuré en temps réel</h2><p>Dernière vérification automatique : <strong data-health-updated>aucune sonde configurée</strong>.</p></div><span class="status-pill status-neutral"><span></span> Données non connectées</span></div>
     <div class="health-panel" data-health-panel hidden>
       <div class="health-row"><span class="health-dot" data-health-dot="bot">?</span><div><strong>Bot</strong><small data-health-text="bot">—</small></div></div>
       <div class="health-row"><span class="health-dot" data-health-dot="discord">?</span><div><strong>Discord</strong><small data-health-text="discord">—</small></div></div>

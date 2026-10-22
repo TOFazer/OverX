@@ -35,6 +35,57 @@ OVERLOAD = {
     "portable_url": "https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Portable-win64.zip",
 }
 
+OVERLOAD_SCREENS: list[dict[str, str]] = [
+    {
+        "id": "accueil",
+        "label": "Accueil",
+        "badge": "TABLEAU DE BORD",
+        "image": "assets/overload/accueil.png",
+        "title": "Un accueil actionnable dès l'ouverture",
+        "caption": "Colle un lien direct HTTP(S) avec validation instantanée, surveille le débit global (1,23 Mo/s), la file active, l'espace disque et tes téléchargements récents avec vignettes.",
+    },
+    {
+        "id": "telechargements",
+        "label": "Téléchargements",
+        "badge": "FILE ACTIVE & REPRISE",
+        "image": "assets/overload/telechargements.png",
+        "title": "Suivi en temps réel et reprise HTTP Range",
+        "caption": "Chaque transfert affiche sa barre de progression animée, sa vitesse glissante, le temps restant et les actions Pause, Reprendre, Relancer ou Ouvrir dans l'Explorateur.",
+    },
+    {
+        "id": "createurs",
+        "label": "Espace Créateurs",
+        "badge": "MONTAGE VIDÉO",
+        "image": "assets/overload/createurs.png",
+        "title": "Prépare tes projets sans jamais toucher aux originaux",
+        "caption": "Arborescence de montage en un clic (Premiere Pro, DaVinci Resolve, Final Cut, CapCut), renommage par lots avec aperçu, extraction de sous-titres .srt et export CSV.",
+    },
+    {
+        "id": "historique",
+        "label": "Historique",
+        "badge": "DIAGNOSTIC CLAIR",
+        "image": "assets/overload/historique.png",
+        "title": "Présence vérifiée sur le disque et erreurs expliquées",
+        "caption": "Filtre tes téléchargements passés, vérifie si chaque fichier est toujours présent sur ton PC et profite d'explications en français clair en cas d'interruption réseau.",
+    },
+    {
+        "id": "parametres",
+        "label": "Paramètres",
+        "badge": "PERSONNALISATION",
+        "image": "assets/overload/parametres.png",
+        "title": "Thèmes, 6 couleurs d'accent et contrôle du débit",
+        "caption": "Bascule entre le thème Sombre et le thème Clair, choisis parmi 6 couleurs d'accent (violet, bleu électrique, cyan, émeraude, ambre, rose) et ajuste la limite de vitesse globale.",
+    },
+    {
+        "id": "theme-clair",
+        "label": "Thème clair",
+        "badge": "ACCENT BLEU ÉLECTRIQUE",
+        "image": "assets/overload/theme-clair.png",
+        "title": "Une interface lumineuse et contrastée pour la journée",
+        "caption": "Le thème clair conserve toute la lisibilité d'OverLoad avec des surfaces blanches, des bordures douces et un accent bleu électrique commutable sans redémarrer.",
+    },
+]
+
 FGD_PLATFORMS: list[dict[str, str]] = [
     {
         "slug": "steam",
@@ -307,20 +358,132 @@ def overload_downloads(show_details: bool = False) -> str:
 
 
 def overload_art() -> str:
-    """Decorative project identity, not a purported screenshot of the application."""
-    return """<div class="bot-card-art overload-card-art" aria-hidden="true">
+    """Real application window composition showcasing OverLoad v1.1 on Windows."""
+    return """<div class="bot-card-art overload-card-art overload-visual-stage">
+        <div class="art-halo" aria-hidden="true"></div>
+        <div class="app-window app-window-primary">
+          <div class="app-window-bar" aria-hidden="true">
+            <div class="window-controls"><i></i><i></i><i></i></div>
+            <span class="app-window-title">OverLoad.exe — Media Suite v1.1</span>
+            <span class="app-window-badge">WINDOWS 11 · 64 BITS</span>
+          </div>
+          <div class="app-window-viewport">
+            <img src="{{ROOT}}assets/overload/accueil.png" alt="Capture de l'interface principale d'OverLoad sur Windows : téléchargement direct, débit global et file d'attente" width="1200" height="840" loading="lazy">
+          </div>
+        </div>
+        <div class="app-window app-window-secondary" aria-hidden="true">
+          <div class="app-window-bar">
+            <div class="window-controls"><i></i><i></i><i></i></div>
+            <span class="app-window-title">Espace Créateurs &amp; Téléchargements</span>
+          </div>
+          <div class="app-window-viewport">
+            <img src="{{ROOT}}assets/overload/telechargements.png" alt="" width="1200" height="840" loading="lazy">
+          </div>
+        </div>
+        <div class="app-floating-pill pill-speed" aria-hidden="true"><span class="art-caption-dot"></span> 1,23 Mo/s · Reprise HTTP Range</div>
+        <div class="app-floating-pill pill-creators" aria-hidden="true"><span class="pill-accent">⚡</span> Espace Créateurs &amp; FFprobe</div>
+      </div>"""
+
+
+def overload_showcase_section() -> str:
+    """Interactive multi-screen gallery of real OverLoad v1.1 application captures."""
+    tabs = []
+    panels = []
+    for idx, screen in enumerate(OVERLOAD_SCREENS):
+        is_active = idx == 0
+        active_class = " is-active" if is_active else ""
+        aria_selected = "true" if is_active else "false"
+        hidden_attr = "" if is_active else " hidden"
+        tabs.append(
+            f'<button class="showcase-tab{active_class}" type="button" role="tab" '
+            f'aria-selected="{aria_selected}" aria-controls="panel-{screen["id"]}" '
+            f'id="tab-{screen["id"]}" data-showcase-tab="{screen["id"]}">'
+            f'<span class="showcase-tab-badge">{escape(screen["badge"])}</span>'
+            f'<strong>{escape(screen["label"])}</strong></button>'
+        )
+        panels.append(
+            f'<div class="showcase-screen-panel{active_class}" id="panel-{screen["id"]}" '
+            f'role="tabpanel" aria-labelledby="tab-{screen["id"]}" data-showcase-panel="{screen["id"]}"{hidden_attr}>'
+            f'<div class="showcase-window-frame">'
+            f'<div class="app-window-bar" aria-hidden="true">'
+            f'<div class="window-controls"><i></i><i></i><i></i></div>'
+            f'<span class="app-window-title">OverLoad.exe — {escape(screen["label"])}</span>'
+            f'<span class="app-window-badge">{escape(screen["badge"])}</span>'
+            f'</div>'
+            f'<div class="showcase-window-body">'
+            f'<img src="{{{{ROOT}}}}{screen["image"]}" alt="{escape(screen["title"])} — {escape(screen["caption"])}" width="1200" height="840" loading="lazy">'
+            f'</div>'
+            f'<div class="showcase-window-caption">'
+            f'<div><span class="eyebrow">{escape(screen["badge"])}</span><h3>{escape(screen["title"])}</h3><p>{escape(screen["caption"])}</p></div>'
+            f'<a class="button button-primary" href="{escape(OVERLOAD["installer_url"], quote=True)}">Télécharger OverLoad <span aria-hidden="true">↓</span></a>'
+            f'</div>'
+            f'</div>'
+            f'</div>'
+        )
+    tabs_html = "\n        ".join(tabs)
+    panels_html = "\n      ".join(panels)
+    return f"""<section class="section container overload-gallery-section" id="apercu" aria-labelledby="overload-gallery-heading" data-reveal>
+    <div class="section-heading section-heading-split">
+      <div><p class="eyebrow"><span class="eyebrow-dot"></span> L'APPLICATION EN IMAGES · V1.1</p><h2 id="overload-gallery-heading">De vraies captures.<br><span>Une interface taillée pour Windows.</span></h2></div>
+      <p class="section-intro">Parcours les différentes vues d'OverLoad : tableau de bord de téléchargement, suivi en direct, Espace Créateurs, historique avec diagnostic et personnalisation des thèmes.</p>
+    </div>
+    <div class="overload-interactive-showcase" data-app-showcase>
+      <div class="showcase-tabs" role="tablist" aria-label="Vues de l'application OverLoad">
+        {tabs_html}
+      </div>
+      <div class="showcase-panels">
+        {panels_html}
+      </div>
+    </div>
+  </section>"""
+
+
+def fgd_art() -> str:
+    """Rich floating Discord window preview for FreeGameDrop on the home page."""
+    return """<div class="bot-card-art fgd-visual-stage" aria-hidden="true">
         <div class="art-halo"></div>
-        <div class="art-symbol">OL</div>
-        <div class="overload-art-label">TÉLÉCHARGER · ANALYSER · ORGANISER</div>
-        <div class="art-caption"><span class="art-caption-dot"></span> OVERLOAD <small>WINDOWS · 64 BITS</small></div>
-        <div class="art-line line-a"></div><div class="art-line line-b"></div>
-        <div class="art-orbit-dot"></div>
+        <div class="discord-app-window">
+          <div class="app-window-bar">
+            <div class="window-controls"><i></i><i></i><i></i></div>
+            <span class="app-window-title">Discord — Serveur Communauté</span>
+            <span class="app-window-badge">BOT ACTIF</span>
+          </div>
+          <div class="discord-app-layout">
+            <div class="discord-sidebar-mini">
+              <div class="sidebar-cat">JEUX GRATUITS</div>
+              <div class="sidebar-chan"><span class="hash">#</span> choisir-ses-roles</div>
+              <div class="sidebar-chan is-active"><span class="hash">#</span> jeux-epic <span class="chan-badge">1</span></div>
+              <div class="sidebar-chan"><span class="hash">#</span> jeux-steam</div>
+              <div class="sidebar-chan"><span class="hash">#</span> jeux-gog</div>
+              <div class="sidebar-chan"><span class="hash">#</span> jeux-ubisoft</div>
+            </div>
+            <div class="discord-chat-mini">
+              <div class="preview-message">
+                <div class="preview-avatar">FG</div>
+                <div class="preview-message-body">
+                  <div class="preview-author">FreeGameDrop <span class="bot-tag">APP</span> <time>Aujourd'hui à 18:00</time></div>
+                  <div class="preview-embed">
+                    <div class="embed-kicker"><span class="embed-dot"></span> 🔥 OFFRE EXCEPTIONNELLE · EPIC GAMES</div>
+                    <div class="embed-game-title">Cyberpunk 2077 — Édition Complète</div>
+                    <p><s>59,99 €</s> ➜ <strong>GRATUIT</strong> · 🟢 Expire dans 23 heures</p>
+                    <div class="embed-meta"><span>⚪ Rôle Epic Games</span><span>·</span><span>Vérifié via API officielle</span></div>
+                    <div class="embed-actions-row">
+                      <span class="embed-button">🎁 Récupérer le jeu <span>↗</span></span>
+                      <span class="embed-button embed-button-ghost">❤️ Favori</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-floating-pill pill-discord"><span class="art-caption-dot"></span> 4 boutiques · Salons dédiés sans spam</div>
       </div>"""
 
 
 def stats_band() -> str:
     """Numbers stay « — » until a measured public API is configured."""
-    return """<section class="section-alt stats-band" aria-label="Chiffres publics FreeGameDrop">
+    return """<section class="section-alt stats-band" aria-label="Chiffres publics FreeGameDrop" data-reveal>
     <div class="container stats-band-inner">
       <div class="stats-band-copy">
         <p class="eyebrow">FREEGAMEDROP EN CHIFFRES</p>
@@ -328,10 +491,10 @@ def stats_band() -> str:
         <p class="stats-band-note" data-stats-note>Aucune API publique n'est encore reliée : chaque compteur reste à « — » plutôt que d'être inventé. Renseigne <code>statsApiUrl</code> et <code>healthApiUrl</code> dans la configuration pour publier les mesures du bot.</p>
       </div>
       <dl class="stats-grid">
-        <div class="stat-cell"><dt>Serveurs</dt><dd data-stat="guilds">—</dd></div>
-        <div class="stat-cell"><dt>Offres détectées</dt><dd data-stat="offers">—</dd></div>
-        <div class="stat-cell"><dt>Offres actives</dt><dd data-stat="active_offers">—</dd></div>
-        <div class="stat-cell"><dt>Disponibilité</dt><dd data-stat="uptime">—</dd></div>
+        <div class="stat-cell" data-spotlight><dt>Serveurs</dt><dd data-stat="guilds">—</dd></div>
+        <div class="stat-cell" data-spotlight><dt>Offres détectées</dt><dd data-stat="offers">—</dd></div>
+        <div class="stat-cell" data-spotlight><dt>Offres actives</dt><dd data-stat="active_offers">—</dd></div>
+        <div class="stat-cell" data-spotlight><dt>Disponibilité</dt><dd data-stat="uptime">—</dd></div>
       </dl>
     </div>
   </section>"""
@@ -339,17 +502,17 @@ def stats_band() -> str:
 
 def why_overx() -> str:
     return """<div class="principles-grid">
-        <article class="principle-card"><div class="principle-index">01</div><div class="principle-icon icon-violet" aria-hidden="true">⌕</div><h3>Un espace pour chaque projet</h3><p>Une présentation claire pour comprendre à quoi sert chaque outil, avant de le télécharger ou de l'ajouter à Discord.</p></article>
-        <article class="principle-card"><div class="principle-index">02</div><div class="principle-icon icon-cyan" aria-hidden="true">↓</div><h3>Des téléchargements officiels</h3><p>OverLoad se télécharge depuis ses releases GitHub. Le lien suit la dernière version stable, sans manipulation sur le site.</p></article>
-        <article class="principle-card"><div class="principle-index">03</div><div class="principle-icon icon-lime" aria-hidden="true">＋</div><h3>De la place pour la suite</h3><p>Les nouvelles applications et les futurs projets rejoindront OverX. Pas de fausse date ni de disponibilité inventée.</p></article>
+        <article class="principle-card" data-spotlight data-reveal data-reveal-delay="0"><div class="principle-index">01</div><div class="principle-icon icon-violet" aria-hidden="true">⌕</div><h3>Un espace pour chaque projet</h3><p>Une présentation claire avec de vrais aperçus pour comprendre chaque logiciel avant de le télécharger ou de l'ajouter à Discord.</p></article>
+        <article class="principle-card" data-spotlight data-reveal data-reveal-delay="80"><div class="principle-index">02</div><div class="principle-icon icon-cyan" aria-hidden="true">↓</div><h3>Des téléchargements officiels</h3><p>OverLoad se télécharge directement depuis ses releases GitHub. Le lien suit la dernière version stable, sans intermédiaire.</p></article>
+        <article class="principle-card" data-spotlight data-reveal data-reveal-delay="160"><div class="principle-index">03</div><div class="principle-icon icon-lime" aria-hidden="true">＋</div><h3>De la place pour la suite</h3><p>Les nouvelles applications et les futurs projets rejoindront OverX. Pas de fausse date ni de disponibilité inventée.</p></article>
       </div>"""
 
 
 def platform_strip() -> str:
     tiles = "\n        ".join(
-        f'<a class="platform-tile {p["color"]}" href="{{{{ROOT}}}}discord-bots/freegamedrop/{p["slug"]}/index.html"><span class="platform-tile-icon" aria-hidden="true">{p["icon"]}</span><strong>{escape(p["name"])}</strong><small>{escape(p["source"])}</small></a>'
+        f'<a class="platform-tile {p["color"]}" data-spotlight data-reveal href="{{{{ROOT}}}}discord-bots/freegamedrop/{p["slug"]}/index.html"><span class="platform-tile-icon" aria-hidden="true">{p["icon"]}</span><strong>{escape(p["name"])}</strong><small>{escape(p["source"])}</small></a>'
         for p in FGD_PLATFORMS)
-    return f"""<section class="section section-alt">
+    return f"""<section class="section section-alt" data-reveal>
     <div class="container">
       <div class="section-heading section-heading-split"><div><p class="eyebrow">PLATEFORMES SUIVIES</p><h2>Quatre boutiques.<br><span>Un salon par plateforme.</span></h2></div><p class="section-intro">Chaque plateforme a son rôle, son salon et ses annonces. Les membres ne reçoivent que ce qu'ils choisissent.</p></div>
       <div class="platform-grid">
@@ -371,17 +534,17 @@ def community_cta() -> str:
 def other_bots(current_slug: str) -> str:
     others = [bot for bot in BOTS if bot["slug"] != current_slug]
     cards = "\n        ".join(
-        f'<a class="other-bot-card" href="{{{{ROOT}}}}{bot["page"]}"><span class="product-mark">{bot["mark"]}<span>{bot["mark_accent"]}</span></span><div><strong>{escape(bot["name"])}</strong><p>{escape(bot["short"])}</p></div><span aria-hidden="true">→</span></a>'
+        f'<a class="other-bot-card" data-spotlight href="{{{{ROOT}}}}{bot["page"]}"><span class="product-mark">{bot["mark"]}<span>{bot["mark_accent"]}</span></span><div><strong>{escape(bot["name"])}</strong><p>{escape(bot["short"])}</p></div><span aria-hidden="true">→</span></a>'
         for bot in others)
-    soon = ('<div class="other-bot-card other-bot-soon"><span class="product-mark product-mark-dim">＋<span></span></span>'
+    soon = ('<div class="other-bot-card other-bot-soon" data-spotlight><span class="product-mark product-mark-dim">＋<span></span></span>'
             '<div><strong>Les prochains bots</strong><p>Annoncés quand leur développement et leur disponibilité seront confirmés.</p></div>'
             '<a class="text-link" href="{{ROOT}}roadmap/index.html">Roadmap <span aria-hidden="true">→</span></a></div>')
-    overload = ('<a class="other-bot-card" href="{{ROOT}}overload/index.html">'
+    overload = ('<a class="other-bot-card" data-spotlight href="{{ROOT}}overload/index.html">'
                 '<span class="product-mark overload-mark" aria-hidden="true">OL</span>'
                 '<div><strong>OverLoad · Windows</strong><p>Télécharge, analyse et organise tes médias dans une application de bureau.</p></div>'
                 '<span aria-hidden="true">→</span></a>')
     inner = "\n        ".join([overload, *([cards] if cards else []), soon])
-    return f"""<section class="section section-alt">
+    return f"""<section class="section section-alt" data-reveal>
     <div class="container">
       <div class="section-heading"><p class="eyebrow">L'ÉCOSYSTÈME OVERX</p><h2>D’autres usages.<br><span>Le même univers.</span></h2><p class="section-intro">OverX rassemble aussi des applications Windows et les futurs projets. Découvre les autres outils de la collection.</p></div>
       <div class="other-bots-grid">
@@ -408,21 +571,21 @@ def command_table(commands: list[tuple[str, str, str]]) -> str:
 
 def platform_page(platform: dict) -> dict:
     other_tiles = "\n      ".join(
-        f'<a class="platform-tile {p["color"]}" href="{{{{ROOT}}}}discord-bots/freegamedrop/{p["slug"]}/index.html"><span class="platform-tile-icon" aria-hidden="true">{p["icon"]}</span><strong>{escape(p["name"])}</strong><small>{escape(p["source"])}</small></a>'
+        f'<a class="platform-tile {p["color"]}" data-spotlight href="{{{{ROOT}}}}discord-bots/freegamedrop/{p["slug"]}/index.html"><span class="platform-tile-icon" aria-hidden="true">{p["icon"]}</span><strong>{escape(p["name"])}</strong><small>{escape(p["source"])}</small></a>'
         for p in FGD_PLATFORMS if p["slug"] != platform["slug"])
     facts = "\n      ".join(
-        f'<article class="platform-fact"><span aria-hidden="true">✓</span><p>{escape(fact)}</p></article>'
+        f'<article class="platform-fact" data-spotlight><span aria-hidden="true">✓</span><p>{escape(fact)}</p></article>'
         for fact in platform["facts"])
     body = f"""
 <main id="main-content">
-  <section class="page-hero container">
+  <section class="page-hero container" data-reveal>
     <p class="eyebrow"><a href="{{{{ROOT}}}}discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> {escape(platform["name"]).upper()}</p>
     <h1>Les jeux gratuits {escape(platform["name"])}<br><span>dans ton salon Discord.</span></h1>
     <p class="hero-lead narrow">{escape(platform["intro"])}</p>
     <div class="catalogue-meta"><span class="platform-meta-icon {platform["color"]}" aria-hidden="true">{platform["icon"]}</span> {escape(platform["name"])} <span class="meta-divider"></span> Source : {escape(platform["source"])} <span class="meta-divider"></span> Salon {escape(platform["channel"])}</div>
   </section>
 
-  <section class="section container section-compact">
+  <section class="section container section-compact" data-reveal>
     <div class="section-heading"><p class="eyebrow">CE QUE FAIT LE BOT</p><h2>{escape(platform["name"])}, sans effort<br><span>et sans spam.</span></h2></div>
     <div class="platform-facts">
       {facts}
@@ -430,18 +593,18 @@ def platform_page(platform: dict) -> dict:
     <div class="platform-cta-row"><a class="button button-primary" data-install-cta href="{{{{ROOT}}}}install/index.html#ajouter">Ajouter FreeGameDrop <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="{{{{ROOT}}}}discord-bots/freegamedrop/index.html">Toutes les fonctionnalités <span aria-hidden="true">→</span></a></div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" data-reveal>
     <div class="container two-column-section">
       <div><p class="eyebrow">EN PRATIQUE</p><h2>Un rôle,<br><span>un salon.</span></h2><p class="section-intro">Après /setup-auto, la plateforme {escape(platform["name"])} existe comme les autres : un rôle {platform["icon"]} {escape(platform["role"])} obtenu par le panneau de boutons, un salon {escape(platform["channel"])} en lecture seule, des annonces avec prix barré et compte à rebours.</p><a class="text-link" href="{{{{ROOT}}}}docs/index.html#configuration">Configurer les salons <span aria-hidden="true">→</span></a></div>
-      <div class="command-pills"><span><code>/setup-auto</code><small>crée rôle et salon {escape(platform["name"])}</small></span><span><code>/preferences</code><small>filtrer plateformes et genres</small></span><span><code>/alertes</code><small>alertes privées {escape(platform["name"])}</small></span><span><code>/rappel-salon</code><small>rappel de fin d'offre</small></span></div>
+      <div class="command-pills"><span data-spotlight><code>/setup-auto</code><small>crée rôle et salon {escape(platform["name"])}</small></span><span data-spotlight><code>/preferences</code><small>filtrer plateformes et genres</small></span><span data-spotlight><code>/alertes</code><small>alertes privées {escape(platform["name"])}</small></span><span data-spotlight><code>/rappel-salon</code><small>rappel de fin d'offre</small></span></div>
     </div>
   </section>
 
-  <section class="section container">
+  <section class="section container" data-reveal>
     <div class="section-heading section-heading-split"><div><p class="eyebrow">LES AUTRES PLATEFORMES</p><h2>Et si tu suis<br><span>plusieurs boutiques ?</span></h2></div><p class="section-intro">Chaque plateforme a sa propre page : compare les sources et les salons créés par le bot.</p></div>
     <div class="platform-grid">
       {other_tiles}
-      <a class="platform-tile platform-tile-more" href="{{{{ROOT}}}}discord-bots/freegamedrop/index.html"><span class="platform-tile-icon" aria-hidden="true">＋</span><strong>FreeGameDrop</strong><small>la fiche complète du bot</small></a>
+      <a class="platform-tile platform-tile-more" data-spotlight href="{{{{ROOT}}}}discord-bots/freegamedrop/index.html"><span class="platform-tile-icon" aria-hidden="true">＋</span><strong>FreeGameDrop</strong><small>la fiche complète du bot</small></a>
     </div>
   </section>
 </main>
@@ -464,56 +627,92 @@ PAGES: list[dict] = []  # filled below, then extended with platform pages
 
 _HOME_BODY = r"""
 <main id="main-content">
-  <section class="hero container">
-    <div class="hero-copy">
-      <p class="eyebrow"><span class="eyebrow-dot"></span> OVERX · APPLICATIONS & PROJETS</p>
-      <h1>Des outils utiles.<br><span>Un même univers.</span></h1>
-      <p class="hero-lead">OverX rassemble mes applications et mes futurs projets. Avec <strong>OverLoad</strong> pour tes médias sur Windows et <strong>FreeGameDrop</strong> pour ta communauté Discord, retrouve chaque outil et ses liens officiels au même endroit.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="#projets">Découvrir les projets <span aria-hidden="true">↓</span></a>
-        <a class="button button-secondary" href="#overload">Explorer OverLoad <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="hero-caption"><span class="caption-check" aria-hidden="true">✓</span> Un site pour découvrir. Des applications à utiliser.</div>
+  <section class="hero hero-spectacular container">
+    <div class="hero-ambient" aria-hidden="true">
+      <div class="ambient-glow glow-violet"></div>
+      <div class="ambient-glow glow-blue"></div>
+      <div class="overx-sigil"></div>
     </div>
-    <div class="hero-visual project-showcase">
+    <div class="hero-copy hero-copy-spectacular" data-reveal>
+      <div class="hero-brand-badge">
+        <img src="{{ROOT}}assets/brand-mark.svg" alt="" width="40" height="40">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> OVERX · APPLICATIONS &amp; PROJETS</p>
+      </div>
+      <h1>Des outils utiles.<br><span>Un même univers.</span></h1>
+      <p class="hero-lead">OverX rassemble mes applications et mes futurs projets. Avec <strong>OverLoad</strong> pour télécharger, analyser et organiser tes médias sur Windows et <strong>FreeGameDrop</strong> pour ta communauté Discord, retrouve chaque logiciel et ses liens officiels au même endroit.</p>
+      <div class="hero-actions">
+        <a class="button button-primary button-lg" href="#projets">Découvrir les projets <span aria-hidden="true">↓</span></a>
+        <a class="button button-secondary button-lg" href="#overload">Explorer OverLoad <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hero-caption"><span class="caption-check" aria-hidden="true">✓</span> Un site pour découvrir. Des applications natives à utiliser.</div>
+    </div>
+
+    <div class="hero-visual project-showcase hero-stage" data-reveal data-reveal-delay="140">
       <div class="visual-grid" aria-hidden="true"></div>
       <div class="visual-orbit orbit-one" aria-hidden="true"></div>
       <div class="visual-orbit orbit-two" aria-hidden="true"></div>
-      <div class="project-showcase-panel">
-        <div class="showcase-heading"><img src="{{ROOT}}assets/brand-mark.svg" alt="" width="46" height="46"><div><strong>OverX</strong><span>Le point de départ de tes applications.</span></div></div>
-        <a class="showcase-project" href="{{ROOT}}overload/index.html"><span class="showcase-mark overload-mark" aria-hidden="true">OL</span><div><strong>OverLoad</strong><span>Tes médias, à ta façon.</span></div><span class="showcase-platform">WINDOWS</span><span aria-hidden="true">↗</span></a>
-        <a class="showcase-project" href="{{ROOT}}discord-bots/freegamedrop/index.html"><span class="showcase-mark" aria-hidden="true">FG</span><div><strong>FreeGameDrop</strong><span>Les jeux gratuits, sur ton serveur.</span></div><span class="showcase-platform">DISCORD</span><span aria-hidden="true">↗</span></a>
-        <div class="showcase-future"><span aria-hidden="true">＋</span> Et les projets à venir.</div>
+
+      <div class="hero-stage-centerpiece">
+        <div class="app-window hero-main-window" data-spotlight>
+          <div class="app-window-bar">
+            <div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span class="app-window-title">OverLoad.exe — Media Suite v1.1 (Windows 11 · 64 bits)</span>
+            <span class="app-window-badge"><span class="live-dot"></span> NATIVE</span>
+          </div>
+          <div class="app-window-viewport">
+            <img src="{{ROOT}}assets/overload/accueil.png" alt="Aperçu de l'application Windows OverLoad v1.1 : téléchargement direct, débit en temps réel et organisation multimédia" width="1200" height="840" fetchpriority="high">
+          </div>
+        </div>
+
+        <div class="project-showcase-panel hero-floating-dock" data-spotlight>
+          <div class="showcase-heading"><img src="{{ROOT}}assets/brand-mark.svg" alt="" width="42" height="42"><div><strong>OverX</strong><span>Le point de départ de tes logiciels.</span></div></div>
+          <a class="showcase-project" href="{{ROOT}}overload/index.html"><span class="showcase-mark overload-mark" aria-hidden="true">OL</span><div><strong>OverLoad</strong><span>Tes médias, à ta façon.</span></div><span class="showcase-platform">WINDOWS</span><span aria-hidden="true">↗</span></a>
+          <a class="showcase-project" href="{{ROOT}}discord-bots/freegamedrop/index.html"><span class="showcase-mark" aria-hidden="true">FG</span><div><strong>FreeGameDrop</strong><span>Les jeux gratuits, sur ton serveur.</span></div><span class="showcase-platform">DISCORD</span><span aria-hidden="true">↗</span></a>
+          <div class="showcase-future"><span aria-hidden="true">＋</span> Et les projets à venir.</div>
+        </div>
+
+        <a class="hero-floating-discord" href="{{ROOT}}discord-bots/freegamedrop/index.html" aria-label="Découvrir FreeGameDrop pour Discord" data-spotlight>
+          <div class="floating-discord-top">
+            <span class="preview-avatar" aria-hidden="true">FG</span>
+            <div><strong>FreeGameDrop</strong> <span class="bot-tag">BOT</span><small>#jeux-epic · Alerte automatique</small></div>
+          </div>
+          <div class="floating-discord-embed">
+            <span class="embed-kicker"><span class="embed-dot"></span> 🔥 OFFRE EXCEPTIONNELLE</span>
+            <strong>Jeu complet offert · <s>59,99 €</s> ➜ GRATUIT</strong>
+            <div class="floating-discord-tags"><span>🔵 Steam</span><span>⚪ Epic</span><span>🟣 GOG</span><span>🔷 Ubisoft</span></div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="truth-band" aria-label="Les liens officiels des projets">
+  <section class="truth-band" aria-label="Les liens officiels des projets" data-reveal>
     <div class="container truth-band-inner">
       <div class="truth-icon" aria-hidden="true">↗</div>
-      <div><p class="truth-title">Les bons liens. Au bon endroit.</p><p class="truth-copy">Les téléchargements OverLoad mènent à la dernière release stable sur GitHub, sans version figée.</p></div>
+      <div><p class="truth-title">Les bons liens. Au bon endroit.</p><p class="truth-copy">Les téléchargements OverLoad mènent directement à la dernière release stable sur GitHub, sans version figée.</p></div>
       <a class="text-link" href="{{ROOT}}overload/index.html#installation">Comment l'installer ? <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
   <section class="section container" id="projets" aria-labelledby="projects-heading">
-    <div class="section-heading section-heading-split">
-      <div><p class="eyebrow">LA COLLECTION OVERX</p><h2 id="projects-heading">Les projets OverX.<br><span>À chacun son usage.</span></h2></div>
-      <p class="section-intro">Une application Windows, un bot Discord et de la place pour la suite. Chaque projet garde sa propre identité ; OverX les réunit.</p>
+    <div class="section-heading section-heading-split" data-reveal>
+      <div><p class="eyebrow"><span class="eyebrow-dot"></span> LA COLLECTION OVERX</p><h2 id="projects-heading">Les projets OverX.<br><span>À chacun son usage.</span></h2></div>
+      <p class="section-intro">Une application Windows native avec de vrais outils médias, un bot Discord de veille automatique et de la place pour la suite. Chaque logiciel possède son propre univers ; OverX les réunit.</p>
     </div>
-    <article class="featured-bot-card overload-card" id="overload" aria-labelledby="overload-heading">
+
+    <article class="featured-bot-card overload-card" id="overload" aria-labelledby="overload-heading" data-spotlight data-reveal>
       <div class="bot-card-main">
-        <div class="bot-card-topline"><span class="product-mark overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows</span></div>
+        <div class="bot-card-topline"><span class="product-mark overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows · v1.1</span></div>
         <p class="eyebrow bot-category">TÉLÉCHARGEMENT · ANALYSE · ORGANISATION</p>
         <h3 id="overload-heading">OverLoad</h3>
-        <p class="bot-description">Télécharge des fichiers depuis des liens directs HTTP(S), analyse tes vidéos, musiques et images, puis prépare tes projets de montage dans une application native Windows.</p>
-        <div class="chip-row"><span class="chip">Liens directs HTTP(S)</span><span class="chip">Analyse multimédia</span><span class="chip">Espace Créateurs</span></div>
+        <p class="bot-description">Télécharge des fichiers depuis des liens directs HTTP(S) avec reprise automatique, analyse tes vidéos, musiques et images via FFprobe, puis prépare tes projets de montage dans l'Espace Créateurs d'une application native Windows.</p>
+        <div class="chip-row"><span class="chip">Liens directs HTTP(S)</span><span class="chip">Reprise HTTP Range</span><span class="chip">Analyse multimédia</span><span class="chip">Espace Créateurs</span><span class="chip">Thèmes Sombre &amp; Clair</span></div>
         {{OVERLOAD_DOWNLOADS_HOME}}
       </div>
       {{OVERLOAD_ART}}
     </article>
 
-    <article class="featured-bot-card" id="bots">
+    <article class="featured-bot-card" id="bots" data-spotlight data-reveal>
       <div class="bot-card-main">
         <div class="bot-card-topline"><span class="product-mark" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Disponibilité publique à confirmer</span></div>
         <p class="eyebrow bot-category">JEUX GRATUITS · STEAM · EPIC · GOG · UBISOFT</p>
@@ -526,20 +725,14 @@ _HOME_BODY = r"""
         </div>
         <p class="micro-note" data-install-status>Le lien d'invitation Discord n'a pas encore été communiqué.</p>
       </div>
-      <div class="bot-card-art" aria-hidden="true">
-        <div class="art-halo"></div>
-        <div class="art-symbol">FG<span>D</span></div>
-        <div class="art-caption"><span class="art-caption-dot"></span> FREEGAMEDROP <small>BOT DISCORD</small></div>
-        <div class="art-line line-a"></div><div class="art-line line-b"></div>
-        <div class="art-orbit-dot"></div>
-      </div>
+      {{FGD_ART}}
     </article>
-    <div class="coming-soon-row"><span class="coming-icon" aria-hidden="true">＋</span><div><strong>Les prochains projets ?</strong><p>Ils seront présentés ici au fil de leur développement, avec leur disponibilité clairement indiquée.</p></div><span class="coming-badge">À VENIR</span></div>
+    <div class="coming-soon-row" data-spotlight data-reveal><span class="coming-icon" aria-hidden="true">＋</span><div><strong>Les prochains projets ?</strong><p>Ils seront présentés ici au fil de leur développement, avec de vraies captures et leur disponibilité clairement indiquée.</p></div><span class="coming-badge">À VENIR</span></div>
   </section>
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow">UN POINT D'ENTRÉE COMMUN</p><h2>Découvrir. Choisir.<br><span>Passer à l'action.</span></h2><p class="section-intro">OverX est la vitrine des projets, pas une application à installer. Chaque outil possède son propre parcours.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">UN POINT D'ENTRÉE COMMUN</p><h2>Découvrir. Choisir.<br><span>Passer à l'action.</span></h2><p class="section-intro">OverX est la vitrine des projets, pas un installateur intermédiaire. Chaque logiciel conserve son parcours direct et transparent.</p></div>
       {{WHY_OVERX}}
     </div>
   </section>
@@ -568,29 +761,33 @@ PAGES.append({
 _OVERLOAD_BODY = r"""
 <main id="main-content" class="overload-page">
   <section class="product-hero container overload-hero">
-    <div class="product-copy">
+    <div class="product-copy" data-reveal>
       <p class="eyebrow"><a href="{{ROOT}}index.html#projets">PROJETS OVERX</a> <span class="crumb-slash">/</span> OVERLOAD</p>
-      <div class="product-heading"><span class="product-mark product-mark-large overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows</span></div>
+      <div class="product-heading"><span class="product-mark product-mark-large overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows · v1.1</span></div>
       <h1>Tes médias.<br><span>Prêts pour la suite.</span></h1>
-      <p class="hero-lead">OverLoad télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et t'aide à préparer tes projets vidéo. Une application de bureau native Windows, avec un espace dédié aux créateurs.</p>
+      <p class="hero-lead">OverLoad télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et t'aide à préparer tes projets vidéo. Une application de bureau native Windows (`OverLoad.exe`), avec un espace dédié aux créateurs et une interface sombre ou claire.</p>
       {{OVERLOAD_DOWNLOADS}}
     </div>
-    {{OVERLOAD_ART}}
+    <div data-reveal data-reveal-delay="120">
+      {{OVERLOAD_ART}}
+    </div>
   </section>
+
+  {{OVERLOAD_SHOWCASE_SECTION}}
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow">TÉLÉCHARGER · ANALYSER · ORGANISER</p><h2>De tes fichiers<br><span>à ton prochain projet.</span></h2><p class="section-intro">Les fonctionnalités présentées ici sont documentées dans le dépôt officiel OverLoad.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">TÉLÉCHARGER · ANALYSER · ORGANISER</p><h2>De tes fichiers<br><span>à ton prochain projet.</span></h2><p class="section-intro">Les fonctionnalités présentées ici sont intégrées dans l'exécutable Windows natif et documentées dans le dépôt officiel OverLoad.</p></div>
       <div class="feature-grid overload-features">
-        <article class="feature-card"><div class="feature-icon icon-violet" aria-hidden="true">↓</div><h3>Gérer tes téléchargements</h3><p>Ajoute des liens directs HTTP(S), télécharge par lots, règle la limite de vitesse et retrouve ton historique. La reprise dépend de sa prise en charge par le serveur source.</p></article>
-        <article class="feature-card"><div class="feature-icon icon-cyan" aria-hidden="true">⌕</div><h3>Comprendre tes médias</h3><p>Consulte les codecs, la résolution et les pistes audio, vidéo ou sous-titres de tes fichiers locaux. Les alertes de compatibilité t'aident avant le montage.</p></article>
-        <article class="feature-card"><div class="feature-icon icon-lime" aria-hidden="true">▤</div><h3>Préparer ton projet vidéo</h3><p>L'Espace Créateurs prépare les dossiers, organise des copies de tes médias et exporte un inventaire. Les originaux restent intacts, les copies sont soumises à confirmation.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="0"><div class="feature-icon icon-violet" aria-hidden="true">↓</div><h3>Gérer tes téléchargements</h3><p>Ajoute des liens directs HTTP(S), télécharge par lots (1 à 16 simultanés), règle la limite de vitesse globale et profite de la reprise HTTP Range automatique après coupure.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="80"><div class="feature-icon icon-cyan" aria-hidden="true">⌕</div><h3>Comprendre tes médias</h3><p>Consulte les codecs, la résolution, le débit et les pistes audio, vidéo ou sous-titres de tes fichiers locaux grâce à FFprobe embarqué. Les alertes de compatibilité t'aident avant le montage.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="160"><div class="feature-icon icon-lime" aria-hidden="true">▤</div><h3>Préparer ton projet vidéo</h3><p>L'Espace Créateurs prépare l'arborescence de dossiers (Premiere Pro, DaVinci Resolve, CapCut), renomme par lots et exporte un inventaire CSV sans jamais modifier tes originaux.</p></article>
       </div>
-      <div class="notice"><strong>Des sources directes, sans contournement.</strong><p>OverLoad prend en charge les adresses HTTP(S) qui pointent directement vers un fichier. Il ne contourne ni les protections d'accès, ni les DRM, ni les restrictions d'une plateforme. Utilise uniquement les médias que tu es autorisé à télécharger.</p></div>
+      <div class="notice" data-reveal><strong>Des sources directes, sans contournement.</strong><p>OverLoad prend en charge les adresses HTTP(S) qui pointent directement vers un fichier. Il ne contourne ni les protections d'accès, ni les DRM, ni les restrictions d'une plateforme. Utilise uniquement les médias que tu es autorisé à télécharger.</p></div>
     </div>
   </section>
 
-  <section class="section container overload-install" id="installation" aria-labelledby="overload-install-heading">
+  <section class="section container overload-install" id="installation" aria-labelledby="overload-install-heading" data-reveal>
     <div class="section-heading"><p class="eyebrow">INSTALLATION WINDOWS</p><h2 id="overload-install-heading">Télécharge ici.<br><span>Installe sur ton PC.</span></h2><p class="section-intro">Le site fournit le fichier ; c'est toi qui lances l'installation. Aucune installation ni mise à jour n'est déclenchée dans ton ordinateur par OverX.</p></div>
     <ol class="overload-steps">
       <li><span class="overload-step-number" aria-hidden="true">01</span><div><h3>Télécharge l'installateur</h3><p>Le bouton « Télécharger pour Windows » récupère <code>OverLoad-Setup.exe</code> depuis la dernière release stable publiée sur GitHub.</p></div></li>
@@ -600,15 +797,15 @@ _OVERLOAD_BODY = r"""
     <div class="notice"><strong>Tu préfères une version sans installation ?</strong><p>Choisis « Version portable (.zip) », extrais l'archive dans un dossier puis lance <code>OverLoad.exe</code>. Les notes de version restent disponibles sur GitHub si tu souhaites consulter les changements ou les fichiers publiés.</p></div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" data-reveal>
     <div class="container install-help-layout">
       <div><p class="eyebrow">QUESTIONS FRÉQUENTES</p><h2>Avant le<br><span>téléchargement.</span></h2><p class="section-intro">OverX présente l'application. Le code et les releases restent dans le dépôt OverLoad.</p></div>
       {{FAQ_BLOCK}}
     </div>
   </section>
 
-  <section class="section container">
-    <div class="install-bottom-cta"><div><p class="eyebrow">LE PROJET OVERLOAD</p><h2>Le code, les versions, les échanges.</h2><p>Consulte le README, les releases et les problèmes signalés dans le dépôt officiel de l'application.</p></div><div class="install-bottom-actions"><a class="button button-secondary" href="{{OVERLOAD_SOURCE_URL}}" target="_blank" rel="noopener noreferrer">Dépôt OverLoad <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ROOT}}index.html#projets">Tous les projets OverX <span aria-hidden="true">→</span></a></div></div>
+  <section class="section container" data-reveal>
+    <div class="install-bottom-cta" data-spotlight><div><p class="eyebrow">LE PROJET OVERLOAD</p><h2>Le code, les versions, les échanges.</h2><p>Consulte le README, les releases et les problèmes signalés dans le dépôt officiel de l'application.</p></div><div class="install-bottom-actions"><a class="button button-secondary" href="{{OVERLOAD_SOURCE_URL}}" target="_blank" rel="noopener noreferrer">Dépôt OverLoad <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ROOT}}index.html#projets">Tous les projets OverX <span aria-hidden="true">→</span></a></div></div>
   </section>
 </main>
 """
@@ -642,14 +839,14 @@ PAGES.append({
 
 _CATALOGUE_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container">
+  <section class="page-hero container" data-reveal>
     <p class="eyebrow"><a href="{{ROOT}}index.html">OVERX</a> <span class="crumb-slash">/</span> CATALOGUE</p>
     <h1>Des bots utiles.<br><span>Pas une liste de promesses.</span></h1>
     <p class="hero-lead narrow">Voici les applications réellement documentées aujourd'hui. Les prochains bots seront annoncés quand ils auront un nom, des fonctionnalités et une disponibilité confirmés.</p>
     <div class="catalogue-meta"><span class="catalogue-dot"></span> <span data-bot-count>1</span> bot présenté <span class="meta-divider"></span> Catalogue en construction</div>
   </section>
 
-  <section class="section container section-compact">
+  <section class="section container section-compact" data-reveal>
     <div class="catalogue-toolbar">
       <label class="catalogue-search"><span aria-hidden="true">⌕</span><input type="search" data-catalogue-search placeholder="Rechercher un bot…" aria-label="Rechercher un bot dans le catalogue"></label>
       <div class="catalogue-filters" role="group" aria-label="Filtrer par catégorie">
@@ -661,7 +858,7 @@ _CATALOGUE_BODY = r"""
       </div>
     </div>
     <div class="catalogue-grid" data-catalogue-grid>
-      <article class="catalogue-card catalogue-card-compact" data-bot-card data-category="gaming" data-search="freegamedrop jeux gratuits steam epic games store gog ubisoft alertes offres gaming">
+      <article class="catalogue-card catalogue-card-compact" data-bot-card data-category="gaming" data-search="freegamedrop jeux gratuits steam epic games store gog ubisoft alertes offres gaming" data-spotlight>
         <div class="catalogue-visual"><div class="catalogue-visual-grid"></div><div class="catalogue-logo">FG<span>D</span></div><div class="catalogue-stamp">FREE<br>GAME<br>DROP</div><div class="catalogue-orbit"></div><span class="catalogue-tag">01 · GAMING</span></div>
         <div class="catalogue-content">
           <div class="catalogue-top"><span class="eyebrow">JEUX GRATUITS · ALERTES DISCORD</span><span class="status-pill status-neutral"><span></span> Instance publique à confirmer</span></div>
@@ -675,7 +872,7 @@ _CATALOGUE_BODY = r"""
       <p class="catalogue-empty" data-catalogue-empty hidden>Aucun bot ne correspond à cette recherche pour le moment.</p>
     </div>
 
-    <div class="future-panel"><div class="future-lock" aria-hidden="true">⌑</div><div><p class="eyebrow">LA SUITE DE L'ÉCOSYSTÈME</p><h2>Les autres bots arrivent<br><span>quand ils seront prêts.</span></h2><p>Aucun bot fictif ni compteur de lancement : cette page s'enrichira au fil des projets réellement publiés.</p></div><a class="text-link" href="{{ROOT}}roadmap/index.html">Voir la feuille de route <span aria-hidden="true">→</span></a></div>
+    <div class="future-panel" data-spotlight><div class="future-lock" aria-hidden="true">⌑</div><div><p class="eyebrow">LA SUITE DE L'ÉCOSYSTÈME</p><h2>Les autres bots arrivent<br><span>quand ils seront prêts.</span></h2><p>Aucun bot fictif ni compteur de lancement : cette page s'enrichira au fil des projets réellement publiés.</p></div><a class="text-link" href="{{ROOT}}roadmap/index.html">Voir la feuille de route <span aria-hidden="true">→</span></a></div>
   </section>
 </main>
 """
@@ -691,7 +888,7 @@ PAGES.append({
 _BOT_BODY = r"""
 <main id="main-content">
   <section class="product-hero container" id="installation">
-    <div class="product-copy">
+    <div class="product-copy" data-reveal>
       <p class="eyebrow"><a href="{{ROOT}}discord-bots/index.html">BOTS</a> <span class="crumb-slash">/</span> FREEGAMEDROP</p>
       <div class="product-heading"><span class="product-mark product-mark-large" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Disponibilité publique à confirmer</span></div>
       <h1>Ne rate plus<br><span>les jeux gratuits.</span></h1>
@@ -703,7 +900,7 @@ _BOT_BODY = r"""
       </div>
       <p class="micro-note" data-install-status>L'invitation publique n'est pas encore renseignée. Le bouton d'installation restera inactif jusque-là.</p>
     </div>
-    <div class="product-preview-card" aria-label="Exemple illustratif du panneau d'offres FreeGameDrop">
+    <div class="product-preview-card" aria-label="Exemple illustratif du panneau d'offres FreeGameDrop" data-spotlight data-reveal data-reveal-delay="120">
       <div class="product-preview-top"><span class="preview-led"></span><span>FREEGAMEDROP</span><span class="preview-top-right">APERÇU</span></div>
       <div class="product-preview-body">
         <div class="offer-type"><span>✦</span> EXEMPLE D'ANNONCE</div>
@@ -720,42 +917,42 @@ _BOT_BODY = r"""
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow">FONCTIONNALITÉS DOCUMENTÉES</p><h2>Tout ce qu'il faut<br><span>pour trouver sa prochaine offre.</span></h2><p class="section-intro">Les fonctionnalités ci-dessous sont tirées de la documentation du dépôt FreeGameDropDev. L'état de l'instance publique n'est pas vérifié par ce site.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">FONCTIONNALITÉS DOCUMENTÉES</p><h2>Tout ce qu'il faut<br><span>pour trouver sa prochaine offre.</span></h2><p class="section-intro">Les fonctionnalités ci-dessous sont tirées de la documentation du dépôt FreeGameDropDev. L'état de l'instance publique n'est pas vérifié par ce site.</p></div>
       <div class="feature-grid">
-        <article class="feature-card"><div class="feature-icon icon-violet">⌁</div><h3>Multi-sources résilientes</h3><p>GamerPower et l'API officielle Epic agrégées en parallèle : une source en panne ne bloque jamais les autres.</p><span class="feature-index">01</span></article>
-        <article class="feature-card"><div class="feature-icon icon-orange">🔥</div><h3>Offres exceptionnelles</h3><p>Un jeu complet d'au moins 19,99 € offert temporairement est mis en avant, avec la valeur affichée par la source.</p><span class="feature-index">02</span></article>
-        <article class="feature-card"><div class="feature-icon icon-cyan">◉</div><h3>Un salon par plateforme</h3><p>/setup-auto crée catégorie, rôles, salons en lecture seule et panneau de boutons ; chaque membre choisit ses plateformes.</p><span class="feature-index">03</span></article>
-        <article class="feature-card"><div class="feature-icon icon-pink">♡</div><h3>Favoris & rappels</h3><p>Bouton ❤️, /favoris, alertes privées et « ton jeu favori expire dans 6 heures » : rien ne passe à la trappe.</p><span class="feature-index">04</span></article>
-        <article class="feature-card"><div class="feature-icon icon-lime">⌕</div><h3>Catalogue & préférences</h3><p>/free, /historique, /recherche et /preferences : filtres par plateforme, type, valeur minimale et genre.</p><span class="feature-index">05</span></article>
-        <article class="feature-card"><div class="feature-icon icon-blue">◎</div><h3>Santé & statistiques</h3><p>/sante mesure le bot, Discord, la base et chaque source ; /stats n'affiche que des valeurs réellement mesurées.</p><span class="feature-index">06</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-violet">⌁</div><h3>Multi-sources résilientes</h3><p>GamerPower et l'API officielle Epic agrégées en parallèle : une source en panne ne bloque jamais les autres.</p><span class="feature-index">01</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-orange">🔥</div><h3>Offres exceptionnelles</h3><p>Un jeu complet d'au moins 19,99 € offert temporairement est mis en avant, avec la valeur affichée par la source.</p><span class="feature-index">02</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-cyan">◉</div><h3>Un salon par plateforme</h3><p>/setup-auto crée catégorie, rôles, salons en lecture seule et panneau de boutons ; chaque membre choisit ses plateformes.</p><span class="feature-index">03</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-pink">♡</div><h3>Favoris & rappels</h3><p>Bouton ❤️, /favoris, alertes privées et « ton jeu favori expire dans 6 heures » : rien ne passe à la trappe.</p><span class="feature-index">04</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-lime">⌕</div><h3>Catalogue & préférences</h3><p>/free, /historique, /recherche et /preferences : filtres par plateforme, type, valeur minimale et genre.</p><span class="feature-index">05</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-blue">◎</div><h3>Santé & statistiques</h3><p>/sante mesure le bot, Discord, la base et chaque source ; /stats n'affiche que des valeurs réellement mesurées.</p><span class="feature-index">06</span></article>
       </div>
     </div>
   </section>
 
-  <section class="section container">
-    <div class="privacy-callout"><div class="callout-icon" aria-hidden="true">➕</div><div><p class="eyebrow">BOUCLE DE DÉCOUVERTE</p><h2>Chaque annonce présente le bot.</h2><p>Chaque message se termine par le pied « 🎁 FreeGameDrop » et un bouton « ➕ Ajouter FreeGameDrop » : un serveur alerté devient une vitrine, sans spam. La commande /info construit aussi le lien d'invitation de l'instance.</p><a class="text-link" href="{{ROOT}}install/index.html#ajouter">Comment se passe l'ajout ? <span aria-hidden="true">→</span></a></div></div>
+  <section class="section container" data-reveal>
+    <div class="privacy-callout" data-spotlight><div class="callout-icon" aria-hidden="true">➕</div><div><p class="eyebrow">BOUCLE DE DÉCOUVERTE</p><h2>Chaque annonce présente le bot.</h2><p>Chaque message se termine par le pied « 🎁 FreeGameDrop » et un bouton « ➕ Ajouter FreeGameDrop » : un serveur alerté devient une vitrine, sans spam. La commande /info construit aussi le lien d'invitation de l'instance.</p><a class="text-link" href="{{ROOT}}install/index.html#ajouter">Comment se passe l'ajout ? <span aria-hidden="true">→</span></a></div></div>
   </section>
 
-  <section class="section container two-column-section">
+  <section class="section container two-column-section" data-reveal>
     <div><p class="eyebrow">COMMANDES</p><h2>À portée<br><span>de slash.</span></h2><p class="section-intro">Les commandes de configuration sont réservées aux administrateurs ; les commandes personnelles répondent en privé quand c'est pertinent.</p><a class="text-link" href="{{ROOT}}docs/index.html#commandes">Le guide complet <span aria-hidden="true">→</span></a></div>
     {{COMMAND_TABLE}}
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" data-reveal>
     <div class="container install-help-layout">
       <div><p class="eyebrow">QUESTIONS FRÉQUENTES</p><h2>Avant de<br><span>te décider.</span></h2><p class="section-intro">Les réponses viennent de la documentation du dépôt, pas d'arguments marketing.</p></div>
       {{FAQ_BLOCK}}
     </div>
   </section>
 
-  <section class="section container">
-    <div class="privacy-callout"><div class="callout-icon" aria-hidden="true">⌑</div><div><p class="eyebrow">DONNÉES & CONFIDENTIALITÉ</p><h2>Pas de collecte de messages.</h2><p>Le bot ne stocke ni le contenu des messages ni la preuve qu'un jeu a été réclamé. Il conserve la configuration des serveurs, les offres publiques, les favoris et préférences liés à un identifiant Discord ; /mes-donnees les supprime.</p><a class="text-link" href="{{ROOT}}privacy/index.html">Lire la politique de confidentialité <span aria-hidden="true">→</span></a></div></div>
+  <section class="section container" data-reveal>
+    <div class="privacy-callout" data-spotlight><div class="callout-icon" aria-hidden="true">⌑</div><div><p class="eyebrow">DONNÉES & CONFIDENTIALITÉ</p><h2>Pas de collecte de messages.</h2><p>Le bot ne stocke ni le contenu des messages ni la preuve qu'un jeu a été réclamé. Il conserve la configuration des serveurs, les offres publiques, les favoris et préférences liés à un identifiant Discord ; /mes-donnees les supprime.</p><a class="text-link" href="{{ROOT}}privacy/index.html">Lire la politique de confidentialité <span aria-hidden="true">→</span></a></div></div>
   </section>
 
   {{OTHER_BOTS}}
 
-  <section class="section container">
-    <div class="cta-panel">
+  <section class="section container" data-reveal>
+    <div class="cta-panel" data-spotlight>
       <div class="cta-glow" aria-hidden="true"></div>
       <div><p class="eyebrow">PRÊT À ESSAYER ?</p><h2>Sur ton serveur.<br><span>En quelques étapes.</span></h2><p>Invite le bot, lance /setup-auto, choisis tes plateformes. Le guide d'installation détaille chaque étape et les permissions.</p></div>
       <div class="cta-actions"><a class="button button-light" data-install-cta href="{{ROOT}}install/index.html#ajouter">Ajouter FreeGameDrop <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ROOT}}discord-bots/freegamedrop/auto-hebergement/index.html">Auto-héberger le bot <span aria-hidden="true">→</span></a></div>
@@ -777,12 +974,12 @@ PAGES.append({
 
 _SELFHOST_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container">
+  <section class="page-hero container" data-reveal>
     <p class="eyebrow"><a href="{{ROOT}}discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> AUTO-HÉBERGEMENT</p>
     <h1>Ton instance.<br><span>Ton bot.</span></h1>
     <p class="hero-lead narrow">FreeGameDrop est publié sous licence MIT : le code se lit, se vérifie et s'héberge librement, en Python ou avec Docker. Cette page résume le guide du dépôt FreeGameDropDev.</p>
   </section>
-  <section class="section container section-compact docs-layout">
+  <section class="section container section-compact docs-layout" data-reveal>
     <aside class="docs-toc"><p class="eyebrow">DANS CE GUIDE</p><a href="#demarrage">Démarrage express</a><a href="#docker">Docker & PaaS</a><a href="#env">DEV / PROD</a><a href="#dashboard">Tableau de bord web</a><a href="#api">Relier ce site</a></aside>
     <div class="docs-content">
       <section class="doc-section" id="demarrage"><p class="eyebrow">01 · DÉMARRER</p><h2>Installation express</h2><p>Prérequis : Python 3.10 ou plus. Le dépôt contient <code>requirements.txt</code>, un modèle <code>.env.example</code> et la commande <code>/setup-auto</code> qui crée salons, rôles et panneau dès la première exécution.</p><div class="code-block"><pre><code>git clone https://github.com/TOFazer/FreeGameDropDev.git
@@ -818,7 +1015,7 @@ for _platform in FGD_PLATFORMS:
 _INSTALL_BODY = r"""
 <main id="main-content">
   <section class="install-hero container">
-    <div class="install-copy">
+    <div class="install-copy" data-reveal>
       <p class="eyebrow"><a href="{{ROOT}}discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> INSTALLATION</p>
       <span class="status-pill status-neutral install-state" data-install-state><span></span> Lien de production à configurer</span>
       <h1>Sur ton serveur.<br><span>En quelques étapes.</span></h1>
@@ -826,7 +1023,7 @@ _INSTALL_BODY = r"""
       <div class="install-copy-actions"><a class="button button-primary install-main-cta" data-discord-install href="#ajouter" aria-disabled="true">Invitation Discord à configurer <span aria-hidden="true">↗</span></a><button class="button button-secondary copy-admin-button" data-copy-admin type="button" hidden>Copier un message pour mon admin</button></div>
       <p class="install-live-note" data-install-status>Le lien officiel de l'application PROD n'a pas encore été renseigné.</p>
     </div>
-    <div class="install-flow-card" aria-label="Les trois étapes de l'installation">
+    <div class="install-flow-card" aria-label="Les trois étapes de l'installation" data-spotlight data-reveal data-reveal-delay="120">
       <div class="install-flow-header"><span class="flow-logo">FG<span>D</span></span><div><strong>Installation FreeGameDrop</strong><small>Parcours dans Discord</small></div><span class="flow-lock" aria-hidden="true">⌑</span></div>
       <div class="flow-step"><span class="flow-number">01</span><span class="flow-icon">↗</span><div><strong>Autoriser l'application</strong><small>Discord affiche les permissions demandées</small></div><span class="flow-check">✓</span></div>
       <div class="flow-connector"></div>
@@ -837,25 +1034,25 @@ _INSTALL_BODY = r"""
     </div>
   </section>
 
-  <section class="section section-alt" id="ajouter">
+  <section class="section section-alt" id="ajouter" data-reveal>
     <div class="container">
       <div class="section-heading"><p class="eyebrow">INSTALLATION, PAS À PAS</p><h2>Tu sais déjà utiliser Discord ?<br><span>Tu peux installer le bot.</span></h2><p class="section-intro">Suis ces étapes dans l'ordre. Si tu bloques à l'étape 2, ce n'est probablement pas toi : Discord réserve l'ajout d'applications aux membres qui peuvent gérer le serveur.</p></div>
       <div class="install-steps-grid">
-        <article class="install-step-card"><span class="install-step-index">ÉTAPE 01</span><div class="install-step-icon">↗</div><h3>Clique sur Ajouter à Discord</h3><p>Le bouton ouvre la page d'autorisation officielle de Discord avec les scopes <strong>bot</strong> et <strong>applications.commands</strong>. Connecte-toi au compte qui gère ton serveur si Discord te le demande.</p></article>
-        <article class="install-step-card"><span class="install-step-index">ÉTAPE 02</span><div class="install-step-icon icon-cyan">⌂</div><h3>Sélectionne ton serveur</h3><p>Choisis le serveur dans la liste. Il faut la permission <strong>Gérer le serveur</strong> ou <strong>Administrateur</strong>. Si le serveur n'apparaît pas, demande à un admin de faire l'installation.</p></article>
-        <article class="install-step-card"><span class="install-step-index">ÉTAPE 03</span><div class="install-step-icon icon-lime">✓</div><h3>Autorise puis configure</h3><p>Vérifie les permissions affichées par Discord, clique sur <strong>Autoriser</strong>, puis lance <code>/setup-auto</code> dans le serveur pour créer les salons de jeux.</p></article>
+        <article class="install-step-card" data-spotlight><span class="install-step-index">ÉTAPE 01</span><div class="install-step-icon">↗</div><h3>Clique sur Ajouter à Discord</h3><p>Le bouton ouvre la page d'autorisation officielle de Discord avec les scopes <strong>bot</strong> et <strong>applications.commands</strong>. Connecte-toi au compte qui gère ton serveur si Discord te le demande.</p></article>
+        <article class="install-step-card" data-spotlight><span class="install-step-index">ÉTAPE 02</span><div class="install-step-icon icon-cyan">⌂</div><h3>Sélectionne ton serveur</h3><p>Choisis le serveur dans la liste. Il faut la permission <strong>Gérer le serveur</strong> ou <strong>Administrateur</strong>. Si le serveur n'apparaît pas, demande à un admin de faire l'installation.</p></article>
+        <article class="install-step-card" data-spotlight><span class="install-step-index">ÉTAPE 03</span><div class="install-step-icon icon-lime">✓</div><h3>Autorise puis configure</h3><p>Vérifie les permissions affichées par Discord, clique sur <strong>Autoriser</strong>, puis lance <code>/setup-auto</code> dans le serveur pour créer les salons de jeux.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="section container">
+  <section class="section container" data-reveal>
     <div class="install-permissions-layout">
       <div><p class="eyebrow">PERMISSIONS AFFICHÉES PAR DISCORD</p><h2>Le minimum utile<br><span>pour faire fonctionner le bot.</span></h2><p class="section-intro">FreeGameDrop doit pouvoir créer les espaces de jeux et publier les offres. Discord t'affichera la demande avant l'ajout. Pas d'Administrateur.</p></div>
-      <div class="install-permissions-card"><div class="permission-heading"><span class="permission-discord-icon">◉</span><div><strong>Permissions du serveur</strong><small>Demandées lors de l'ajout</small></div></div><div class="permission-check-row"><span>✓</span> Gérer les salons</div><div class="permission-check-row"><span>✓</span> Gérer les rôles</div><div class="permission-check-row"><span>✓</span> Voir les salons</div><div class="permission-check-row"><span>✓</span> Envoyer des messages</div><div class="permission-check-row"><span>✓</span> Intégrer des liens</div><div class="permission-check-row"><span>✓</span> Lire l'historique des messages</div><div class="permission-check-row"><span>✓</span> Gérer les messages</div><div class="permission-optional"><strong>Deux permissions facultatives incluses :</strong><p>Lire l'historique et gérer les messages servent au nettoyage d'anciens panneaux dans #choisir-ses-roles ; elles ne sont pas nécessaires pour recevoir les alertes.</p></div><p class="permission-footnote">Discord affiche la demande exacte avant l'ajout. Tu peux annuler si les permissions ne te conviennent pas.</p></div>
+      <div class="install-permissions-card" data-spotlight><div class="permission-heading"><span class="permission-discord-icon">◉</span><div><strong>Permissions du serveur</strong><small>Demandées lors de l'ajout</small></div></div><div class="permission-check-row"><span>✓</span> Gérer les salons</div><div class="permission-check-row"><span>✓</span> Gérer les rôles</div><div class="permission-check-row"><span>✓</span> Voir les salons</div><div class="permission-check-row"><span>✓</span> Envoyer des messages</div><div class="permission-check-row"><span>✓</span> Intégrer des liens</div><div class="permission-check-row"><span>✓</span> Lire l'historique des messages</div><div class="permission-check-row"><span>✓</span> Gérer les messages</div><div class="permission-optional"><strong>Deux permissions facultatives incluses :</strong><p>Lire l'historique et gérer les messages servent au nettoyage d'anciens panneaux dans #choisir-ses-roles ; elles ne sont pas nécessaires pour recevoir les alertes.</p></div><p class="permission-footnote">Discord affiche la demande exacte avant l'ajout. Tu peux annuler si les permissions ne te conviennent pas.</p></div>
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" data-reveal>
     <div class="container install-help-layout">
       <div><p class="eyebrow">ÇA NE MARCHE PAS ?</p><h2>Les blocages<br><span>les plus fréquents.</span></h2><p class="section-intro">Une aide directe plutôt qu'un écran d'erreur incompréhensible.</p></div>
       <div class="install-help-list">
@@ -868,8 +1065,8 @@ _INSTALL_BODY = r"""
     </div>
   </section>
 
-  <section class="section container">
-    <div class="install-bottom-cta"><div><p class="eyebrow">BESOIN D'UN COUP DE MAIN ?</p><h2>On t'accompagne.</h2><p>Consulte le guide complet ou signale un problème dans le dépôt du bot. Ne publie jamais de token Discord.</p></div><div class="install-bottom-actions"><a class="button button-primary" href="{{ROOT}}docs/index.html#installation">Lire le guide complet <span aria-hidden="true">→</span></a><a class="text-link" href="{{ROOT}}support/index.html">Contacter le support <span aria-hidden="true">→</span></a></div></div>
+  <section class="section container" data-reveal>
+    <div class="install-bottom-cta" data-spotlight><div><p class="eyebrow">BESOIN D'UN COUP DE MAIN ?</p><h2>On t'accompagne.</h2><p>Consulte le guide complet ou signale un problème dans le dépôt du bot. Ne publie jamais de token Discord.</p></div><div class="install-bottom-actions"><a class="button button-primary" href="{{ROOT}}docs/index.html#installation">Lire le guide complet <span aria-hidden="true">→</span></a><a class="text-link" href="{{ROOT}}support/index.html">Contacter le support <span aria-hidden="true">→</span></a></div></div>
   </section>
 </main>
 """
@@ -884,14 +1081,14 @@ PAGES.append({
 
 _DOCS_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container docs-hero">
+  <section class="page-hero container docs-hero" data-reveal>
     <p class="eyebrow">GUIDES OVERX <span class="crumb-slash">/</span> FREEGAMEDROP</p>
     <h1>La documentation<br><span>sans chercher partout.</span></h1>
     <p class="hero-lead narrow">Les étapes ci-dessous suivent les commandes et comportements décrits dans le dépôt FreeGameDropDev. Le lien d'invitation public reste à configurer.</p>
     <div class="docs-search-note"><span aria-hidden="true">⌕</span><span>Une question précise ? Utilise la recherche de ton navigateur avec <kbd>Ctrl</kbd> <span>+</span> <kbd>F</kbd>.</span></div>
   </section>
 
-  <section class="section container docs-layout">
+  <section class="section container docs-layout" data-reveal>
     <aside class="docs-toc"><p class="eyebrow">DANS CE GUIDE</p><a href="#installation">Installation</a><a href="#configuration">Configuration</a><a href="#commandes">Commandes</a><a href="#permissions">Permissions</a><a href="#faq">FAQ</a><a href="#auto-hebergement">Auto-hébergement</a></aside>
     <div class="docs-content">
       <section class="doc-section" id="installation"><p class="eyebrow">01 · DÉMARRER</p><h2>Installer le bot</h2><ol class="numbered-steps"><li><strong>Ajoute FreeGameDrop à ton serveur.</strong><p>L'invitation publique n'est pas encore configurée sur ce site. Elle sera activée dès que l'Application ID de l'instance sera fourni.</p></li><li><strong>Choisis un serveur où tu peux gérer les applications.</strong><p>Discord demande la permission de gérer le serveur pour autoriser l'installation d'un bot.</p></li><li><strong>Vérifie les permissions puis autorise.</strong><p>Le bot a besoin des permissions documentées ci-dessous pour créer les salons, rôles et annonces.</p></li><li><strong>Lance <code>/setup-auto</code> dans ton serveur.</strong><p>Sélectionne les plateformes souhaitées, puis valide la création ou la mise à jour de la configuration.</p></li></ol><div class="notice notice-warn"><strong>À savoir</strong><p>La disponibilité de l'instance et son URL d'invitation ne sont pas encore connectées au site. Le code source reste consultable sur GitHub.</p><a class="text-link" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Ouvrir FreeGameDropDev <span aria-hidden="true">↗</span></a></div></section>
@@ -921,13 +1118,13 @@ PAGES.append({
 
 _STATUS_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container status-hero">
+  <section class="page-hero container status-hero" data-reveal>
     <p class="eyebrow">OVERX <span class="crumb-slash">/</span> STATUS</p>
     <h1>Un statut clair.<br><span>Même quand il manque des données.</span></h1>
     <p class="hero-lead narrow">Nous n'affichons pas de pastilles vertes sans vérification. Quand <code>healthApiUrl</code> est renseigné, ce panneau lit <code>/api/health</code> du bot ; sinon tout reste « non mesuré ».</p>
   </section>
-  <section class="section container section-compact">
-    <div class="status-summary"><div class="status-summary-icon">—</div><div><p class="eyebrow">ÉTAT ACTUEL DE LA PAGE</p><h2 data-health-title>Non mesuré en temps réel</h2><p>Dernière vérification automatique : <strong data-health-updated>aucune sonde configurée</strong>.</p></div><span class="status-pill status-neutral"><span></span> Données non connectées</span></div>
+  <section class="section container section-compact" data-reveal>
+    <div class="status-summary" data-spotlight><div class="status-summary-icon">—</div><div><p class="eyebrow">ÉTAT ACTUEL DE LA PAGE</p><h2 data-health-title>Non mesuré en temps réel</h2><p>Dernière vérification automatique : <strong data-health-updated>aucune sonde configurée</strong>.</p></div><span class="status-pill status-neutral"><span></span> Données non connectées</span></div>
     <div class="health-panel" data-health-panel hidden>
       <div class="health-row"><span class="health-dot" data-health-dot="bot">?</span><div><strong>Bot</strong><small data-health-text="bot">—</small></div></div>
       <div class="health-row"><span class="health-dot" data-health-dot="discord">?</span><div><strong>Discord</strong><small data-health-text="discord">—</small></div></div>
@@ -956,13 +1153,13 @@ PAGES.append({
 
 _CHANGELOG_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container">
+  <section class="page-hero container" data-reveal>
     <p class="eyebrow">OVERX <span class="crumb-slash">/</span> CHANGELOG</p>
     <h1>Ce qui change.<br><span>Quand ça change vraiment.</span></h1>
     <p class="hero-lead narrow">Les versions et changements publics seront consignés ici. Aucune version ni date de lancement n'a été inventée pour remplir la page.</p>
   </section>
-  <section class="section container section-compact">
-    <div class="empty-state"><div class="empty-orbit" aria-hidden="true"><span>✦</span></div><p class="eyebrow">JOURNAL DES VERSIONS</p><h2>Aucune note de version publiée pour le moment.</h2><p>Le code et les évolutions de FreeGameDrop sont consultables dans son dépôt GitHub. Les prochaines notes visibles ici devront correspondre à des changements réellement publiés.</p><a class="button button-primary" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Suivre le dépôt du bot <span aria-hidden="true">↗</span></a></div>
+  <section class="section container section-compact" data-reveal>
+    <div class="empty-state" data-spotlight><div class="empty-orbit" aria-hidden="true"><span>✦</span></div><p class="eyebrow">JOURNAL DES VERSIONS</p><h2>Aucune note de version publiée pour le moment.</h2><p>Le code et les évolutions de FreeGameDrop sont consultables dans son dépôt GitHub. Les prochaines notes visibles ici devront correspondre à des changements réellement publiés.</p><a class="button button-primary" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Suivre le dépôt du bot <span aria-hidden="true">↗</span></a></div>
     <div class="changelog-how"><span class="timeline-mark"></span><div><p class="eyebrow">À VENIR</p><h3>Notes de version OverX</h3><p>Cette page pourra accueillir les nouvelles fonctionnalités, améliorations et corrections, avec leur date et leur version vérifiées.</p></div></div>
   </section>
 </main>
@@ -978,12 +1175,12 @@ PAGES.append({
 
 _ROADMAP_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container">
+  <section class="page-hero container" data-reveal>
     <p class="eyebrow">OVERX <span class="crumb-slash">/</span> ROADMAP</p>
     <h1>Une étape à la fois.<br><span>Sans brûler les étapes.</span></h1>
     <p class="hero-lead narrow">La priorité est de rendre le premier bot compréhensible, testable et transparent avant de multiplier les applications ou de créer un dashboard.</p>
   </section>
-  <section class="section container section-compact">
+  <section class="section container section-compact" data-reveal>
     <div class="roadmap-list">
       <article class="roadmap-item roadmap-now"><div class="roadmap-marker"><span>01</span></div><div class="roadmap-copy"><div class="roadmap-top"><span class="eyebrow">FONDATIONS</span><span class="status-pill status-current"><span></span> PUBLIÉ</span></div><h2>FreeGameDrop & OverX v1</h2><p>Site indexable, fiches par bot et par plateforme, pages d'installation, de support, de statut et légales ; sitemap, métadonnées de partage et données structurées pour la découverte.</p><div class="roadmap-tags"><span>Site responsive</span><span>SEO & sitemap</span><span>Pages plateformes</span><span>Transparence</span></div></div></article>
       <article class="roadmap-item"><div class="roadmap-marker"><span>02</span></div><div class="roadmap-copy"><div class="roadmap-top"><span class="eyebrow">MESURE</span><span class="status-pill status-neutral"><span></span> À BRANCHER</span></div><h2>Statistiques réelles & statut live</h2><p>Relier <code>statsApiUrl</code> et <code>healthApiUrl</code> au tableau de bord du bot pour publier serveurs, offres et disponibilité mesurés — jamais estimés.</p><div class="roadmap-tags"><span>/api/stats</span><span>/api/health</span><span>Compteurs réels</span></div></div></article>
@@ -1005,16 +1202,16 @@ PAGES.append({
 
 _SUPPORT_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container">
+  <section class="page-hero container" data-reveal>
     <p class="eyebrow">OVERX <span class="crumb-slash">/</span> SUPPORT</p>
     <h1>On peut t'aider.<br><span>Voici le bon endroit.</span></h1>
     <p class="hero-lead narrow">La communauté Discord OverX n'a pas encore de lien public renseigné. En attendant, le dépôt du bot permet de consulter le code et de signaler un problème.</p>
   </section>
-  <section class="section container section-compact">
+  <section class="section container section-compact" data-reveal>
     <div class="support-grid">
-      <article class="support-card support-card-primary"><div class="support-icon">?</div><p class="eyebrow">UNE QUESTION OU UN BUG ?</p><h2>Ouvrir une discussion GitHub</h2><p>Décris le problème, la commande concernée et ce que tu as essayé. Ne publie jamais de token, mot de passe ou donnée privée.</p><a class="button button-primary" href="https://github.com/TOFazer/FreeGameDropDev/issues" target="_blank" rel="noopener noreferrer">Aller au support FreeGameDrop <span aria-hidden="true">↗</span></a></article>
-      <article class="support-card"><div class="support-icon icon-cyan">⌕</div><p class="eyebrow">AVANT DE SIGNALER</p><h2>Vérifier le guide</h2><p>Les étapes de configuration, les commandes principales et les permissions nécessaires sont regroupées dans la documentation OverX.</p><a class="text-link" href="{{ROOT}}docs/index.html">Ouvrir la documentation <span aria-hidden="true">→</span></a></article>
-      <article class="support-card"><div class="support-icon icon-lime">⌘</div><p class="eyebrow">CODE & CONTRIBUTIONS</p><h2>Explorer le projet</h2><p>Le dépôt fourni pour FreeGameDrop est un dépôt de développement. Consulte son README pour les consignes d'installation, d'environnement et de contribution.</p><a class="text-link" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Voir le dépôt GitHub <span aria-hidden="true">↗</span></a></article>
+      <article class="support-card support-card-primary" data-spotlight><div class="support-icon">?</div><p class="eyebrow">UNE QUESTION OU UN BUG ?</p><h2>Ouvrir une discussion GitHub</h2><p>Décris le problème, la commande concernée et ce que tu as essayé. Ne publie jamais de token, mot de passe ou donnée privée.</p><a class="button button-primary" href="https://github.com/TOFazer/FreeGameDropDev/issues" target="_blank" rel="noopener noreferrer">Aller au support FreeGameDrop <span aria-hidden="true">↗</span></a></article>
+      <article class="support-card" data-spotlight><div class="support-icon icon-cyan">⌕</div><p class="eyebrow">AVANT DE SIGNALER</p><h2>Vérifier le guide</h2><p>Les étapes de configuration, les commandes principales et les permissions nécessaires sont regroupées dans la documentation OverX.</p><a class="text-link" href="{{ROOT}}docs/index.html">Ouvrir la documentation <span aria-hidden="true">→</span></a></article>
+      <article class="support-card" data-spotlight><div class="support-icon icon-lime">⌘</div><p class="eyebrow">CODE & CONTRIBUTIONS</p><h2>Explorer le projet</h2><p>Le dépôt fourni pour FreeGameDrop est un dépôt de développement. Consulte son README pour les consignes d'installation, d'environnement et de contribution.</p><a class="text-link" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Voir le dépôt GitHub <span aria-hidden="true">↗</span></a></article>
     </div>
     <div class="community-panel community-panel-compact" data-community-cta hidden>
       <div><p class="eyebrow">COMMUNAUTÉ OVERX</p><h2>Le serveur Discord</h2><p>Quand l'invitation publique existera, elle apparaîtra ici automatiquement via <code>communityInviteUrl</code>.</p></div>
@@ -1035,12 +1232,12 @@ PAGES.append({
 
 _PRIVACY_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container legal-hero">
+  <section class="page-hero container legal-hero" data-reveal>
     <p class="eyebrow">INFORMATIONS LÉGALES <span class="crumb-slash">/</span> CONFIDENTIALITÉ</p>
     <h1>Ta vie privée<br><span>n'est pas une option.</span></h1>
     <p class="hero-lead narrow">Cette page décrit la version statique actuelle du site et les données mentionnées dans la documentation de FreeGameDrop.</p>
   </section>
-  <section class="section container legal-layout">
+  <section class="section container legal-layout" data-reveal>
     <div class="draft-warning"><span aria-hidden="true">!</span><div><strong>Brouillon à compléter avant publication publique</strong><p>L'identité légale de l'éditeur, l'adresse de contact, l'hébergeur et certaines durées de conservation n'ont pas été communiqués. Ne présente pas ce texte comme une politique finalisée sans validation.</p></div></div>
     <article class="legal-content">
       <p class="legal-updated">État : version de travail · 7 octobre 2026</p>
@@ -1065,12 +1262,12 @@ PAGES.append({
 
 _TERMS_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container legal-hero">
+  <section class="page-hero container legal-hero" data-reveal>
     <p class="eyebrow">INFORMATIONS LÉGALES <span class="crumb-slash">/</span> CONDITIONS</p>
     <h1>Des règles simples.<br><span>À finaliser avant lancement.</span></h1>
     <p class="hero-lead narrow">Projet de conditions pour le site OverX et les liens vers ses bots Discord.</p>
   </section>
-  <section class="section container legal-layout">
+  <section class="section container legal-layout" data-reveal>
     <div class="draft-warning"><span aria-hidden="true">!</span><div><strong>Document de travail</strong><p>Le nom et les coordonnées de l'éditeur, les modalités de support et le droit applicable doivent être validés avant publication. Ceci n'est pas un avis juridique.</p></div></div>
     <article class="legal-content">
       <p class="legal-updated">État : version de travail · 7 octobre 2026</p>
@@ -1095,12 +1292,12 @@ PAGES.append({
 
 _LEGAL_BODY = r"""
 <main id="main-content">
-  <section class="page-hero container legal-hero">
+  <section class="page-hero container legal-hero" data-reveal>
     <p class="eyebrow">INFORMATIONS LÉGALES <span class="crumb-slash">/</span> MENTIONS LÉGALES</p>
     <h1>Qui édite ce site ?<br><span>Informations à renseigner.</span></h1>
     <p class="hero-lead narrow">Les coordonnées légales n'ont pas été fournies. Cette page est volontairement marquée comme incomplète afin de ne pas inventer l'identité de l'éditeur.</p>
   </section>
-  <section class="section container legal-layout">
+  <section class="section container legal-layout" data-reveal>
     <div class="draft-warning"><span aria-hidden="true">!</span><div><strong>À compléter avant la mise en ligne publique</strong><p>Renseigne l'identité de l'éditeur et les informations de l'hébergeur avec des données exactes. Fais vérifier les obligations applicables à ton statut.</p></div></div>
     <article class="legal-content">
       <h2>Éditeur du site</h2><ul class="legal-fields"><li><strong>Nom / raison sociale</strong><span>[À COMPLÉTER]</span></li><li><strong>Forme juridique</strong><span>[À COMPLÉTER, le cas échéant]</span></li><li><strong>Adresse</strong><span>[À COMPLÉTER]</span></li><li><strong>Adresse e-mail ou contact</strong><span>[À COMPLÉTER]</span></li><li><strong>Numéro d'immatriculation</strong><span>[À COMPLÉTER si applicable]</span></li><li><strong>Directeur de publication</strong><span>[À COMPLÉTER]</span></li></ul>
@@ -1140,6 +1337,8 @@ def expand_body(page: dict) -> str:
         "{{OVERLOAD_DOWNLOADS_HOME}}": overload_downloads(show_details=True),
         "{{OVERLOAD_DOWNLOADS}}": overload_downloads(),
         "{{OVERLOAD_ART}}": overload_art(),
+        "{{OVERLOAD_SHOWCASE_SECTION}}": overload_showcase_section(),
+        "{{FGD_ART}}": fgd_art(),
         "{{STATS_BAND}}": stats_band(),
         "{{WHY_OVERX}}": why_overx(),
         "{{PLATFORM_STRIP}}": platform_strip(),
@@ -1217,7 +1416,7 @@ def render_page(page: dict) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090a11">
+  <meta name="theme-color" content="#05060b">
 {robots}
   <meta name="description" content="{description}">
 {seo_head(page)}
