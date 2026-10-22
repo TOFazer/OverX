@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#203D2D">
+  <meta name="theme-color" content="#101713">
 
   <meta name="description" content="Télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et prépare tes projets vidéo dans une application native Windows.">
   <meta property="og:type" content="website">
@@ -17,7 +17,6 @@
   <title>OverLoad — Téléchargement Windows &amp; médias | OverX</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand-mark.svg">
   <link rel="stylesheet" href="../assets/css/site.css">
-  <link rel="stylesheet" href="../assets/css/forest-minimal.css">
   <script type="application/ld+json">{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"../index.html"},{"@type":"ListItem","position":2,"name":"OverLoad","item":"../overload/index.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OverLoad","applicationCategory":"MultimediaApplication","operatingSystem":"Windows 11 (64 bits)","url":"index.html","description":"Télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et prépare tes projets vidéo dans une application native Windows.","downloadUrl":"https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe","releaseNotes":"https://github.com/TOFazer/OverLoad/releases/latest"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Le bouton suit-il les nouvelles versions ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Le lien permanent GitHub releases/latest/download/OverLoad-Setup.exe pointe vers l'installateur de la dernière release stable. Aucun numéro de version n'est figé dans le site. Les brouillons et préversions ne sont pas ciblés."}},{"@type":"Question","name":"OverX installe-t-il ou met-il à jour l'application ?","acceptedAnswer":{"@type":"Answer","text":"Non. OverX fournit uniquement le lien de téléchargement. Tu télécharges l'installateur puis tu le lances toi-même sur ton PC. Le site n'ajoute aucun système de mise à jour automatique dans OverLoad."}},{"@type":"Question","name":"Installateur ou version portable ?","acceptedAnswer":{"@type":"Answer","text":"L'installateur OverLoad-Setup.exe te guide pour installer l'application sous Windows. La version portable OverLoad-Portable-win64.zip s'extrait dans un dossier avant de lancer OverLoad.exe, sans passer par l'installateur."}}]}</script>
@@ -28,14 +27,14 @@
   <a class="skip-link" href="#main-content">Aller au contenu</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="../index.html" aria-label="OverX — accueil"><img src="../assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a>
+      <a class="brand" href="../index.html" aria-label="OverX — accueil"><img src="../assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>STUDIO LOGICIEL</small></span></a>
       <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Navigation principale">
         <a href="../index.html">Accueil</a>
         <a href="../overload/index.html" aria-current="page">OverLoad</a>
         <a href="../discord-bots/index.html">Bots Discord</a>
         <a href="../docs/index.html">Documentation</a>
         <a href="../status/index.html">Statut</a>
-        <a class="mobile-nav-cta" href="../index.html#projets">Nos projets</a>
+        <a class="mobile-nav-cta" href="../index.html#projets">Découvrir nos projets</a>
       </nav>
       <div class="header-actions"><a class="button button-header" href="../index.html#projets">Nos projets <span aria-hidden="true">→</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle><span></span><span></span><span></span></button></div>
     </div>
@@ -46,7 +45,7 @@
       <p class="eyebrow"><a href="../index.html#projets">PROJETS OVERX</a> <span class="crumb-slash">/</span> OVERLOAD</p>
       <div class="product-heading"><span class="product-mark product-mark-large overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows · v1.1</span></div>
       <h1>Tes médias.<br><span>Prêts pour la suite.</span></h1>
-      <p class="hero-lead">OverLoad télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et t'aide à préparer tes projets vidéo. Une application de bureau native Windows (`OverLoad.exe`), avec un espace dédié aux créateurs et une interface sombre ou claire.</p>
+      <p class="hero-lead">OverLoad télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et t'aide à préparer tes projets vidéo. Une application de bureau native Windows (<code>OverLoad.exe</code>), avec un espace dédié aux créateurs et une interface sombre ou claire.</p>
       <div class="overload-downloads" id="telecharger" role="group" aria-label="Télécharger OverLoad pour Windows">
       <div class="hero-actions">
         <a class="button button-primary" data-overload-download="installer" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe" aria-describedby="overload-download-note">Télécharger pour Windows <span aria-hidden="true">↓</span></a>
@@ -59,8 +58,7 @@
     </div>
     </div>
     <div data-reveal data-reveal-delay="120">
-      <div class="bot-card-art overload-card-art overload-visual-stage">
-        <div class="art-halo" aria-hidden="true"></div>
+      <div class="overload-visual-stage">
         <div class="app-window app-window-primary">
           <div class="app-window-bar" aria-hidden="true">
             <div class="window-controls"><i></i><i></i><i></i></div>
@@ -68,20 +66,9 @@
             <span class="app-window-badge">WINDOWS 11 · 64 BITS</span>
           </div>
           <div class="app-window-viewport">
-            <img src="../assets/overload/accueil.png" alt="Capture de l'interface principale d'OverLoad sur Windows : téléchargement direct, débit global et file d'attente" width="1200" height="840" loading="lazy">
+            <img src="../assets/overload/accueil.png" alt="Capture de l'interface principale d'OverLoad sur Windows : téléchargement direct, débit global et file d'attente" width="1200" height="840" fetchpriority="high">
           </div>
         </div>
-        <div class="app-window app-window-secondary" aria-hidden="true">
-          <div class="app-window-bar">
-            <div class="window-controls"><i></i><i></i><i></i></div>
-            <span class="app-window-title">Espace Créateurs &amp; Téléchargements</span>
-          </div>
-          <div class="app-window-viewport">
-            <img src="../assets/overload/telechargements.png" alt="" width="1200" height="840" loading="lazy">
-          </div>
-        </div>
-        <div class="app-floating-pill pill-speed" aria-hidden="true"><span class="art-caption-dot"></span> 1,23 Mo/s · Reprise HTTP Range</div>
-        <div class="app-floating-pill pill-creators" aria-hidden="true"><span class="pill-accent">⚡</span> Espace Créateurs &amp; FFprobe</div>
       </div>
     </div>
   </section>
@@ -113,11 +100,11 @@
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-heading" data-reveal><p class="eyebrow">TÉLÉCHARGER · ANALYSER · ORGANISER</p><h2>De tes fichiers<br><span>à ton prochain projet.</span></h2><p class="section-intro">Les fonctionnalités présentées ici sont intégrées dans l'exécutable Windows natif et documentées dans le dépôt officiel OverLoad.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">TÉLÉCHARGER · ANALYSE · ORGANISATION</p><h2>De tes fichiers<br><span>à ton prochain projet.</span></h2><p class="section-intro">Les fonctionnalités présentées ici sont intégrées dans l'exécutable Windows natif et documentées dans le dépôt officiel OverLoad.</p></div>
       <div class="feature-grid overload-features">
-        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="0"><div class="feature-icon icon-violet" aria-hidden="true">↓</div><h3>Gérer tes téléchargements</h3><p>Ajoute des liens directs HTTP(S), télécharge par lots (1 à 16 simultanés), règle la limite de vitesse globale et profite de la reprise HTTP Range automatique après coupure.</p></article>
-        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="80"><div class="feature-icon icon-cyan" aria-hidden="true">⌕</div><h3>Comprendre tes médias</h3><p>Consulte les codecs, la résolution, le débit et les pistes audio, vidéo ou sous-titres de tes fichiers locaux grâce à FFprobe embarqué. Les alertes de compatibilité t'aident avant le montage.</p></article>
-        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="160"><div class="feature-icon icon-lime" aria-hidden="true">▤</div><h3>Préparer ton projet vidéo</h3><p>L'Espace Créateurs prépare l'arborescence de dossiers (Premiere Pro, DaVinci Resolve, CapCut), renomme par lots et exporte un inventaire CSV sans jamais modifier tes originaux.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="0"><div class="feature-icon" aria-hidden="true">↓</div><h3>Gérer tes téléchargements</h3><p>Ajoute des liens directs HTTP(S), télécharge par lots (1 à 16 simultanés), règle la limite de vitesse globale et profite de la reprise HTTP Range automatique après coupure.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="80"><div class="feature-icon" aria-hidden="true">⌕</div><h3>Comprendre tes médias</h3><p>Consulte les codecs, la résolution, le débit et les pistes audio, vidéo ou sous-titres de tes fichiers locaux grâce à FFprobe embarqué. Les alertes de compatibilité t'aident avant le montage.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="160"><div class="feature-icon" aria-hidden="true">▤</div><h3>Préparer ton projet vidéo</h3><p>L'Espace Créateurs prépare l'arborescence de dossiers (Premiere Pro, DaVinci Resolve, CapCut), renomme par lots et exporte un inventaire CSV sans jamais modifier tes originaux.</p></article>
       </div>
       <div class="notice" data-reveal><strong>Des sources directes, sans contournement.</strong><p>OverLoad prend en charge les adresses HTTP(S) qui pointent directement vers un fichier. Il ne contourne ni les protections d'accès, ni les DRM, ni les restrictions d'une plateforme. Utilise uniquement les médias que tu es autorisé à télécharger.</p></div>
     </div>
@@ -151,13 +138,52 @@
 
   <footer class="site-footer">
     <div class="container footer-main">
-      <div class="footer-brand-block"><a class="brand" href="../index.html" aria-label="OverX — accueil"><img src="../assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a><p>Des outils numériques conçus avec soin. OverX réunit les projets d’aujourd’hui et les idées de demain.</p><a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Projet du site sur GitHub <span aria-hidden="true">↗</span></a><a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a></div>
-      <div class="footer-links"><div><p class="footer-label">EXPLORER</p><a href="../index.html#projets">Tous les projets</a><a href="../overload/index.html">OverLoad pour Windows</a><a href="../discord-bots/index.html">Bots Discord</a><a href="../install/index.html">Installer FreeGameDrop</a><a href="../docs/index.html">Documentation</a><a href="../status/index.html">Statut des services</a><a href="../changelog/index.html">Changelog</a></div><div><p class="footer-label">PLATEFORMES</p><a href="../discord-bots/freegamedrop/steam/index.html">Jeux gratuits Steam</a>
+      <div class="footer-brand-block">
+        <a class="brand" href="../index.html" aria-label="OverX — accueil"><img src="../assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>STUDIO LOGICIEL</small></span></a>
+        <p>Des outils numériques conçus avec soin, pensés pour rester simples, durables et agréables au quotidien.</p>
+        <a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">GitHub OverX <span aria-hidden="true">↗</span></a>
+        <a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-links">
+        <div>
+          <p class="footer-label">NAVIGATION</p>
+          <a href="../index.html">Accueil</a>
+          <a href="../index.html#projets">Nos projets</a>
+          <a href="../overload/index.html">OverLoad</a>
+          <a href="../discord-bots/index.html">Bots Discord</a>
+          <a href="../roadmap/index.html">Feuille de route</a>
+          <a href="../changelog/index.html">Changelog</a>
+        </div>
+        <div>
+          <p class="footer-label">DOCUMENTATION</p>
+          <a href="../docs/index.html">Guide FreeGameDrop</a>
+          <a href="../install/index.html">Installation Discord</a>
+          <a href="../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a>
+          <a href="../status/index.html">Statut des services</a>
+          <a href="../discord-bots/freegamedrop/steam/index.html">Jeux gratuits Steam</a>
 <a href="../discord-bots/freegamedrop/epic-games/index.html">Jeux gratuits Epic Games Store</a>
 <a href="../discord-bots/freegamedrop/gog/index.html">Jeux gratuits GOG</a>
-<a href="../discord-bots/freegamedrop/ubisoft/index.html">Jeux gratuits Ubisoft</a><a href="../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a></div><div><p class="footer-label">COMMUNAUTÉ</p><a href="../support/index.html">Support</a><a href="../roadmap/index.html">Roadmap</a><a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev ↗</a></div><div><p class="footer-label">LÉGAL</p><a href="../privacy/index.html">Confidentialité</a><a href="../terms/index.html">Conditions</a><a href="../legal/index.html">Mentions légales</a></div></div>
+<a href="../discord-bots/freegamedrop/ubisoft/index.html">Jeux gratuits Ubisoft</a>
+        </div>
+        <div>
+          <p class="footer-label">GITHUB &amp; SUPPORT</p>
+          <a href="../support/index.html">Support</a>
+          <a href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Dépôt du site ↗</a>
+          <a href="https://github.com/TOFazer/OverLoad" target="_blank" rel="noopener noreferrer">Dépôt OverLoad ↗</a>
+          <a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Dépôt FreeGameDrop ↗</a>
+        </div>
+        <div>
+          <p class="footer-label">LÉGAL</p>
+          <a href="../privacy/index.html">Confidentialité</a>
+          <a href="../terms/index.html">Conditions</a>
+          <a href="../legal/index.html">Mentions légales</a>
+        </div>
+      </div>
     </div>
-    <div class="container footer-bottom"><span>© <span data-current-year>2026</span> OverX · Projet indépendant</span><span class="footer-transparency"><span class="footer-dot"></span> Pas de statistiques non vérifiées</span></div>
+    <div class="container footer-bottom">
+      <span>© <span data-current-year>2026</span> OverX · Studio logiciel indépendant</span>
+      <span class="footer-transparency"><span class="footer-dot"></span> Liens officiels · aucune statistique inventée</span>
+    </div>
   </footer>
   <div class="sr-only" role="status" aria-live="polite" data-site-announcer></div>
 

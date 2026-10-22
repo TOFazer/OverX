@@ -3,19 +3,35 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#14251B">
+  <meta name="theme-color" content="#101713">
   <meta name="robots" content="noindex,follow">
   <title>Page introuvable — OverX</title>
   <link rel="icon" type="image/svg+xml" href="assets/brand-mark.svg">
   <link rel="stylesheet" href="assets/css/site.css">
+  <script src="assets/site-config.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Aller au contenu</a>
-  <main id="main-content" class="container page-hero" style="min-height:75vh;display:grid;align-content:center;justify-items:start">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="OverX — accueil"><img src="assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>STUDIO LOGICIEL</small></span></a>
+      <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="overload/index.html">OverLoad</a>
+        <a href="discord-bots/index.html">Bots Discord</a>
+        <a href="docs/index.html">Documentation</a>
+        <a href="status/index.html">Statut</a>
+        <a class="mobile-nav-cta" href="index.html#projets">Découvrir nos projets</a>
+      </nav>
+      <div class="header-actions"><a class="button button-header" href="index.html#projets">Nos projets <span aria-hidden="true">→</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle><span></span><span></span><span></span></button></div>
+    </div>
+  </header>
+  <main id="main-content" class="container page-hero" style="min-height:68vh;display:grid;align-content:center;justify-items:start">
     <p class="eyebrow">OVERX <span class="crumb-slash">/</span> 404</p>
     <h1>Cette page<br><span>n'existe pas.</span></h1>
-    <p class="hero-lead narrow">Le lien est peut-être ancien ou incomplet. Retrouve les applications, les projets et leurs liens officiels depuis l'accueil.</p>
-    <div class="hero-actions"><a class="button button-primary" href="index.html">Retour à l'accueil <span aria-hidden="true">→</span></a><a class="button button-secondary" href="index.html#projets">Parcourir les projets</a></div>
+    <p class="hero-lead narrow">Le lien est peut-être ancien ou incomplet. Retrouvez l'ensemble des applications et projets OverX depuis l'accueil.</p>
+    <div class="hero-actions"><a class="button button-primary" href="index.html">Retour à l'accueil <span aria-hidden="true">→</span></a><a class="button button-secondary" href="index.html#projets">Découvrir nos projets</a></div>
   </main>
 </body>
 </html>

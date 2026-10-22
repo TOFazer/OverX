@@ -1,4 +1,4 @@
-"""Offline regression tests for the OverX hub and OverLoad download contract.
+"""Offline regression tests for the OverX studio site and OverLoad download contract.
 
 Run with: python3 -m unittest discover -s tests -v
 No dependency, GitHub token, release number or network access is required.
@@ -22,6 +22,7 @@ DOWNLOADS = {
     "portable": "https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Portable-win64.zip",
 }
 OVERLOAD_PAGES = ("index.html", "overload/index.html")
+STUDIO_PALETTE = ("#101713", "#1A261F", "#315E43", "#A9C7AE", "#E1E8E1")
 
 
 class InspectPage(check_site.PageParser):
@@ -114,6 +115,7 @@ class OverLoadDownloadTests(unittest.TestCase):
         overload_html = render("overload/index.html")
         self.assertIn('src="assets/overload/accueil.png"', home_html)
         self.assertIn('src="assets/overload/telechargements.png"', home_html)
+        self.assertIn('src="assets/overload/createurs.png"', home_html)
         for screen in build_site.OVERLOAD_SCREENS:
             with self.subTest(screen=screen["id"]):
                 self.assertIn(f'src="../{screen["image"]}"', overload_html)
@@ -121,40 +123,57 @@ class OverLoadDownloadTests(unittest.TestCase):
 
 
 class ProjectHubTests(unittest.TestCase):
-    def test_home_is_the_overx_project_hub(self) -> None:
+    def test_home_follows_five_part_studio_architecture(self) -> None:
         home = render("index.html")
         parsed = InspectPage(home)
-        self.assertEqual("".join(parsed.title_text), "OverX — Au-delà des possibles")
-        self.assertTrue({"projets", "overload", "bots"}.issubset(parsed.ids))
-        self.assertIn("Des logiciels indépendants, conçus avec soin", home)
+        self.assertEqual("".join(parsed.title_text), "OverX — Studio logiciel indépendant")
+        self.assertTrue({"accueil", "projets", "overload", "bots", "overx", "conclusion"}.issubset(parsed.ids))
+        positions = [
+            home.index('id="accueil"'),
+            home.index('id="overload"'),
+            home.index('id="bots"'),
+            home.index('id="overx"'),
+            home.index('id="conclusion"'),
+            home.index('<footer class="site-footer">'),
+        ]
+        self.assertEqual(positions, sorted(positions))
         self.assertIn('href="overload/index.html"', home)
         self.assertIn('href="discord-bots/freegamedrop/index.html"', home)
 
-    def test_brand_hero_has_two_working_actions_and_local_art(self) -> None:
+    def test_studio_hero_has_concise_copy_two_actions_and_vector_signature(self) -> None:
         home = render("index.html")
-        hero = home.split('<section class="brand-hero', 1)[1].split('</section>', 1)[0]
-        parsed = InspectPage(home)
+        hero = home.split('<section class="studio-hero"', 1)[1].split("</section>", 1)[0]
         actions = InspectPage(hero).anchors
         self.assertEqual([a["href"] for a in actions], ["#projets", "#overx"])
-        self.assertIn("overx", parsed.ids)
-        self.assertIn('src="assets/overload/accueil.png"', hero)
-        self.assertIn("hero-product-note", hero)
-        self.assertNotIn("brand-sculpture.svg", hero)
+        self.assertIn("pensés pour vous.", hero)
+        self.assertIn("Découvrir nos projets", hero)
+        self.assertIn("À propos d'OverX", hero)
+        self.assertIn('class="studio-emblem-svg"', hero)
         for name in ("brand-mark.svg", "brand-sculpture.svg"):
             ElementTree.parse(ROOT / "assets" / name)
 
-    def test_forest_minimal_layer_follows_the_shared_layout(self) -> None:
-        home = render("index.html")
-        self.assertLess(home.index('href="assets/css/site.css"'), home.index('href="assets/css/forest-minimal.css"'))
-        css = (ROOT / "assets" / "css" / "forest-minimal.css").read_text(encoding="utf-8")
-        for color in ("#203D2D", "#345641", "#A5B5A0", "#F3F1E8", "#20231F"):
+    def test_studio_design_tokens_are_defined_once_and_applied_everywhere(self) -> None:
+        self.assertFalse((ROOT / "assets" / "css" / "forest-minimal.css").exists())
+        css = (ROOT / "assets" / "css" / "site.css").read_text(encoding="utf-8")
+        self.assertEqual(css.count(":root {"), 1)
+        for color in STUDIO_PALETTE:
             with self.subTest(color=color):
                 self.assertIn(color, css)
+        self.assertIn("@media (prefers-reduced-motion: reduce)", css)
+        self.assertNotIn("#F3F1E8", css)
+        for path in PAGES:
+            with self.subTest(page=path):
+                html = render(path)
+                root = build_site.asset_root(path)
+                self.assertIn(f'href="{root}assets/css/site.css"', html)
+                self.assertNotIn("forest-minimal.css", html)
+                self.assertIn('content="#101713"', html)
 
     def test_discord_demo_is_not_presented_as_a_real_offer(self) -> None:
         home = render("index.html")
         self.assertIn("DÉMONSTRATION", home)
         self.assertIn("jeu fictif", home)
+        self.assertIn("Ajouter à Discord", home)
         self.assertNotIn("Cyberpunk 2077", home)
         self.assertNotIn('data-stat="guilds"', home)
 
@@ -182,11 +201,13 @@ class ProjectHubTests(unittest.TestCase):
         self.assertEqual(current[0]["href"], "../overload/index.html")
 
     def test_existing_bot_invite_is_preserved(self) -> None:
-        links = InspectPage(render("discord-bots/freegamedrop/index.html")).anchors
-        invites = [anchor for anchor in links if "data-install-cta" in anchor]
-        self.assertTrue(invites)
-        for anchor in invites:
-            self.assertEqual(anchor["href"], build_site.configured_install_url())
+        for path in ("index.html", "discord-bots/freegamedrop/index.html"):
+            with self.subTest(page=path):
+                links = InspectPage(render(path)).anchors
+                invites = [anchor for anchor in links if "data-install-cta" in anchor]
+                self.assertTrue(invites)
+                for anchor in invites:
+                    self.assertEqual(anchor["href"], build_site.configured_install_url())
         self.assertEqual(build_site.software_ld(build_site.BOTS[0])["operatingSystem"], "Discord")
 
 

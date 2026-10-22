@@ -50,7 +50,8 @@
   // Scroll-reveal animations (progressive & reduced-motion friendly)
   // ------------------------------------------------------------------
   const revealNodes = Array.from(document.querySelectorAll("[data-reveal]"));
-  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const motionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  const reduceMotion = Boolean(motionQuery && motionQuery.matches);
 
   if (revealNodes.length) {
     revealNodes.forEach((node) => {
@@ -75,6 +76,14 @@
         { threshold: 0.08, rootMargin: "0px 0px -36px 0px" }
       );
       revealNodes.forEach((node) => observer.observe(node));
+      motionQuery?.addEventListener?.("change", (event) => {
+        if (event.matches) {
+          revealNodes.forEach((node) => {
+            node.classList.add("is-visible");
+            observer.unobserve(node);
+          });
+        }
+      });
     }
   }
 

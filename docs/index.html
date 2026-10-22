@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#203D2D">
+  <meta name="theme-color" content="#101713">
 
   <meta name="description" content="Guide d&#x27;installation, de configuration, commandes et permissions pour FreeGameDrop, le bot Discord de jeux gratuits d&#x27;OverX (Steam, Epic, GOG, Ubisoft).">
   <meta property="og:type" content="website">
@@ -17,7 +17,6 @@
   <title>Documentation FreeGameDrop — OverX</title>
   <link rel="icon" type="image/svg+xml" href="../assets/brand-mark.svg">
   <link rel="stylesheet" href="../assets/css/site.css">
-  <link rel="stylesheet" href="../assets/css/forest-minimal.css">
   <script type="application/ld+json">{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"../index.html"},{"@type":"ListItem","position":2,"name":"Docs","item":"../docs/index.html"}]}</script>
   <script src="../assets/site-config.js" defer></script>
   <script src="../assets/js/site.js" defer></script>
@@ -26,14 +25,14 @@
   <a class="skip-link" href="#main-content">Aller au contenu</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="../index.html" aria-label="OverX — accueil"><img src="../assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a>
+      <a class="brand" href="../index.html" aria-label="OverX — accueil"><img src="../assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>STUDIO LOGICIEL</small></span></a>
       <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Navigation principale">
         <a href="../index.html">Accueil</a>
         <a href="../overload/index.html">OverLoad</a>
         <a href="../discord-bots/index.html">Bots Discord</a>
         <a href="../docs/index.html" aria-current="page">Documentation</a>
         <a href="../status/index.html">Statut</a>
-        <a class="mobile-nav-cta" href="../index.html#projets">Nos projets</a>
+        <a class="mobile-nav-cta" href="../index.html#projets">Découvrir nos projets</a>
       </nav>
       <div class="header-actions"><a class="button button-header" href="../index.html#projets">Nos projets <span aria-hidden="true">→</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle><span></span><span></span><span></span></button></div>
     </div>
@@ -42,16 +41,16 @@
   <section class="page-hero container docs-hero" data-reveal>
     <p class="eyebrow">GUIDES OVERX <span class="crumb-slash">/</span> FREEGAMEDROP</p>
     <h1>La documentation<br><span>sans chercher partout.</span></h1>
-    <p class="hero-lead narrow">Les étapes ci-dessous suivent les commandes et comportements décrits dans le dépôt FreeGameDropDev. Le lien d'invitation public reste à configurer.</p>
+    <p class="hero-lead narrow">Les étapes ci-dessous suivent les commandes et comportements décrits dans le dépôt FreeGameDropDev.</p>
     <div class="docs-search-note"><span aria-hidden="true">⌕</span><span>Une question précise ? Utilise la recherche de ton navigateur avec <kbd>Ctrl</kbd> <span>+</span> <kbd>F</kbd>.</span></div>
   </section>
 
   <section class="section container docs-layout" data-reveal>
     <aside class="docs-toc"><p class="eyebrow">DANS CE GUIDE</p><a href="#installation">Installation</a><a href="#configuration">Configuration</a><a href="#commandes">Commandes</a><a href="#permissions">Permissions</a><a href="#faq">FAQ</a><a href="#auto-hebergement">Auto-hébergement</a></aside>
     <div class="docs-content">
-      <section class="doc-section" id="installation"><p class="eyebrow">01 · DÉMARRER</p><h2>Installer le bot</h2><ol class="numbered-steps"><li><strong>Ajoute FreeGameDrop à ton serveur.</strong><p>L'invitation publique n'est pas encore configurée sur ce site. Elle sera activée dès que l'Application ID de l'instance sera fourni.</p></li><li><strong>Choisis un serveur où tu peux gérer les applications.</strong><p>Discord demande la permission de gérer le serveur pour autoriser l'installation d'un bot.</p></li><li><strong>Vérifie les permissions puis autorise.</strong><p>Le bot a besoin des permissions documentées ci-dessous pour créer les salons, rôles et annonces.</p></li><li><strong>Lance <code>/setup-auto</code> dans ton serveur.</strong><p>Sélectionne les plateformes souhaitées, puis valide la création ou la mise à jour de la configuration.</p></li></ol><div class="notice notice-warn"><strong>À savoir</strong><p>La disponibilité de l'instance et son URL d'invitation ne sont pas encore connectées au site. Le code source reste consultable sur GitHub.</p><a class="text-link" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Ouvrir FreeGameDropDev <span aria-hidden="true">↗</span></a></div></section>
+      <section class="doc-section" id="installation"><p class="eyebrow">01 · DÉMARRER</p><h2>Installer le bot</h2><ol class="numbered-steps"><li><strong>Ajoute FreeGameDrop à ton serveur.</strong><p>Utilise le bouton d'ajout ou le parcours guidé de la page Installation pour ouvrir l'autorisation Discord.</p></li><li><strong>Choisis un serveur où tu peux gérer les applications.</strong><p>Discord demande la permission de gérer le serveur pour autoriser l'installation d'un bot.</p></li><li><strong>Vérifie les permissions puis autorise.</strong><p>Le bot a besoin des permissions documentées ci-dessous pour créer les salons, rôles et annonces.</p></li><li><strong>Lance <code>/setup-auto</code> dans ton serveur.</strong><p>Sélectionne les plateformes souhaitées, puis valide la création ou la mise à jour de la configuration.</p></li></ol><div class="notice"><strong>Code source public</strong><p>Le code complet et l'auto-hébergement de FreeGameDrop sont consultables sur GitHub.</p><a class="text-link" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Ouvrir FreeGameDropDev <span aria-hidden="true">↗</span></a></div></section>
 
-      <section class="doc-section" id="configuration"><p class="eyebrow">02 · CONFIGURATION</p><h2>Configurer les notifications</h2><p><code>/setup-auto</code> crée ou met à jour la catégorie de jeux, les rôles de plateforme, les salons dédiés et le panneau de sélection. Les membres peuvent cliquer sur les boutons pour obtenir ou retirer un rôle de plateforme.</p><ul class="doc-bullets"><li>Les salons de jeux sont organisés par plateforme (🔵 Steam, ⚪ Epic,  GOG, 🔷 Ubisoft) et configurés en lecture seule pour les membres.</li><li>Les commandes <code>/config</code> et <code>/acces-salon-roles</code> permettent aux administrateurs d'ajuster la configuration décrite par le bot.</li><li><code>/rappel-salon</code> permet de choisir le salon qui reçoit les rappels de fin d'offre.</li><li>Le bot est documenté comme vérifiant les offres toutes les heures ; l'état réel de l'instance se vérifie avec <code>/sante</code>.</li></ul></section>
+      <section class="doc-section" id="configuration"><p class="eyebrow">02 · CONFIGURATION</p><h2>Configurer les notifications</h2><p><code>/setup-auto</code> crée ou met à jour la catégorie de jeux, les rôles de plateforme, les salons dédiés et le panneau de sélection. Les membres peuvent cliquer sur les boutons pour obtenir ou retirer un rôle de plateforme.</p><ul class="doc-bullets"><li>Les salons de jeux sont organisés par plateforme (🔵 Steam, ⚪ Epic, 🟣 GOG, 🔷 Ubisoft) et configurés en lecture seule pour les membres.</li><li>Les commandes <code>/config</code> et <code>/acces-salon-roles</code> permettent aux administrateurs d'ajuster la configuration décrite par le bot.</li><li><code>/rappel-salon</code> permet de choisir le salon qui reçoit les rappels de fin d'offre.</li><li>Le bot est documenté comme vérifiant les offres toutes les heures ; l'état réel de l'instance se vérifie avec <code>/sante</code>.</li></ul></section>
 
       <section class="doc-section" id="commandes"><p class="eyebrow">03 · RÉFÉRENCE</p><h2>Commandes principales</h2><div class="table-wrap"><table class="command-table"><thead><tr><th>Commande</th><th>Accès</th><th>À quoi elle sert</th></tr></thead><tbody>
         <tr><td><code>/setup-auto</code></td><td>Admin</td><td>Crée ou répare catégorie, rôles, salons et panneau de sélection ; lance une première vérification.</td></tr>
@@ -92,13 +91,52 @@
 
   <footer class="site-footer">
     <div class="container footer-main">
-      <div class="footer-brand-block"><a class="brand" href="../index.html" aria-label="OverX — accueil"><img src="../assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a><p>Des outils numériques conçus avec soin. OverX réunit les projets d’aujourd’hui et les idées de demain.</p><a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Projet du site sur GitHub <span aria-hidden="true">↗</span></a><a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a></div>
-      <div class="footer-links"><div><p class="footer-label">EXPLORER</p><a href="../index.html#projets">Tous les projets</a><a href="../overload/index.html">OverLoad pour Windows</a><a href="../discord-bots/index.html">Bots Discord</a><a href="../install/index.html">Installer FreeGameDrop</a><a href="../docs/index.html">Documentation</a><a href="../status/index.html">Statut des services</a><a href="../changelog/index.html">Changelog</a></div><div><p class="footer-label">PLATEFORMES</p><a href="../discord-bots/freegamedrop/steam/index.html">Jeux gratuits Steam</a>
+      <div class="footer-brand-block">
+        <a class="brand" href="../index.html" aria-label="OverX — accueil"><img src="../assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>STUDIO LOGICIEL</small></span></a>
+        <p>Des outils numériques conçus avec soin, pensés pour rester simples, durables et agréables au quotidien.</p>
+        <a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">GitHub OverX <span aria-hidden="true">↗</span></a>
+        <a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-links">
+        <div>
+          <p class="footer-label">NAVIGATION</p>
+          <a href="../index.html">Accueil</a>
+          <a href="../index.html#projets">Nos projets</a>
+          <a href="../overload/index.html">OverLoad</a>
+          <a href="../discord-bots/index.html">Bots Discord</a>
+          <a href="../roadmap/index.html">Feuille de route</a>
+          <a href="../changelog/index.html">Changelog</a>
+        </div>
+        <div>
+          <p class="footer-label">DOCUMENTATION</p>
+          <a href="../docs/index.html">Guide FreeGameDrop</a>
+          <a href="../install/index.html">Installation Discord</a>
+          <a href="../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a>
+          <a href="../status/index.html">Statut des services</a>
+          <a href="../discord-bots/freegamedrop/steam/index.html">Jeux gratuits Steam</a>
 <a href="../discord-bots/freegamedrop/epic-games/index.html">Jeux gratuits Epic Games Store</a>
 <a href="../discord-bots/freegamedrop/gog/index.html">Jeux gratuits GOG</a>
-<a href="../discord-bots/freegamedrop/ubisoft/index.html">Jeux gratuits Ubisoft</a><a href="../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a></div><div><p class="footer-label">COMMUNAUTÉ</p><a href="../support/index.html">Support</a><a href="../roadmap/index.html">Roadmap</a><a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev ↗</a></div><div><p class="footer-label">LÉGAL</p><a href="../privacy/index.html">Confidentialité</a><a href="../terms/index.html">Conditions</a><a href="../legal/index.html">Mentions légales</a></div></div>
+<a href="../discord-bots/freegamedrop/ubisoft/index.html">Jeux gratuits Ubisoft</a>
+        </div>
+        <div>
+          <p class="footer-label">GITHUB &amp; SUPPORT</p>
+          <a href="../support/index.html">Support</a>
+          <a href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Dépôt du site ↗</a>
+          <a href="https://github.com/TOFazer/OverLoad" target="_blank" rel="noopener noreferrer">Dépôt OverLoad ↗</a>
+          <a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Dépôt FreeGameDrop ↗</a>
+        </div>
+        <div>
+          <p class="footer-label">LÉGAL</p>
+          <a href="../privacy/index.html">Confidentialité</a>
+          <a href="../terms/index.html">Conditions</a>
+          <a href="../legal/index.html">Mentions légales</a>
+        </div>
+      </div>
     </div>
-    <div class="container footer-bottom"><span>© <span data-current-year>2026</span> OverX · Projet indépendant</span><span class="footer-transparency"><span class="footer-dot"></span> Pas de statistiques non vérifiées</span></div>
+    <div class="container footer-bottom">
+      <span>© <span data-current-year>2026</span> OverX · Studio logiciel indépendant</span>
+      <span class="footer-transparency"><span class="footer-dot"></span> Liens officiels · aucune statistique inventée</span>
+    </div>
   </footer>
   <div class="sr-only" role="status" aria-live="polite" data-site-announcer></div>
 
