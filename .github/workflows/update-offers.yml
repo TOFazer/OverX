@@ -1,0 +1,46 @@
+name: Update free games catalogue
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - "arena/**"
+    paths:
+      - .github/workflows/update-offers.yml
+      - scripts/update_offers.py
+  schedule:
+    - cron: "17,47 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: free-games-catalogue
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect verified active offers
+        run: python scripts/update_offers.py
+      - name: Publish catalogue update
+        run: |
+          if git diff --quiet -- data/offers.json; then
+            echo "No catalogue changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/offers.json
+          git commit -m "Refresh free games catalogue"
+          git push

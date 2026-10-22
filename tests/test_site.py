@@ -10,10 +10,11 @@ import tempfile
 import unittest
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlparse
 from unittest.mock import patch
 from xml.etree import ElementTree
 
-from scripts import build_site, check_site
+from scripts import build_site, check_site, update_offers
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = {page["path"]: page for page in build_site.PAGES}
@@ -142,12 +143,63 @@ class GameCatalogueTests(unittest.TestCase):
 
     def test_offer_cards_use_product_links_and_official_or_steam_images(self) -> None:
         script = (ROOT / "assets/js/site.js").read_text(encoding="utf-8")
-        self.assertIn('parsed.protocol !== "https:" || parsed.pathname === "/"', script)
-        self.assertIn("cdn.akamai.steamstatic.com/steam/apps/${steamMatch[1]}/header.jpg", script)
+        self.assertIn('parsed.protocol === "https:"', script)
+        self.assertIn("cdn.akamai.steamstatic.com/steam/apps/${steamId}/header.jpg", script)
         self.assertIn("Lien de l'offre indisponible", script)
         self.assertIn('href="${escapeHtml(url)}"', script)
         docs = (ROOT / "data/README.md").read_text(encoding="utf-8")
-        self.assertIn("fiche précise du jeu ou du DLC", docs)
+        self.assertIn("page d'accueil de boutique", docs)
+
+    def test_real_catalogue_collector_normalises_claim_links_images_and_active_dates(self) -> None:
+        now = update_offers.datetime(2026, 10, 22, tzinfo=update_offers.timezone.utc)
+        raw = {
+            "id": 123,
+            "title": "Test Game",
+            "status": "Active",
+            "platforms": "PC, Steam",
+            "open_giveaway_url": "https://www.gamerpower.com/test-game",
+            "thumbnail": "https://cdn.example.test/game.jpg",
+            "end_date": "2026-10-23 12:00:00",
+            "worth": "$19.99",
+            "type": "game",
+        }
+        offer = update_offers.normalise_gamerpower(raw, "game", now)
+        self.assertIsNotNone(offer)
+        self.assertEqual(offer["url"], "https://www.gamerpower.com/test-game")
+        self.assertEqual(offer["image"], "https://cdn.example.test/game.jpg")
+        self.assertEqual(offer["platform"], "steam")
+        self.assertEqual(offer["type"], "game")
+        self.assertIsNone(update_offers.normalise_gamerpower({**raw, "status": "Ended"}, "game", now))
+        self.assertIsNone(update_offers.normalise_gamerpower({**raw, "end_date": "2026-10-21 12:00:00"}, "game", now))
+
+    def test_epic_collector_builds_direct_product_link_and_uses_product_art(self) -> None:
+        now = update_offers.datetime(2026, 10, 22, tzinfo=update_offers.timezone.utc)
+        raw = {
+            "id": "epic-id",
+            "title": "Epic Game",
+            "offerMappings": [{"pageSlug": "epic-game"}],
+            "keyImages": [{"type": "OfferImageWide", "url": "https://cdn.example.test/epic.jpg"}],
+            "promotions": {"promotionalOffers": [{"promotionalOffers": [{
+                "discountSetting": {"discountPercentage": 0},
+                "endDate": "2026-10-23T12:00:00Z",
+            }]}]},
+        }
+        offer = update_offers.normalise_epic(raw, now)
+        self.assertEqual(offer["url"], "https://store.epicgames.com/fr/p/epic-game")
+        self.assertEqual(offer["image"], "https://cdn.example.test/epic.jpg")
+        self.assertIsNone(update_offers.normalise_epic({**raw, "promotions": {}}, now))
+
+    def test_published_catalogue_contains_real_offers_with_images_and_specific_urls(self) -> None:
+        payload = __import__("json").loads((ROOT / "data/offers.json").read_text(encoding="utf-8"))
+        self.assertTrue(payload.get("generated_at"))
+        self.assertFalse(any(str(offer["id"]).startswith("example-") for offer in payload["offers"]))
+        for offer in payload["offers"]:
+            with self.subTest(offer=offer.get("id")):
+                if offer.get("image"):
+                    self.assertTrue(offer["image"].startswith("https://"))
+                self.assertTrue(offer.get("url", "").startswith("https://"))
+                self.assertNotEqual(urlparse(offer["url"]).path, "/")
+        self.assertTrue((ROOT / ".github/workflows/update-offers.yml").is_file())
 
 
 class ProjectHubTests(unittest.TestCase):
