@@ -46,6 +46,8 @@ a = Analysis(
         "overload.downloads.youtube",
         "overload.history",
     "overload.history.store",
+    "overload.library",
+    "overload.library.scan",
         "overload.media",
     "overload.media.analyzer",
         "overload.settings",

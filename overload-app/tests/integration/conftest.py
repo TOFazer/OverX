@@ -61,3 +61,22 @@ def server():
     yield f"http://{host}:{port}"
     httpd.shutdown()
     httpd.server_close()
+
+
+@pytest.fixture(autouse=True)
+def _cleanup_qt_widgets():
+    yield
+    try:
+        from PySide6.QtWidgets import QApplication
+    except Exception:
+        return
+    app = QApplication.instance()
+    if app is None:
+        return
+    for widget in list(app.topLevelWidgets()):
+        try:
+            widget.close()
+            widget.deleteLater()
+        except RuntimeError:
+            pass
+    app.processEvents()

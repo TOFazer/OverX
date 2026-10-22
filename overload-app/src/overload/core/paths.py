@@ -130,7 +130,14 @@ def open_folder(path: Path | str, *, opener=None) -> Path:  # noqa: ANN001
     try:
         if sys.platform == "win32":
             if select_file:
-                subprocess.Popen(["explorer.exe", f"/select,{resolved_target}"])
+                # Explorer analyse sa ligne de commande lui-même (et non comme un
+                # programme Windows classique). Si ``/select,`` et le chemin sont
+                # réunis dans le même argument, Python entoure tout l'argument de
+                # guillemets dès que le nom contient un espace. Explorer ignore alors
+                # parfois la sélection et ouvre son dossier par défaut (souvent
+                # « Documents »). Garder le commutateur et le chemin dans deux
+                # arguments ouvre le vrai dossier et sélectionne bien le fichier.
+                subprocess.Popen(["explorer.exe", "/select,", str(resolved_target)])
             else:
                 os.startfile(str(folder))  # type: ignore[attr-defined]
         elif sys.platform == "darwin":
@@ -150,3 +157,41 @@ def open_folder(path: Path | str, *, opener=None) -> Path:  # noqa: ANN001
         ) from exc
 
     return folder
+
+
+def open_file(path: Path | str, *, opener=None) -> Path:  # noqa: ANN001
+    """Ouvre un fichier avec l'application par défaut du système.
+
+    Contrairement à `open_folder` (qui révèle le fichier dans l'Explorateur),
+    `open_file` lance le fichier lui-même : lecteur vidéo, visionneuse
+    d'images, etc. Lève `OverloadError` si le fichier n'existe plus.
+    """
+    target = Path(path).expanduser()
+    if not target.is_file():
+        raise OverloadError(
+            "Impossible d'ouvrir le fichier.",
+            f"le fichier « {target} » est introuvable.",
+            "Vérifiez qu'il n'a pas été déplacé, renommé ou supprimé depuis le téléchargement.",
+        )
+    resolved = target.resolve()
+    if opener is not None:
+        opener(resolved, select_file=False)
+        return resolved
+    try:
+        if sys.platform == "win32":
+            os.startfile(str(resolved))  # type: ignore[attr-defined]
+        elif sys.platform == "darwin":
+            subprocess.Popen(["open", str(resolved)])
+        else:
+            subprocess.Popen(
+                ["xdg-open", str(resolved)],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+    except OSError as exc:
+        raise OverloadError(
+            "Impossible d'ouvrir le fichier.",
+            str(exc),
+            f"Vous pouvez l'ouvrir manuellement depuis son dossier : {resolved.parent}",
+        ) from exc
+    return resolved

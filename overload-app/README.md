@@ -10,7 +10,7 @@
 
 ---
 
-## Refonte UX/UI OverX Studio & Navigation unifiée (v1.4)
+## Refonte UX/UI OverX Studio & Navigation unifiée (v2.1)
 
 ![Accueil d'OverLoad](docs/design/accueil.png)
 

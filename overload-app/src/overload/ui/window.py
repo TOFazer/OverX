@@ -17,9 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from PySide6.QtCore import (
-    QEasingCurve,
     QObject,
-    QPropertyAnimation,
     QRectF,
     QSize,
     Qt,
@@ -43,7 +41,6 @@ from PySide6.QtWidgets import (
     QDialog,
     QDialogButtonBox,
     QFrame,
-    QGraphicsOpacityEffect,
     QGridLayout,
     QHBoxLayout,
     QLabel,
@@ -922,7 +919,7 @@ class OverloadWindow(QMainWindow):
         self._disk_free: str = "—"
         self._disk_at = 0.0
         self._last_overview: dict[str, Any] = {}
-        self._fade: QPropertyAnimation | None = None
+        self._fade = None
         self._media_cache: dict[str, dict[str, Any]] = {}
         self._probe_url: str | None = None
         self._probe = _MediaProbe(manager, self)
@@ -1854,17 +1851,6 @@ class OverloadWindow(QMainWindow):
 
     def _fade_to(self, page: QWidget) -> None:
         self.stack.setCurrentWidget(page)
-        effect = QGraphicsOpacityEffect(page)
-        effect.setOpacity(0.0)
-        page.setGraphicsEffect(effect)
-        animation = QPropertyAnimation(effect, b"opacity", self)
-        animation.setDuration(150)
-        animation.setStartValue(0.0)
-        animation.setEndValue(1.0)
-        animation.setEasingCurve(QEasingCurve.Type.OutCubic)
-        animation.finished.connect(lambda: page.setGraphicsEffect(None))
-        animation.start()
-        self._fade = animation
 
     def set_appearance(
         self, *, theme: str | None = None, accent: str | None = None, ui_scale: str | None = None

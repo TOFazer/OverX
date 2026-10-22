@@ -1360,7 +1360,7 @@ class DownloadManager:
         if task.state is TaskState.COMPLETED:
             progress_pct = 100.0
         elif task.total_bytes and task.total_bytes > 0:
-            progress_pct = min(100.0, (task.downloaded_bytes / task.total_bytes) * 100.0)
+            progress_pct = min(99.9, (task.downloaded_bytes / task.total_bytes) * 100.0)
 
         active_warning = ""
         if retrying:
