@@ -125,13 +125,14 @@ Une fois le domaine et l'hébergeur choisis :
 
 Les pages légales portent un avertissement visible et doivent être complétées avant d'être présentées comme définitives.
 
-## Identité OverX — édition 2026
+## Identité OverX — Forest Minimal (2026)
 
-- Symbole géométrique partagé entre navigation, pied de page et favicon : `assets/brand-mark.svg`.
-- Sculpture vectorielle en relief sur l’accueil : `assets/brand-sculpture.svg` (aucun WebGL, CDN ni bibliothèque 3D).
-- Palette marque « OverX Forest » : vert sapin `#14251B` (fond), vert forêt `#244A35` (marque), vert mousse `#52765B` (boutons/actif), vert sauge `#A8BFA5` (détails), crème naturel `#E8EDE5` (texte) et charbon `#202722` (cartes/panneaux). Accent doré réservé à FreeGameDrop (offres/cadeaux).
-- Le bloc « Découvrir OverX » est accessible via `#overx`. Les deux actions du hero fonctionnent sans JavaScript.
-- Animations progressives et respect de `prefers-reduced-motion`. Le menu mobile conserve son fonctionnement clavier.
+- Direction visuelle : studio de logiciels indépendant, sobre et éditorial — fond ivoire, charbon pour le texte, vert sapin pour les actions et quelques sections sombres. Pas de néons ni d’effets lumineux ; le doré reste un accent discret pour FreeGameDrop.
+- Palette : vert sapin `#203D2D`, vert forêt `#345641`, sauge `#A5B5A0`, ivoire `#F3F1E8`, charbon `#20231F` et doré doux `#C6A566`.
+- Le système visuel est défini dans `assets/css/forest-minimal.css`, chargé après les styles structurels de `assets/css/site.css`. Le symbole géométrique partagé entre navigation, pied de page et favicon est `assets/brand-mark.svg`.
+- Le hero de l’accueil présente une vraie capture locale d’OverLoad (`assets/overload/accueil.png`) ; les téléchargements et les fiches de projet gardent leurs liens officiels.
+- Le bloc « Notre approche » reste accessible via `#overx`. Les deux actions du hero fonctionnent sans JavaScript.
+- Les animations de révélation restent discrètes et respectent `prefers-reduced-motion`. Le menu mobile conserve son fonctionnement clavier.
 - L’aperçu Discord est une **démonstration fictive**, pas une annonce de promotion réelle. Les compteurs non connectés ne figurent plus sur l’accueil ; la page Statut reste disponible.
 
 Après toute modification de contenu, modifier `scripts/build_site.py`, puis régénérer les pages (ne pas modifier uniquement le HTML généré).

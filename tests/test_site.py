@@ -126,7 +126,7 @@ class ProjectHubTests(unittest.TestCase):
         parsed = InspectPage(home)
         self.assertEqual("".join(parsed.title_text), "OverX — Au-delà des possibles")
         self.assertTrue({"projets", "overload", "bots"}.issubset(parsed.ids))
-        self.assertIn("mes applications et mes futurs projets", home)
+        self.assertIn("Des logiciels indépendants, conçus avec soin", home)
         self.assertIn('href="overload/index.html"', home)
         self.assertIn('href="discord-bots/freegamedrop/index.html"', home)
 
@@ -137,9 +137,19 @@ class ProjectHubTests(unittest.TestCase):
         actions = InspectPage(hero).anchors
         self.assertEqual([a["href"] for a in actions], ["#projets", "#overx"])
         self.assertIn("overx", parsed.ids)
-        self.assertIn('src="assets/brand-sculpture.svg"', hero)
+        self.assertIn('src="assets/overload/accueil.png"', hero)
+        self.assertIn("hero-product-note", hero)
+        self.assertNotIn("brand-sculpture.svg", hero)
         for name in ("brand-mark.svg", "brand-sculpture.svg"):
             ElementTree.parse(ROOT / "assets" / name)
+
+    def test_forest_minimal_layer_follows_the_shared_layout(self) -> None:
+        home = render("index.html")
+        self.assertLess(home.index('href="assets/css/site.css"'), home.index('href="assets/css/forest-minimal.css"'))
+        css = (ROOT / "assets" / "css" / "forest-minimal.css").read_text(encoding="utf-8")
+        for color in ("#203D2D", "#345641", "#A5B5A0", "#F3F1E8", "#20231F"):
+            with self.subTest(color=color):
+                self.assertIn(color, css)
 
     def test_discord_demo_is_not_presented_as_a_real_offer(self) -> None:
         home = render("index.html")

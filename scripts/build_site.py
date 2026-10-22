@@ -629,22 +629,32 @@ _HOME_BODY = r"""
 <main id="main-content">
   <section class="brand-hero container" aria-labelledby="hero-title">
     <div class="brand-hero-copy" data-reveal>
-      <p class="eyebrow"><span class="eyebrow-dot"></span> STUDIO TECHNOLOGIQUE INDÉPENDANT</p>
-      <h1 id="hero-title">Moins de limites.<br>Plus de <span>possibles.</span></h1>
-      <p class="hero-lead">Des outils qui simplifient ton quotidien.<br>Des expériences qui ouvrent de nouvelles perspectives.<br>Bienvenue dans l’univers OverX.</p>
+      <p class="eyebrow"><span class="eyebrow-dot"></span> STUDIO DE LOGICIELS INDÉPENDANT</p>
+      <h1 id="hero-title">Des outils utiles.<br><span>Bien pensés.</span></h1>
+      <p class="hero-lead">Des logiciels indépendants, conçus avec soin pour rendre le numérique plus simple et plus agréable au quotidien.</p>
       <div class="hero-actions">
-        <a class="button button-primary button-lg" href="#projets">Explorer nos projets <span aria-hidden="true">↗</span></a>
-        <a class="button button-secondary button-lg" href="#overx">Découvrir OverX <span aria-hidden="true">↓</span></a>
+        <a class="button button-primary button-lg" href="#projets">Explorer les projets <span aria-hidden="true">↗</span></a>
+        <a class="button button-secondary button-lg" href="#overx">Notre approche <span aria-hidden="true">↓</span></a>
       </div>
-      <div class="brand-signature"><span></span> PENSÉ POUR ÊTRE UTILE. CONÇU POUR ALLER PLUS LOIN.</div>
+      <div class="brand-signature"><span></span> PENSÉ AVEC SOIN · FAIT POUR LE QUOTIDIEN</div>
     </div>
-    <div class="brand-monument" data-reveal data-reveal-delay="140">
-      <div class="monument-orbit" aria-hidden="true"></div>
-      <img src="{{ROOT}}assets/brand-sculpture.svg" alt="Le X géométrique OverX, sculpté en graphite avec des arêtes vert néon" width="640" height="640" fetchpriority="high">
-      <span class="monument-label" aria-hidden="true">OX — 001 / BEYOND THE EXPECTED</span>
+    <div class="hero-product-preview" data-reveal data-reveal-delay="140" role="group" aria-label="Aperçu du projet OverLoad">
+      <span class="hero-preview-overline">APERÇU D’UN PROJET OVERX</span>
+      <div class="hero-product-window">
+        <div class="hero-product-bar" aria-hidden="true">
+          <div class="window-controls"><i></i><i></i><i></i></div>
+          <span>OverLoad · Accueil</span>
+          <span class="hero-product-tag">WINDOWS</span>
+        </div>
+        <div class="hero-product-screen">
+          <img src="{{ROOT}}assets/overload/accueil.png" alt="Aperçu de l’écran d’accueil d’OverLoad, l’application Windows de téléchargement et d’organisation de médias" width="1200" height="840" fetchpriority="high">
+        </div>
+      </div>
+      <div class="hero-product-note" aria-hidden="true"><span class="hero-product-note-mark">OL</span><span><small>APPLICATION WINDOWS</small><strong>OverLoad · v1.1</strong></span><span class="hero-product-note-arrow">↗</span></div>
+      <span class="hero-product-index" aria-hidden="true">01 / PRODUIT</span>
     </div>
   </section>
-  <div class="brand-strip container" aria-label="L’univers OverX"><span>UN UNIVERS. PLUSIEURS POSSIBILITÉS.</span><a href="#overload">OverLoad <small>WINDOWS</small> ↗</a><a href="#bots">FreeGameDrop <small>DISCORD</small> ↗</a></div>
+  <div class="brand-strip container" aria-label="L’univers OverX"><span>DES OUTILS PENSÉS AVEC SOIN.</span><a href="#overload">OverLoad <small>WINDOWS</small> ↗</a><a href="#bots">FreeGameDrop <small>DISCORD</small> ↗</a></div>
 
   <section class="truth-band" aria-label="Les liens officiels des projets" data-reveal>
     <div class="container truth-band-inner">
@@ -656,8 +666,8 @@ _HOME_BODY = r"""
 
   <section class="section container" id="projets" aria-labelledby="projects-heading">
     <div class="section-heading section-heading-split" data-reveal>
-      <div><p class="eyebrow"><span class="eyebrow-dot"></span> LA COLLECTION OVERX</p><h2 id="projects-heading">Des idées aux outils.<br><span>À toi de jouer.</span></h2></div>
-      <p class="section-intro">Une application Windows native avec de vrais outils médias, un bot Discord de veille automatique et de la place pour la suite. Chaque logiciel possède son propre univers ; OverX les réunit.</p>
+      <div><p class="eyebrow"><span class="eyebrow-dot"></span> LES PROJETS OVERX</p><h2 id="projects-heading">Des applications utiles.<br><span>Conçues avec soin.</span></h2></div>
+      <p class="section-intro">OverLoad aide à télécharger, analyser et organiser tes médias. FreeGameDrop suit les offres de jeux gratuites sur Discord. Deux projets concrets, réunis par la même exigence de clarté.</p>
     </div>
 
     <article class="featured-bot-card overload-card" id="overload" aria-labelledby="overload-heading" data-spotlight data-reveal>
@@ -678,7 +688,7 @@ _HOME_BODY = r"""
         <p class="eyebrow bot-category">JEUX GRATUITS · STEAM · EPIC · GOG · UBISOFT</p>
         <h3>FreeGameDrop</h3>
         <p class="bot-description">Chaque heure, le bot vérifie les offres de jeux gratuits et les annonce dans ton serveur. Rôles et salons par plateforme, favoris, alertes privées et rappels de fin d'offre.</p>
-        <div class="chip-row"><span class="chip">🔵 Steam</span><span class="chip">⚪ Epic Games Store</span><span class="chip">🟣 GOG</span><span class="chip">🔷 Ubisoft</span><span class="chip">Licence MIT</span></div>
+        <div class="chip-row"><span class="chip">Steam</span><span class="chip">Epic Games Store</span><span class="chip">GOG</span><span class="chip">Ubisoft</span><span class="chip">Licence MIT</span></div>
         <div class="card-actions">
           <a class="button button-primary" href="{{ROOT}}discord-bots/freegamedrop/index.html">Voir FreeGameDrop <span aria-hidden="true">↗</span></a>
           <a class="button button-outline" data-install-cta href="{{ROOT}}install/index.html#ajouter">Guide d'installation <span aria-hidden="true">↗</span></a>
@@ -692,7 +702,7 @@ _HOME_BODY = r"""
 
   <section class="section section-alt" id="overx">
     <div class="container">
-      <div class="section-heading" data-reveal><p class="eyebrow">L’ESPRIT OVERX</p><h2>Découvrir. Choisir.<br><span>Passer à l'action.</span></h2><p class="section-intro">OverX est la vitrine des projets, pas un installateur intermédiaire. Chaque logiciel conserve son parcours direct et transparent.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">L’ESPRIT OVERX</p><h2>La technologie,<br><span>sans détour.</span></h2><p class="section-intro">Des fonctionnalités faciles à comprendre, des liens directs et une disponibilité toujours indiquée clairement. Chaque projet reste indépendant ; OverX les rassemble.</p></div>
       {{WHY_OVERX}}
     </div>
   </section>
@@ -704,7 +714,7 @@ _HOME_BODY = r"""
 PAGES.append({
     "path": "index.html",
     "title": "OverX — Au-delà des possibles",
-    "description": "OverX réunit mes applications et mes futurs projets : OverLoad pour télécharger et organiser tes médias sur Windows, FreeGameDrop pour les jeux gratuits sur Discord.",
+    "description": "OverX est un studio indépendant de logiciels. Découvre OverLoad pour organiser tes médias sur Windows et FreeGameDrop pour suivre les jeux gratuits sur Discord.",
     "active": "home",
     "og_image": "overx.png",
     "body": _HOME_BODY,
@@ -1325,7 +1335,7 @@ def render_footer(root: str) -> str:
     return f"""
   <footer class="site-footer">
     <div class="container footer-main">
-      <div class="footer-brand-block"><a class="brand" href="{root}index.html" aria-label="OverX — accueil"><img src="{root}assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT TECH STUDIO</small></span></a><p>Des applications, des projets et un même univers. OverX réunit les outils d’aujourd’hui et les idées de demain.</p><a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Projet du site sur GitHub <span aria-hidden="true">↗</span></a><a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a></div>
+      <div class="footer-brand-block"><a class="brand" href="{root}index.html" aria-label="OverX — accueil"><img src="{root}assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a><p>Des outils numériques conçus avec soin. OverX réunit les projets d’aujourd’hui et les idées de demain.</p><a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Projet du site sur GitHub <span aria-hidden="true">↗</span></a><a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a></div>
       <div class="footer-links"><div><p class="footer-label">EXPLORER</p><a href="{root}index.html#projets">Tous les projets</a><a href="{root}overload/index.html">OverLoad pour Windows</a><a href="{root}discord-bots/index.html">Bots Discord</a><a href="{root}install/index.html">Installer FreeGameDrop</a><a href="{root}docs/index.html">Documentation</a><a href="{root}status/index.html">Statut des services</a><a href="{root}changelog/index.html">Changelog</a></div><div><p class="footer-label">PLATEFORMES</p>{platform_links}<a href="{root}discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a></div><div><p class="footer-label">COMMUNAUTÉ</p><a href="{root}support/index.html">Support</a><a href="{root}roadmap/index.html">Roadmap</a><a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev ↗</a></div><div><p class="footer-label">LÉGAL</p><a href="{root}privacy/index.html">Confidentialité</a><a href="{root}terms/index.html">Conditions</a><a href="{root}legal/index.html">Mentions légales</a></div></div>
     </div>
     <div class="container footer-bottom"><span>© <span data-current-year>2026</span> OverX · Projet indépendant</span><span class="footer-transparency"><span class="footer-dot"></span> Pas de statistiques non vérifiées</span></div>
@@ -1374,13 +1384,14 @@ def render_page(page: dict) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#14251B">
+  <meta name="theme-color" content="#203D2D">
 {robots}
   <meta name="description" content="{description}">
 {seo_head(page)}
   <title>{title}</title>
   <link rel="icon" type="image/svg+xml" href="{root}assets/brand-mark.svg">
   <link rel="stylesheet" href="{root}assets/css/site.css">
+  <link rel="stylesheet" href="{root}assets/css/forest-minimal.css">
   {ld_scripts}
   <script src="{root}assets/site-config.js" defer></script>
   <script src="{root}assets/js/site.js" defer></script>
@@ -1389,7 +1400,7 @@ def render_page(page: dict) -> str:
   <a class="skip-link" href="#main-content">Aller au contenu</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="{root}index.html" aria-label="OverX — accueil"><img src="{root}assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT TECH STUDIO</small></span></a>
+      <a class="brand" href="{root}index.html" aria-label="OverX — accueil"><img src="{root}assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a>
       <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Navigation principale">
         {nav}
         <a class="mobile-nav-cta" href="{root}index.html#projets">Nos projets</a>

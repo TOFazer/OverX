@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#14251B">
+  <meta name="theme-color" content="#203D2D">
 
   <meta name="description" content="FreeGameDrop annonce les jeux gratuits de Steam, Epic Games Store, GOG et Ubisoft sur Discord : salons par plateforme, alertes personnalisées, favoris, rappels et statistiques mesurées. Open source (MIT).">
   <meta property="og:type" content="website">
@@ -17,6 +17,7 @@
   <title>FreeGameDrop — bot Discord jeux gratuits (Steam, Epic, GOG, Ubisoft) | OverX</title>
   <link rel="icon" type="image/svg+xml" href="../../assets/brand-mark.svg">
   <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="../../assets/css/forest-minimal.css">
   <script type="application/ld+json">{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"../../index.html"},{"@type":"ListItem","position":2,"name":"Bots","item":"../../discord-bots/index.html"},{"@type":"ListItem","position":3,"name":"FreeGameDrop","item":"../../discord-bots/freegamedrop/index.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FreeGameDrop","applicationCategory":"UtilitiesApplication","operatingSystem":"Discord","url":"discord-bots/freegamedrop/index.html","description":"Les jeux gratuits de Steam, Epic, GOG et Ubisoft annoncés automatiquement sur Discord, plateforme par plateforme.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@id":"#org"},"featureList":["Alertes de jeux gratuits par plateforme","Favoris, recherche et rappels d'expiration","Permissions minimales et salons en lecture seule","Statistiques mesurées (/stats, /sante)"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Le bot est-il vraiment gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Le code de FreeGameDrop est publié sous licence MIT : l'auto-hébergement est libre, et l'instance publique, quand elle est ouverte, s'ajoute sans abonnement. Le site n'invente ni tarif ni offre."}},{"@type":"Question","name":"Quelles plateformes sont suivies ?","acceptedAnswer":{"@type":"Answer","text":"Steam, l'Epic Games Store (via son API officielle et GamerPower), GOG et Ubisoft. La liste est extensible : ajouter une plateforme tient en une ligne de configuration côté bot."}},{"@type":"Question","name":"Est-ce que tout le serveur reçoit toutes les annonces ?","acceptedAnswer":{"@type":"Answer","text":"Non. Chaque plateforme a son rôle et son salon : un membre ne voit que ce qu'il a choisi. Les alertes personnelles (/alertes) partent en message privé, jamais en spam public."}},{"@type":"Question","name":"Le bot lit-il les messages des membres ?","acceptedAnswer":{"@type":"Answer","text":"Non. La documentation du dépôt indique que le contenu des messages n'est jamais stocké ni journalisé ; seules des données de configuration, d'offres publiques et de préférences sont conservées."}},{"@type":"Question","name":"Une source tombe, que se passe-t-il ?","acceptedAnswer":{"@type":"Answer","text":"Les sources sont interrogées en parallèle et une panne est isolée : les autres continuent d'alimenter les annonces. /sante affiche l'état mesuré de chacune et des alertes automatiques préviennent le propriétaire."}},{"@type":"Question","name":"Comment vérifier que l'instance est en ligne ?","acceptedAnswer":{"@type":"Answer","text":"Sur un serveur où le bot est installé, /sante donne son état mesuré. Le tableau de bord optionnel expose aussi /api/health, que la page Statut du site peut brancher dès qu'une URL publique est fournie."}}]}</script>
@@ -27,7 +28,7 @@
   <a class="skip-link" href="#main-content">Aller au contenu</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="../../index.html" aria-label="OverX — accueil"><img src="../../assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT TECH STUDIO</small></span></a>
+      <a class="brand" href="../../index.html" aria-label="OverX — accueil"><img src="../../assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a>
       <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Navigation principale">
         <a href="../../index.html">Accueil</a>
         <a href="../../overload/index.html">OverLoad</a>
@@ -159,7 +160,7 @@
 
   <footer class="site-footer">
     <div class="container footer-main">
-      <div class="footer-brand-block"><a class="brand" href="../../index.html" aria-label="OverX — accueil"><img src="../../assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT TECH STUDIO</small></span></a><p>Des applications, des projets et un même univers. OverX réunit les outils d’aujourd’hui et les idées de demain.</p><a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Projet du site sur GitHub <span aria-hidden="true">↗</span></a><a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a></div>
+      <div class="footer-brand-block"><a class="brand" href="../../index.html" aria-label="OverX — accueil"><img src="../../assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a><p>Des outils numériques conçus avec soin. OverX réunit les projets d’aujourd’hui et les idées de demain.</p><a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Projet du site sur GitHub <span aria-hidden="true">↗</span></a><a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a></div>
       <div class="footer-links"><div><p class="footer-label">EXPLORER</p><a href="../../index.html#projets">Tous les projets</a><a href="../../overload/index.html">OverLoad pour Windows</a><a href="../../discord-bots/index.html">Bots Discord</a><a href="../../install/index.html">Installer FreeGameDrop</a><a href="../../docs/index.html">Documentation</a><a href="../../status/index.html">Statut des services</a><a href="../../changelog/index.html">Changelog</a></div><div><p class="footer-label">PLATEFORMES</p><a href="../../discord-bots/freegamedrop/steam/index.html">Jeux gratuits Steam</a>
 <a href="../../discord-bots/freegamedrop/epic-games/index.html">Jeux gratuits Epic Games Store</a>
 <a href="../../discord-bots/freegamedrop/gog/index.html">Jeux gratuits GOG</a>
