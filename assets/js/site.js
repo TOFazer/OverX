@@ -476,10 +476,13 @@
     const noticeNode = document.querySelector("[data-offers-notice]");
     const expiryToggle = offersRoot.querySelector("[data-offers-expiring]");
 
+    const PAGE_SIZE = 24;
+    const pagination = offersRoot.querySelector("[data-offers-pagination]");
     let allOffers = [];
     let activePlatform = "all";
     let activeType = "all";
     let onlyExpiring = false;
+    let currentPage = 1;
 
     // Pré-filtre via URL : ?platform=steam&type=dlc&q=orbit&expiring=1
     try {
@@ -490,6 +493,8 @@
       if (t && ["game","dlc","pack"].includes(t.toLowerCase())) activeType = t.toLowerCase();
       const q = params.get("q") || params.get("search");
       if (q && searchInput) searchInput.value = q;
+      const page = Number.parseInt(params.get("page") || "1", 10);
+      if (Number.isFinite(page) && page > 0) currentPage = page;
       if (params.get("expiring") === "1" || params.get("urgent") === "1") onlyExpiring = true;
     } catch {}
     // Sync visuel des chips avec l'état initial (URL ou défaut)
@@ -529,21 +534,54 @@
       return !Number.isNaN(d.getTime()) && d.getTime() <= Date.now();
     };
 
+    const escapeHtml = (value) => String(value ?? "").replace(/[&<>\"']/g, (char) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;",
+    })[char]);
+
+    const directOfferUrl = (offer) => {
+      try {
+        const parsed = new URL(String(offer.url || ""));
+        if (parsed.protocol !== "https:" || parsed.pathname === "/" || !parsed.hostname.includes(".")) return "";
+        return parsed.href;
+      } catch {
+        return "";
+      }
+    };
+
+    const offerImageUrl = (offer) => {
+      const supplied = String(offer.image || "").trim();
+      if (supplied) {
+        try {
+          const parsed = new URL(supplied);
+          if (parsed.protocol === "https:") return parsed.href;
+        } catch {}
+      }
+      // Steam's official CDN exposes a cover image for both app and DLC IDs.
+      const steamMatch = offer.platform === "steam" && String(offer.url || "").match(/store\.steampowered\.com\/(?:app|sub)\/(\d+)/i);
+      return steamMatch ? `https://cdn.akamai.steamstatic.com/steam/apps/${steamMatch[1]}/header.jpg` : "";
+    };
+
     const offerCard = (offer) => {
       const expiry = formatExpiry(offer);
-      const platformLabel = offer.platform_label || PLATFORM_LABELS[offer.platform] || offer.platform || "—";
-      const typeLabel = offer.type_label || TYPE_LABELS[offer.type] || offer.type || "Offre";
-      const initial = (offer.title || "?").trim().charAt(0).toUpperCase() || "?";
-      const titleEsc = String(offer.title || "Offre sans titre").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
-      const descEsc = String(offer.description || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
-      const urlEsc = String(offer.url || "#").replace(/\"/g, "&quot;");
-      const priceOrig = offer.price_original ? `<s>${String(offer.price_original).replace(/</g, "&lt;")}</s>` : "";
-      const hasImage = Boolean(offer.image);
+      const platformLabel = escapeHtml(offer.platform_label || PLATFORM_LABELS[offer.platform] || offer.platform || "—");
+      const typeLabel = escapeHtml(offer.type_label || TYPE_LABELS[offer.type] || offer.type || "Offre");
+      const initial = escapeHtml((offer.title || "?").trim().charAt(0).toUpperCase() || "?");
+      const titleEsc = escapeHtml(offer.title || "Offre sans titre");
+      const descEsc = escapeHtml(offer.description || "");
+      const url = directOfferUrl(offer);
+      const detailBase = offersRoot.dataset.offersDetailUrl || "fiche.html";
+      const detailUrl = offer.id ? `${detailBase}?id=${encodeURIComponent(String(offer.id))}` : "";
+      const image = offerImageUrl(offer);
+      const priceOrig = offer.price_original ? `<s>${escapeHtml(offer.price_original)}</s>` : "";
       const expiredCls = expiry.expired ? " is-expired" : "";
-      const visual = hasImage
-        ? `<div class="offer-visual has-image"><img src="${String(offer.image).replace(/\"/g, "&quot;")}" alt="" loading=\"lazy\"><div class=\"offer-badges\"><span class=\"offer-badge offer-badge-platform\">${platformLabel}</span><span class=\"offer-badge offer-badge-type\">${typeLabel}</span></div><span class=\"offer-expiry ${expiry.cls}\">${expiry.text}</span></div>`
-        : `<div class="offer-visual"><div class="offer-visual-placeholder">${initial}<span>•</span></div><div class="offer-badges"><span class="offer-badge offer-badge-platform">${platformLabel}</span><span class="offer-badge offer-badge-type">${typeLabel}</span></div><span class="offer-expiry ${expiry.cls}">${expiry.text}</span></div>`;
-      return `<article class="offer-card${expiredCls}" data-platform="${offer.platform || ""}" data-type="${offer.type || ""}" data-title="${titleEsc.toLowerCase()}" data-spotlight>
+      const badges = `<div class="offer-badges"><span class="offer-badge offer-badge-platform">${platformLabel}</span><span class="offer-badge offer-badge-type">${typeLabel}</span></div>`;
+      const visual = image
+        ? `<div class="offer-visual has-image"><div class="offer-visual-placeholder">${initial}<span>•</span></div><img src="${escapeHtml(image)}" alt="Visuel de ${titleEsc}" loading="lazy" onerror="this.closest('.offer-visual').classList.remove('has-image');this.remove()">${badges}<span class="offer-expiry ${expiry.cls}">${expiry.text}</span></div>`
+        : `<div class="offer-visual"><div class="offer-visual-placeholder">${initial}<span>•</span></div>${badges}<span class="offer-expiry ${expiry.cls}">${expiry.text}</span></div>`;
+      const action = url
+        ? `<a class="button button-primary" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">Récupérer <span aria-hidden="true">↗</span></a>`
+        : `<span class="button button-secondary" aria-disabled="true" title="Lien direct vers la fiche du jeu ou du DLC manquant">Lien de l'offre indisponible</span>`;
+      return `<article class="offer-card${expiredCls}" data-platform="${escapeHtml(offer.platform || "")}" data-type="${escapeHtml(offer.type || "")}" data-title="${titleEsc.toLowerCase()}" data-spotlight>
         ${visual}
         <div class="offer-body">
           <h3 class="offer-title">${titleEsc}</h3>
@@ -551,8 +589,8 @@
           <p class="offer-desc">${descEsc}</p>
           <div class="offer-price">${priceOrig} <b>Gratuit</b></div>
           <div class="offer-actions">
-            <a class="button button-primary" href="${urlEsc}" target="_blank" rel="noopener noreferrer">Récupérer <span aria-hidden="true\">↗</span></a>
-            <span class="offer-badge offer-badge-free" aria-hidden="true">Gratuit</span>
+            ${action}
+            ${detailUrl ? `<a class="button button-secondary" href="${escapeHtml(detailUrl)}">Détails <span aria-hidden="true">→</span></a>` : ""}
           </div>
         </div>
       </article>`;
@@ -592,9 +630,45 @@
         return String(a.title).localeCompare(String(b.title), "fr");
       });
 
-      grid.innerHTML = filtered.map(offerCard).join("");
+      const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+      currentPage = Math.min(Math.max(currentPage, 1), pageCount);
+      const pageStart = (currentPage - 1) * PAGE_SIZE;
+      const pageOffers = filtered.slice(pageStart, pageStart + PAGE_SIZE);
+      grid.innerHTML = pageOffers.map(offerCard).join("");
+
+      if (pagination) {
+        if (pageCount <= 1) {
+          pagination.hidden = true;
+          pagination.innerHTML = "";
+        } else {
+          pagination.hidden = false;
+          const first = Math.max(1, Math.min(currentPage - 2, pageCount - 4));
+          const last = Math.min(pageCount, first + 4);
+          const pageButtons = Array.from({ length: last - first + 1 }, (_, index) => {
+            const page = first + index;
+            return `<button type="button" class="offers-page${page === currentPage ? " is-active" : ""}" data-offers-page="${page}"${page === currentPage ? ' aria-current="page"' : ""} aria-label="Page ${page}">${page}</button>`;
+          }).join("");
+          pagination.innerHTML = `<button type="button" class="offers-page offers-page-step" data-offers-page="${currentPage - 1}"${currentPage === 1 ? " disabled" : ""} aria-label="Page précédente">←</button>${pageButtons}<button type="button" class="offers-page offers-page-step" data-offers-page="${currentPage + 1}"${currentPage === pageCount ? " disabled" : ""} aria-label="Page suivante">→</button><span class="offers-page-summary">Page ${currentPage} sur ${pageCount}</span>`;
+        }
+      }
+      if (pagination && !pagination.dataset.bound) {
+        pagination.dataset.bound = "true";
+        pagination.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-offers-page]");
+          if (!button || button.disabled) return;
+          currentPage = Number(button.dataset.offersPage) || 1;
+          applyFilters();
+          offersRoot.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
 
       visible = filtered.length;
+      if (pagination && pageCount > 1) {
+        const rangeStart = pageStart + 1;
+        const rangeEnd = Math.min(pageStart + PAGE_SIZE, visible);
+        const summary = pagination.querySelector(".offers-page-summary");
+        if (summary) summary.textContent = `Page ${currentPage} sur ${pageCount} · ${rangeStart}–${rangeEnd} sur ${visible}`;
+      }
 
       if (countNode) {
         const total = allOffers.filter((o) => !isExpired(o)).length;
@@ -617,6 +691,7 @@
         chip.addEventListener("click", () => {
           setActive(chip.dataset.offersPlatform || chip.dataset.offersType || "all");
           chips.forEach((c) => c.classList.toggle("is-active", c === chip));
+          currentPage = 1;
           applyFilters();
         });
       });
@@ -624,10 +699,11 @@
     bindChips(platformChips, () => activePlatform, (v) => { activePlatform = v; });
     bindChips(typeChips, () => activeType, (v) => { activeType = v; });
 
-    searchInput?.addEventListener("input", applyFilters);
-    sortSelect?.addEventListener("change", applyFilters);
+    searchInput?.addEventListener("input", () => { currentPage = 1; applyFilters(); });
+    sortSelect?.addEventListener("change", () => { currentPage = 1; applyFilters(); });
     expiryToggle?.addEventListener("change", () => {
       onlyExpiring = Boolean(expiryToggle.checked);
+      currentPage = 1;
       applyFilters();
     });
 
@@ -719,5 +795,123 @@
     }).catch(() => {
       showError("Une erreur réseau a empêché le chargement du catalogue.");
     });
+  }
+
+  // ------------------------------------------------------------------
+  // Individual game / DLC pages use the offer ID from the shared catalogue.
+  // Example: /jeux-gratuits/fiche.html?id=steam_123456
+  // ------------------------------------------------------------------
+  const offerDetailRoot = document.querySelector("[data-offer-detail]");
+  if (offerDetailRoot) {
+    const status = offerDetailRoot.querySelector("[data-offer-detail-status]");
+    const error = offerDetailRoot.querySelector("[data-offer-detail-error]");
+    const card = offerDetailRoot.querySelector("[data-offer-detail-card]");
+    const offerId = new URLSearchParams(window.location.search).get("id");
+    const labels = { steam: "Steam", epic: "Epic Games Store", gog: "GOG", ubisoft: "Ubisoft Connect" };
+    const typeLabels = { game: "Jeu complet", dlc: "DLC / Extension", pack: "Contenu bonus" };
+    const escapeDetail = (value) => String(value ?? "").replace(/[&<>\"']/g, (char) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;",
+    })[char]);
+    const showDetailError = (message) => {
+      if (status) status.hidden = true;
+      if (error) {
+        error.hidden = false;
+        error.textContent = message;
+      }
+    };
+
+    if (!offerId) {
+      showDetailError("Cette fiche n'a pas d'identifiant. Reviens au catalogue et sélectionne un jeu ou un DLC.");
+    } else {
+      const apiUrl = String(config.offersApiUrl || "").trim();
+      const configuredJson = String(config.offersJsonUrl || "").trim();
+      const configuredSource = apiUrl || configuredJson || offerDetailRoot.dataset.offerDataUrl || "../data/offers.json";
+      let dataUrl = configuredSource;
+      try {
+        dataUrl = new URL(configuredSource, window.location.href).href;
+      } catch {}
+
+      fetchJson(dataUrl, 7000).then((payload) => {
+        const offers = Array.isArray(payload) ? payload : payload?.offers;
+        const offer = Array.isArray(offers)
+          ? offers.find((item) => item && String(item.id) === offerId)
+          : null;
+        if (!offer || !card) {
+          showDetailError("Cette fiche n'est pas disponible dans le catalogue pour le moment.");
+          return;
+        }
+
+        const title = String(offer.title || "Jeu ou DLC");
+        const description = String(offer.description || "Aucune description n'est disponible pour cette offre.");
+        const platform = String(offer.platform_label || labels[offer.platform] || offer.platform || "Boutique");
+        const type = String(offer.type_label || typeLabels[offer.type] || offer.type || "Offre");
+        const titleNode = card.querySelector("[data-offer-detail-title]");
+        const imageNode = card.querySelector("[data-offer-detail-image]");
+        const placeholder = card.querySelector("[data-offer-detail-placeholder]");
+        titleNode.textContent = title;
+        card.querySelector("[data-offer-detail-description]").textContent = description;
+        card.querySelector("[data-offer-detail-platform]").textContent = platform;
+        card.querySelector("[data-offer-detail-type]").textContent = type;
+        placeholder.textContent = title.trim().charAt(0).toUpperCase() || "?";
+
+        const imageUrl = String(offer.image || "").trim();
+        let safeImage = "";
+        try {
+          const parsedImage = new URL(imageUrl);
+          if (parsedImage.protocol === "https:") safeImage = parsedImage.href;
+        } catch {}
+        if (!safeImage && offer.platform === "steam") {
+          const match = String(offer.url || "").match(/store\.steampowered\.com\/(?:app|sub)\/(\d+)/i);
+          if (match) safeImage = `https://cdn.akamai.steamstatic.com/steam/apps/${match[1]}/header.jpg`;
+        }
+        if (safeImage) {
+          imageNode.src = safeImage;
+          imageNode.alt = `Visuel de ${title}`;
+          imageNode.hidden = false;
+          imageNode.addEventListener("error", () => { imageNode.hidden = true; }, { once: true });
+        }
+
+        const original = card.querySelector("[data-offer-detail-original]");
+        if (offer.price_original) {
+          original.textContent = String(offer.price_original);
+          original.hidden = false;
+        }
+        const permanent = offer.is_permanent || offer.availability === "permanent" || !offer.expires_at;
+        let expired = false;
+        let deadline = "Toujours gratuit";
+        if (!permanent) {
+          const date = new Date(offer.expires_at);
+          if (Number.isNaN(date.getTime())) deadline = "Durée limitée";
+          else if (date.getTime() <= Date.now()) {
+            expired = true;
+            deadline = `Offre terminée le ${date.toLocaleDateString("fr-FR")}`;
+          } else deadline = `Jusqu'au ${date.toLocaleString("fr-FR", { dateStyle: "medium", timeStyle: "short" })}`;
+        }
+        card.querySelector("[data-offer-detail-expiry]").textContent = deadline;
+        document.title = `${title} — jeu ou DLC gratuit | OverX`;
+        const descriptionMeta = document.querySelector('meta[name="description"]');
+        if (descriptionMeta) descriptionMeta.content = `${title} : ${description}`.slice(0, 300);
+
+        let directUrl = "";
+        try {
+          const parsedUrl = new URL(String(offer.url || ""));
+          if (parsedUrl.protocol === "https:" && parsedUrl.pathname !== "/") directUrl = parsedUrl.href;
+        } catch {}
+        const claim = card.querySelector("[data-offer-detail-claim]");
+        const linkNote = card.querySelector("[data-offer-detail-link-note]");
+        if (directUrl && !expired) {
+          claim.href = directUrl;
+          claim.hidden = false;
+        } else {
+          linkNote.hidden = false;
+          linkNote.textContent = expired
+            ? "Cette promotion est terminée. Consulte la boutique pour vérifier si le jeu ou le DLC est encore disponible gratuitement."
+            : "Le lien direct vers la fiche officielle de la boutique n'est pas disponible pour cette offre.";
+        }
+        if (status) status.hidden = true;
+        if (error) error.hidden = true;
+        card.hidden = false;
+      }).catch(() => showDetailError("Impossible de charger le catalogue. Réessaie dans quelques instants."));
+    }
   }
 })();

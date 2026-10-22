@@ -122,6 +122,34 @@ class OverLoadDownloadTests(unittest.TestCase):
                 self.assertTrue((ROOT / screen["image"]).is_file())
 
 
+class GameCatalogueTests(unittest.TestCase):
+    def test_catalogue_cards_open_an_individual_game_or_dlc_page(self) -> None:
+        catalog = render("jeux-gratuits/index.html")
+        detail = render("jeux-gratuits/fiche.html")
+        self.assertIn('data-offers-detail-url="../jeux-gratuits/fiche.html"', catalog)
+        self.assertIn('data-offer-detail data-offer-data-url="../data/offers.json"', detail)
+        self.assertIn('data-offer-detail-title', detail)
+        self.assertIn('data-offer-detail-claim', detail)
+        self.assertIn('id=${encodeURIComponent(String(offer.id))}', (ROOT / "assets/js/site.js").read_text(encoding="utf-8"))
+
+    def test_catalogue_has_pagination_for_large_filtered_results(self) -> None:
+        html = render("jeux-gratuits/index.html")
+        self.assertIn('data-offers-pagination aria-label="Pages du catalogue" hidden', html)
+        script = (ROOT / "assets/js/site.js").read_text(encoding="utf-8")
+        self.assertIn("const PAGE_SIZE = 24", script)
+        self.assertIn("filtered.slice(pageStart, pageStart + PAGE_SIZE)", script)
+        self.assertIn('aria-label="Page suivante"', script)
+
+    def test_offer_cards_use_product_links_and_official_or_steam_images(self) -> None:
+        script = (ROOT / "assets/js/site.js").read_text(encoding="utf-8")
+        self.assertIn('parsed.protocol !== "https:" || parsed.pathname === "/"', script)
+        self.assertIn("cdn.akamai.steamstatic.com/steam/apps/${steamMatch[1]}/header.jpg", script)
+        self.assertIn("Lien de l'offre indisponible", script)
+        self.assertIn('href="${escapeHtml(url)}"', script)
+        docs = (ROOT / "data/README.md").read_text(encoding="utf-8")
+        self.assertIn("fiche précise du jeu ou du DLC", docs)
+
+
 class ProjectHubTests(unittest.TestCase):
     def test_home_follows_five_part_studio_architecture(self) -> None:
         home = render("index.html")

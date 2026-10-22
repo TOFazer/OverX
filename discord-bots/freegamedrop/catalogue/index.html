@@ -47,7 +47,7 @@
       <span class="jeux-meta-pill" style="background:rgba(169,199,174,0.12);border-color:rgba(169,199,174,0.2)">Sous-partie de FreeGameDrop — tout voir en un endroit</span>
     </div>
     <h1>Jeux gratuits<br><span>Les offres à récupérer en ce moment.</span></h1>
-    <p class="hero-lead narrow">Le même catalogue qui alimente FreeGameDrop sur Discord — Steam, Epic Games Store, GOG et Ubisoft — consultable directement sur OverX. Recherche par nom, filtres par boutique et par type (jeu, DLC, contenu bonus), et mention claire de la fin d'offre quand elle est connue. <strong>Tout est visible ici</strong> : aucun filtre caché, aucune pagination — fais défiler pour tout voir.</p>
+    <p class="hero-lead narrow">Retrouve ici les offres publiées dans le catalogue FreeGameDrop — jeux complets, DLC, extensions et contenus bonus. Chaque offre a sa propre fiche avec image, description et lien direct vers la boutique. Recherche et filtres te permettent de retrouver rapidement un jeu ; le catalogue se répartit automatiquement sur plusieurs pages quand il grandit.</p>
     <div class="jeux-hero-meta">
       <span class="jeux-meta-pill"><span class="catalogue-dot"></span> <span data-offers-count>— offres</span> <span class="meta-divider"></span> <time data-offers-updated>Chargement…</time></span>
       <a class="button button-primary" data-install-cta href="https://discord.com/oauth2/authorize?client_id=1556443310053130260&amp;permissions=268528656&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank" rel="noopener noreferrer">Ajouter à Discord <span aria-hidden="true">↗</span></a>
@@ -72,7 +72,7 @@
     </div>
 
     <!-- Catalogue : recherche + filtres -->
-    <div data-offers-catalog data-offers-url="../../../data/offers.json">
+    <div data-offers-catalog data-offers-url="../../../data/offers.json" data-offers-detail-url="../../../jeux-gratuits/fiche.html">
       <div class="offers-toolbar" data-reveal>
         <label class="offers-search" aria-label="Rechercher un jeu">
           <span aria-hidden="true">⌕</span>
@@ -125,6 +125,7 @@
       </div>
 
       <div class="offers-grid" data-offers-grid aria-live="polite"></div>
+      <nav class="offers-pagination" data-offers-pagination aria-label="Pages du catalogue" hidden></nav>
       <noscript>
         <div class="offers-notice">
           <span aria-hidden="true">⚠</span>

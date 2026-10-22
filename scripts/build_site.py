@@ -929,7 +929,7 @@ _JEUX_GRATUITS_BODY = r"""
       <span class="jeux-meta-pill" style="background:rgba(169,199,174,0.12);border-color:rgba(169,199,174,0.2)">Sous-partie de FreeGameDrop — tout voir en un endroit</span>
     </div>
     <h1>Jeux gratuits<br><span>Les offres à récupérer en ce moment.</span></h1>
-    <p class="hero-lead narrow">Le même catalogue qui alimente FreeGameDrop sur Discord — Steam, Epic Games Store, GOG et Ubisoft — consultable directement sur OverX. Recherche par nom, filtres par boutique et par type (jeu, DLC, contenu bonus), et mention claire de la fin d'offre quand elle est connue. <strong>Tout est visible ici</strong> : aucun filtre caché, aucune pagination — fais défiler pour tout voir.</p>
+    <p class="hero-lead narrow">Retrouve ici les offres publiées dans le catalogue FreeGameDrop — jeux complets, DLC, extensions et contenus bonus. Chaque offre a sa propre fiche avec image, description et lien direct vers la boutique. Recherche et filtres te permettent de retrouver rapidement un jeu ; le catalogue se répartit automatiquement sur plusieurs pages quand il grandit.</p>
     <div class="jeux-hero-meta">
       <span class="jeux-meta-pill"><span class="catalogue-dot"></span> <span data-offers-count>— offres</span> <span class="meta-divider"></span> <time data-offers-updated>Chargement…</time></span>
       <a class="button button-primary" data-install-cta href="{{ROOT}}install/index.html#ajouter">Ajouter à Discord <span aria-hidden="true">↗</span></a>
@@ -954,7 +954,7 @@ _JEUX_GRATUITS_BODY = r"""
     </div>
 
     <!-- Catalogue : recherche + filtres -->
-    <div data-offers-catalog data-offers-url="{{ROOT}}data/offers.json">
+    <div data-offers-catalog data-offers-url="{{ROOT}}data/offers.json" data-offers-detail-url="{{ROOT}}jeux-gratuits/fiche.html">
       <div class="offers-toolbar" data-reveal>
         <label class="offers-search" aria-label="Rechercher un jeu">
           <span aria-hidden="true">⌕</span>
@@ -1007,6 +1007,7 @@ _JEUX_GRATUITS_BODY = r"""
       </div>
 
       <div class="offers-grid" data-offers-grid aria-live="polite"></div>
+      <nav class="offers-pagination" data-offers-pagination aria-label="Pages du catalogue" hidden></nav>
       <noscript>
         <div class="offers-notice">
           <span aria-hidden="true">⚠</span>
@@ -1066,6 +1067,40 @@ _JEUX_GRATUITS_BODY = r"""
   </section>
 </main>
 """
+
+_JEU_DETAIL_BODY = r"""
+<main id="main-content" class="offer-detail-page" data-offer-detail data-offer-data-url="{{ROOT}}data/offers.json">
+  <section class="container section-compact offer-detail-section">
+    <p class="eyebrow"><a href="{{ROOT}}index.html">OVERX</a> <span class="crumb-slash">/</span> <a href="{{ROOT}}jeux-gratuits/index.html">JEUX GRATUITS</a> <span class="crumb-slash">/</span> FICHE</p>
+    <a class="offer-back-link" href="{{ROOT}}jeux-gratuits/index.html">← Retour au catalogue</a>
+    <p class="offer-detail-status" data-offer-detail-status role="status">Chargement de la fiche…</p>
+    <article class="offer-detail-card" data-offer-detail-card hidden>
+      <div class="offer-detail-visual" data-offer-detail-visual>
+        <div class="offer-visual-placeholder" data-offer-detail-placeholder>?</div>
+        <img data-offer-detail-image alt="" hidden>
+      </div>
+      <div class="offer-detail-copy">
+        <div class="offer-detail-tags"><span class="offer-badge offer-badge-platform" data-offer-detail-platform></span><span class="offer-badge offer-badge-type" data-offer-detail-type></span></div>
+        <h1 data-offer-detail-title></h1>
+        <p class="offer-detail-description" data-offer-detail-description></p>
+        <div class="offer-detail-price"><s data-offer-detail-original hidden></s><strong>Gratuit</strong><span data-offer-detail-expiry></span></div>
+        <p class="offer-detail-missing-link" data-offer-detail-link-note hidden>Le lien direct vers la boutique n'est pas disponible pour cette offre.</p>
+        <a class="button button-primary offer-detail-claim" data-offer-detail-claim target="_blank" rel="noopener noreferrer" hidden>Récupérer gratuitement <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+    <div class="offers-notice offer-detail-error" data-offer-detail-error hidden role="status"></div>
+  </section>
+</main>
+"""
+
+PAGES.append({
+    "path": "jeux-gratuits/fiche.html",
+    "title": "Fiche jeu ou DLC gratuit | OverX",
+    "description": "Consultez les détails d'un jeu ou DLC gratuit du catalogue FreeGameDrop et ouvrez sa fiche officielle pour le récupérer.",
+    "active": "bots",
+    "og_image": "freegamedrop.png",
+    "body": _JEU_DETAIL_BODY,
+})
 
 PAGES.append({
     "path": "jeux-gratuits/index.html",
