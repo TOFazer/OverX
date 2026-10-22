@@ -317,6 +317,41 @@
     });
   });
 
+  // Shared validation/normalisation for the catalogue and each offer detail page.
+  // Prefer explicit product/claim URLs, and never turn an unknown ID into a fake link.
+  function offerDestination(offer) {
+    const candidates = [offer?.store_url, offer?.claim_url, offer?.url, offer?.open_giveaway_url, offer?.gamerpower_url];
+    for (const raw of candidates) {
+      try {
+        const parsed = new URL(String(raw || ""));
+        if (parsed.protocol === "https:" && !parsed.username && !parsed.password && parsed.hostname.includes(".") && parsed.pathname !== "/") {
+          return parsed.href;
+        }
+      } catch {}
+    }
+    const platform = String(offer?.platform || offer?.source || "").toLowerCase();
+    const steamId = String(offer?.steam_app_id || offer?.app_id || offer?.source_id || "").match(/^\d+$/)?.[0];
+    if (platform.includes("steam") && steamId) return `https://store.steampowered.com/app/${steamId}/`;
+    return "";
+  }
+
+  function offerImage(offer) {
+    const candidates = [offer?.image, offer?.thumbnail, offer?.cover, offer?.header_image, offer?.image_url];
+    for (const raw of candidates) {
+      try {
+        const parsed = new URL(String(raw || ""));
+        if (parsed.protocol === "https:" && !parsed.username && !parsed.password) return parsed.href;
+      } catch {}
+    }
+    const destination = offerDestination(offer);
+    const steamId = destination.match(/store\.steampowered\.com\/(?:app|sub)\/(\d+)/i)?.[1]
+      || String(offer?.steam_app_id || offer?.app_id || offer?.source_id || "").match(/^\d+$/)?.[0];
+    const platform = String(offer?.platform || "").toLowerCase();
+    return platform.includes("steam") && steamId
+      ? `https://cdn.akamai.steamstatic.com/steam/apps/${steamId}/header.jpg`
+      : "";
+  }
+
   // ------------------------------------------------------------------
   // Catalogue: client-side search + category filters over real cards.
   // ------------------------------------------------------------------
@@ -508,8 +543,11 @@
     const normalize = (value) => String(value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
     const formatExpiry = (offer) => {
-      if (offer.is_permanent || offer.availability === "permanent" || !offer.expires_at) {
+      if (offer.is_permanent || offer.availability === "permanent") {
         return { text: "Toujours gratuit", cls: "permanent", urgent: false, ms: Infinity };
+      }
+      if (!offer.expires_at) {
+        return { text: "Durée non communiquée", cls: "permanent", urgent: false, ms: Infinity };
       }
       const expiry = new Date(offer.expires_at);
       if (Number.isNaN(expiry.getTime())) return { text: "Durée limitée", cls: "permanent", urgent: false, ms: Infinity };
@@ -538,28 +576,8 @@
       "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;",
     })[char]);
 
-    const directOfferUrl = (offer) => {
-      try {
-        const parsed = new URL(String(offer.url || ""));
-        if (parsed.protocol !== "https:" || parsed.pathname === "/" || !parsed.hostname.includes(".")) return "";
-        return parsed.href;
-      } catch {
-        return "";
-      }
-    };
-
-    const offerImageUrl = (offer) => {
-      const supplied = String(offer.image || "").trim();
-      if (supplied) {
-        try {
-          const parsed = new URL(supplied);
-          if (parsed.protocol === "https:") return parsed.href;
-        } catch {}
-      }
-      // Steam's official CDN exposes a cover image for both app and DLC IDs.
-      const steamMatch = offer.platform === "steam" && String(offer.url || "").match(/store\.steampowered\.com\/(?:app|sub)\/(\d+)/i);
-      return steamMatch ? `https://cdn.akamai.steamstatic.com/steam/apps/${steamMatch[1]}/header.jpg` : "";
-    };
+    const directOfferUrl = offerDestination;
+    const offerImageUrl = offerImage;
 
     const offerCard = (offer) => {
       const expiry = formatExpiry(offer);
@@ -768,13 +786,8 @@
       }
 
       if (noticeNode && payload.notice) {
-        const isExample = /exemple/i.test(payload.notice);
-        if (isExample) {
-          noticeNode.hidden = false;
-          noticeNode.innerHTML = `<strong>Catalogue d'exemple</strong><p>Les offres affichées sont illustratives — remplace <code>data/offers.json</code> par l'export automatique du bot pour afficher les vraies offres en temps réel. Voir <code>data/README.md</code>.</p>`;
-        } else {
-          noticeNode.hidden = true;
-        }
+        noticeNode.hidden = false;
+        noticeNode.innerHTML = `<strong>À propos du catalogue</strong><p>${escapeHtml(payload.notice)}</p>`;
       } else if (noticeNode) {
         noticeNode.hidden = true;
       }
@@ -854,16 +867,7 @@
         card.querySelector("[data-offer-detail-type]").textContent = type;
         placeholder.textContent = title.trim().charAt(0).toUpperCase() || "?";
 
-        const imageUrl = String(offer.image || "").trim();
-        let safeImage = "";
-        try {
-          const parsedImage = new URL(imageUrl);
-          if (parsedImage.protocol === "https:") safeImage = parsedImage.href;
-        } catch {}
-        if (!safeImage && offer.platform === "steam") {
-          const match = String(offer.url || "").match(/store\.steampowered\.com\/(?:app|sub)\/(\d+)/i);
-          if (match) safeImage = `https://cdn.akamai.steamstatic.com/steam/apps/${match[1]}/header.jpg`;
-        }
+        const safeImage = offerImage(offer);
         if (safeImage) {
           imageNode.src = safeImage;
           imageNode.alt = `Visuel de ${title}`;
@@ -876,10 +880,10 @@
           original.textContent = String(offer.price_original);
           original.hidden = false;
         }
-        const permanent = offer.is_permanent || offer.availability === "permanent" || !offer.expires_at;
+        const permanent = offer.is_permanent || offer.availability === "permanent";
         let expired = false;
-        let deadline = "Toujours gratuit";
-        if (!permanent) {
+        let deadline = permanent ? "Toujours gratuit" : "Durée non communiquée";
+        if (!permanent && offer.expires_at) {
           const date = new Date(offer.expires_at);
           if (Number.isNaN(date.getTime())) deadline = "Durée limitée";
           else if (date.getTime() <= Date.now()) {
@@ -892,11 +896,7 @@
         const descriptionMeta = document.querySelector('meta[name="description"]');
         if (descriptionMeta) descriptionMeta.content = `${title} : ${description}`.slice(0, 300);
 
-        let directUrl = "";
-        try {
-          const parsedUrl = new URL(String(offer.url || ""));
-          if (parsedUrl.protocol === "https:" && parsedUrl.pathname !== "/") directUrl = parsedUrl.href;
-        } catch {}
+        const directUrl = offerDestination(offer);
         const claim = card.querySelector("[data-offer-detail-claim]");
         const linkNote = card.querySelector("[data-offer-detail-link-note]");
         if (directUrl && !expired) {

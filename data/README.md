@@ -1,70 +1,51 @@
-# Catalogue commun FreeGameDrop — JSON partagé
+# Catalogue réel des jeux gratuits
 
-Ce dossier héberge le fichier lu par **OverX** pour afficher le catalogue des jeux gratuits. Il est conçu pour être mis à jour automatiquement par le bot **FreeGameDrop**, sans dupliquer la logique de collecte des offres.
+Le catalogue affiché sur `/jeux-gratuits/` est `offers.json`. Il est mis à jour par GitHub Actions avec les offres promotionnelles actives remontées par les sources publiques utilisées par FreeGameDrop.
 
-## Fichier
+## Mise à jour automatique
 
-- `data/offers.json` — généré / écrasé par le bot (ou à la main pour tester).
+Le workflow [`.github/workflows/update-offers.yml`](../.github/workflows/update-offers.yml) se lance toutes les 30 minutes et peut aussi être démarré manuellement dans GitHub Actions. Le script [`scripts/update_offers.py`](../scripts/update_offers.py) collecte :
 
-## Schéma
+- **GamerPower** : jeux (`type=game`) et offres de type loot/contenu (`type=loot`), filtrés selon le statut actif et la date de fin quand elle est fournie ;
+- **Epic Games Store** : offres à prix nul avec promotion active, liens produits Epic et images de la source officielle.
+
+Le script normalise les champs pour les cartes, les pages de détails et les filtres du site. Les images acceptent `image`, `thumbnail`, `cover`, `header_image` et `image_url`. Les destinations acceptent les liens de produit/claim de la source ; une page d'accueil de boutique n'est jamais utilisée comme lien de récupération. Les couvertures Steam peuvent être générées depuis l'identifiant app ou l'URL produit.
+
+Le rafraîchissement échoue sans écraser le dernier catalogue publié si une API ne répond pas ou renvoie une structure invalide. Après une mise à jour réussie, l'action commit le nouveau JSON sur la branche où elle a été déclenchée.
+
+## Schéma du JSON
 
 ```json
 {
   "generated_at": "2026-10-22T19:00:00Z",
-  "source": "FreeGameDrop",
-  "source_url": "https://github.com/TOFazer/FreeGameDropDev",
-  "notice": "facultatif",
+  "source": "GamerPower + Epic Games Store",
+  "notice": "Information sur les sources utilisées",
   "offers": [
     {
-      "id": "steam_123456",
-      "title": "Nom du jeu",
-      "description": "Courte description",
+      "id": "source-123",
+      "title": "Nom du jeu ou DLC",
+      "description": "Description fournie par la source",
       "type": "game | dlc | pack",
-      "type_label": "Jeu complet | DLC | Contenu bonus",
-      "platform": "steam | epic | gog | ubisoft",
-      "platform_label": "Steam | Epic Games Store | GOG | Ubisoft",
-      "store": "Steam",
-      "url": "https://store.steampowered.com/app/ID/...",
-      "image": "https://... (image officielle, recommandée)",
+      "type_label": "Jeu complet | DLC / extension | Contenu bonus",
+      "platform": "steam | epic | gog | ubisoft | other",
+      "platform_label": "Nom de la boutique",
+      "store": "Nom de la boutique",
+      "url": "https://.../fiche-produit-ou-offre",
+      "image": "https://.../visuel-officiel.jpg",
       "price_original": "59,99 €",
-      "expires_at": "2026-10-30T17:00:00Z | null",
-      "availability": "temporary | permanent",
-      "is_permanent": false
+      "expires_at": "2026-10-30T17:00:00Z",
+      "availability": "temporary | unknown",
+      "is_permanent": false,
+      "source": "Nom de la source"
     }
   ]
 }
 ```
 
-Champs obligatoires côté site : `id`, `title`, `type`, `platform`, `url`. Le champ `url` doit être un lien HTTPS vers la fiche précise du jeu ou du DLC (pas la page d'accueil de la boutique) ; sans lien direct valide, le bouton de récupération est désactivé. Le champ `image` accepte une URL HTTPS vers le visuel officiel du produit. Pour Steam, le site peut retrouver automatiquement l'en-tête de jeu/DLC depuis l'identifiant de la fiche si `image` est absent. Le reste est affiché s'il existe.
+Le site répartit la liste complète en pages de 24 offres, masque les offres dont la date de fin est dépassée, et crée une fiche individuelle par identifiant (`jeux-gratuits/fiche.html?id=…`). Les cartes et fiches n'activent le bouton de récupération que si la source donne une URL HTTPS spécifique à l'offre ou au produit. Les URL de boutique à la racine ne sont jamais présentées comme des liens directs.
 
-- `type` : `game` = jeu complet, `dlc` = extension / DLC, `pack` = pack cosmétique / objet / bande-son.
-- `availability` + `is_permanent` : `permanent` = gratuit sans limite (affiché « Toujours gratuit »), `temporary` = expire à `expires_at` (compte à rebours). Le site masque automatiquement les offres expirées quand `expires_at` est passé.
-- `expires_at` en ISO 8601 UTC, ou `null` pour les offres permanentes.
-- Le site masque automatiquement les offres expirées et répartit les résultats filtrés en pages de 24 cartes ; aucune limite de nombre d'offres n'est imposée par l'interface.
-- Chaque carte ouvre aussi une fiche OverX dédiée au jeu/DLC (identifiant d'offre dans l'URL), avec image, description, statut et bouton de récupération vers la boutique officielle.
-- Le site ne vérifie pas lui-même la validité du prix ni l'exhaustivité du collecteur : il affiche les offres publiées dans ce fichier et les dates/statuts fournis par le catalogue commun. « Tout » signifie donc toutes les offres trouvées et exportées par les sources configurées côté bot, pas l'ensemble de tous les jeux jamais publiés sur toutes les boutiques.
+## Portée et limites
 
-## Mise à jour depuis le bot
+Le catalogue montre toutes les offres récupérées par les sources configurées (GamerPower + Epic), et non tous les jeux publiés sur toutes les boutiques. Les API tierces peuvent omettre des offres, ne pas fournir de prix d'origine ou de date de fin, et parfois rediriger vers une page détaillée d'annonce plutôt que vers le produit lui-même. Le workflow ne peut pas garantir l'exhaustivité du marché ni inventer les données absentes. Les promotions sont revalidées à chaque collecte ; une offre expirée peut néanmoins rester visible quelques minutes jusqu'au prochain rafraîchissement.
 
-Sur GitHub Pages, le site est statique : il lit simplement ce JSON. Le bot publie le fichier par l'une de ces méthodes :
-
-1. **Workflow GitHub Action côté OverX** (recommandé pour commencer) — le bot pousse un `data/offers.json` à jour via l'API GitHub, ou expose un endpoint `/api/offers` et un workflow OverX le transforme en JSON commité.
-2. **API hébergée séparément** — renseigner `offersApiUrl` dans `assets/site-config.js` fait pointer la page vers l'endpoint distant (CORS requis). La version JSON locale reste le fallback.
-
-Dans les deux cas, le catalogue reste unique : les mêmes offres normalisées alimentent Discord et OverX.
-
-## Exemple actuel
-
-Le fichier commité contient 6 offres illustratives (pas de vraies offres vérifiées). Le bandeau du site indique clairement que ce sont des exemples jusqu'à ce que le premier export automatique le remplace.
-
-## Intégration côté bot
-
-Côté FreeGameDrop, normaliser les offres avant export :
-
-- dédupliquer par `(platform, id_source)` ;
-- remplir `platform` parmi `steam, epic, gog, ubisoft` ;
-- renseigner `type` et `availability` (distinguer DLC temporaire vs permanent) ;
-- fournir `url` vers la page officielle de récupération (pas un lien affilié) ;
-- trier par `expires_at` croissant (offres urgentes en premier), puis `title`.
-
-Le site se charge ensuite du rendu, des filtres (plateforme, type, recherche, échéance) et du badge d'urgence.
+Les données initiales sont volontairement vides : aucune offre d'exemple avec une fausse image ou un lien de boutique générique n'est montrée avant la première collecte réussie.
