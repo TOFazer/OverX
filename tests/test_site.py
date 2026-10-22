@@ -10,6 +10,7 @@ import tempfile
 import unittest
 from collections import Counter
 from pathlib import Path
+from urllib.parse import urlparse
 from unittest.mock import patch
 from xml.etree import ElementTree
 
@@ -188,10 +189,16 @@ class GameCatalogueTests(unittest.TestCase):
         self.assertEqual(offer["image"], "https://cdn.example.test/epic.jpg")
         self.assertIsNone(update_offers.normalise_epic({**raw, "promotions": {}}, now))
 
-    def test_repository_starts_without_fake_catalogue_offers(self) -> None:
+    def test_published_catalogue_contains_real_offers_with_images_and_specific_urls(self) -> None:
         payload = __import__("json").loads((ROOT / "data/offers.json").read_text(encoding="utf-8"))
-        self.assertEqual(payload["offers"], [])
-        self.assertIn("Aucune fausse offre", payload["notice"])
+        self.assertTrue(payload.get("generated_at"))
+        self.assertFalse(any(str(offer["id"]).startswith("example-") for offer in payload["offers"]))
+        for offer in payload["offers"]:
+            with self.subTest(offer=offer.get("id")):
+                if offer.get("image"):
+                    self.assertTrue(offer["image"].startswith("https://"))
+                self.assertTrue(offer.get("url", "").startswith("https://"))
+                self.assertNotEqual(urlparse(offer["url"]).path, "/")
         self.assertTrue((ROOT / ".github/workflows/update-offers.yml").is_file())
 
 
