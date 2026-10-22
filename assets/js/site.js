@@ -481,6 +481,22 @@
     let activeType = "all";
     let onlyExpiring = false;
 
+    // Pré-filtre via URL : ?platform=steam&type=dlc&q=orbit&expiring=1
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const p = params.get("platform") || params.get("boutique");
+      if (p && ["steam","epic","gog","ubisoft"].includes(p.toLowerCase())) activePlatform = p.toLowerCase();
+      const t = params.get("type");
+      if (t && ["game","dlc","pack"].includes(t.toLowerCase())) activeType = t.toLowerCase();
+      const q = params.get("q") || params.get("search");
+      if (q && searchInput) searchInput.value = q;
+      if (params.get("expiring") === "1" || params.get("urgent") === "1") onlyExpiring = true;
+    } catch {}
+    // Sync visuel des chips avec l'état initial (URL ou défaut)
+    platformChips.forEach((c) => c.classList.toggle("is-active", (c.dataset.offersPlatform || "all") === activePlatform));
+    typeChips.forEach((c) => c.classList.toggle("is-active", (c.dataset.offersType || "all") === activeType));
+    if (expiryToggle) expiryToggle.checked = onlyExpiring;
+
     const PLATFORM_LABELS = { steam: "Steam", epic: "Epic Games Store", gog: "GOG", ubisoft: "Ubisoft" };
     const TYPE_LABELS = { game: "Jeu complet", dlc: "DLC", pack: "Contenu bonus" };
 

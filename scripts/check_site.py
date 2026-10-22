@@ -15,6 +15,7 @@ EXPECTED_PAGES = [
     "overload/index.html",
     "discord-bots/index.html",
     "discord-bots/freegamedrop/index.html",
+    "discord-bots/freegamedrop/catalogue/index.html",
     "discord-bots/freegamedrop/auto-hebergement/index.html",
     "discord-bots/freegamedrop/steam/index.html",
     "discord-bots/freegamedrop/epic-games/index.html",

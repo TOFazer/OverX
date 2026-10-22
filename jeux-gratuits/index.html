@@ -30,8 +30,7 @@
       <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Navigation principale">
         <a href="../index.html">Accueil</a>
         <a href="../overload/index.html">OverLoad</a>
-        <a href="../jeux-gratuits/index.html" aria-current="page">Jeux gratuits</a>
-        <a href="../discord-bots/index.html">Bots Discord</a>
+        <a href="../discord-bots/index.html" aria-current="page">Bots Discord</a>
         <a href="../docs/index.html">Documentation</a>
         <a href="../status/index.html">Statut</a>
         <a class="mobile-nav-cta" href="../index.html#projets">Découvrir nos projets</a>
@@ -41,19 +40,29 @@
   </header>
 <main id="main-content">
   <section class="page-hero container jeux-hero" data-reveal>
-    <p class="eyebrow"><a href="../index.html">OVERX</a> <span class="crumb-slash">/</span> <a href="../discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> JEUX GRATUITS</p>
+    <p class="eyebrow"><a href="../index.html">OVERX</a> <span class="crumb-slash">/</span> <a href="../discord-bots/index.html">BOTS</a> <span class="crumb-slash">/</span> <a href="../discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> CATALOGUE</p>
     <div class="jeux-hero-top">
       <span class="status-pill status-current"><span></span> Catalogue commun Discord ↔ OverX</span>
       <span class="jeux-meta-live">Actualisé automatiquement</span>
+      <span class="jeux-meta-pill" style="background:rgba(169,199,174,0.12);border-color:rgba(169,199,174,0.2)">Sous-partie de FreeGameDrop — tout voir en un endroit</span>
     </div>
     <h1>Jeux gratuits<br><span>Les offres à récupérer en ce moment.</span></h1>
-    <p class="hero-lead narrow">Le même catalogue qui alimente FreeGameDrop sur Discord — Steam, Epic Games Store, GOG et Ubisoft — consultable directement sur OverX. Recherche par nom, filtres par boutique et par type (jeu, DLC, contenu bonus), et mention claire de la fin d'offre quand elle est connue.</p>
+    <p class="hero-lead narrow">Le même catalogue qui alimente FreeGameDrop sur Discord — Steam, Epic Games Store, GOG et Ubisoft — consultable directement sur OverX. Recherche par nom, filtres par boutique et par type (jeu, DLC, contenu bonus), et mention claire de la fin d'offre quand elle est connue. <strong>Tout est visible ici</strong> : aucun filtre caché, aucune pagination — fais défiler pour tout voir.</p>
     <div class="jeux-hero-meta">
       <span class="jeux-meta-pill"><span class="catalogue-dot"></span> <span data-offers-count>— offres</span> <span class="meta-divider"></span> <time data-offers-updated>Chargement…</time></span>
       <a class="button button-primary" data-install-cta href="https://discord.com/oauth2/authorize?client_id=1556443310053130260&amp;permissions=268528656&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank" rel="noopener noreferrer">Ajouter à Discord <span aria-hidden="true">↗</span></a>
       <a class="button button-secondary" href="../discord-bots/freegamedrop/index.html">Comment ça marche ? <span aria-hidden="true">→</span></a>
     </div>
-    <p class="micro-note">Maquette de principe pour la mise en page : les offres affichées proviennent de <code>data/offers.json</code> et sont filtrées côté navigateur. Tant que le fichier contient les exemples illustratifs, un bandeau l'indique.</p>
+    <div class="fgd-stores" style="margin-top:14px" aria-label="Navigation FreeGameDrop">
+      <a href="../discord-bots/freegamedrop/index.html">Présentation</a>
+      <a href="../jeux-gratuits/index.html" aria-current="page" style="background:var(--action);color:var(--text)">Catalogue · Tout voir</a>
+      <a href="../discord-bots/freegamedrop/steam/index.html">Steam</a>
+      <a href="../discord-bots/freegamedrop/epic-games/index.html">Epic</a>
+      <a href="../discord-bots/freegamedrop/gog/index.html">GOG</a>
+      <a href="../discord-bots/freegamedrop/ubisoft/index.html">Ubisoft</a>
+      <a href="../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a>
+    </div>
+    <p class="micro-note">Aussi accessible via <code>../discord-bots/freegamedrop/catalogue/</code> — même catalogue, même filtres. <code>data/offers.json</code> reste la source unique.</p>
   </section>
 
   <section class="section container section-compact" id="offres" data-reveal>
