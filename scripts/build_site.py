@@ -1393,15 +1393,15 @@ _PRIVACY_BODY = r"""
     <p class="hero-lead narrow">Cette page décrit la version statique actuelle du site et les données mentionnées dans la documentation de FreeGameDrop.</p>
   </section>
   <section class="section container legal-layout" data-reveal>
-    <div class="draft-warning"><span aria-hidden="true">!</span><div><strong>Brouillon à compléter avant publication publique</strong><p>L'identité légale de l'éditeur, l'adresse de contact, l'hébergeur et certaines durées de conservation n'ont pas été communiqués. Ne présente pas ce texte comme une politique finalisée sans validation.</p></div></div>
+    <div class="draft-warning"><span aria-hidden="true">i</span><div><strong>Projet indépendant à titre non professionnel</strong><p>OverX est un site statique édité par un particulier sans collecte publicitaire ni suivi d'audience. Retrouve ci-dessous les informations sur l'hébergement GitHub Pages et le fonctionnement documenté de FreeGameDrop.</p></div></div>
     <article class="legal-content">
-      <p class="legal-updated">État : version de travail · 7 octobre 2026</p>
-      <h2>1. Responsable du traitement</h2><p>Éditeur / responsable du traitement : <strong>[À COMPLÉTER : nom ou raison sociale, adresse et moyen de contact]</strong>. Les coordonnées du responsable ne sont pas encore fournies.</p>
-      <h2>2. Le site OverX</h2><p>Dans cette première version, le site est constitué de pages statiques. Il ne propose ni connexion Discord, ni formulaire, ni compte, ni dashboard, ni outil d'analyse d'audience ; aucun cookie non essentiel n'est installé par le code du site. Le site peut lire, si elles sont configurées, les API publiques <code>/api/stats</code> et <code>/api/health</code> du bot pour afficher des mesures ; aucune donnée personnelle n'est transmise pour cela.</p><p>Comme pour tout site hébergé, l'hébergeur peut traiter des données techniques de requête (par exemple adresse IP, date, navigateur) dans ses journaux. L'hébergeur et ses durées de conservation devront être précisés lorsque le déploiement sera choisi.</p>
-      <h2>3. Bot FreeGameDrop</h2><p>Le bot Discord est un service séparé du site. Selon le README du dépôt <a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev</a>, son fonctionnement peut enregistrer dans SQLite des identifiants de serveurs, salons et rôles, des informations d'offres publiques, des favoris associés à un identifiant Discord, des préférences et réglages d'alertes, ainsi qu'un historique minimal d'alertes. Le dépôt indique que le bot ne stocke pas le contenu des messages ni la preuve qu'un jeu a été réclamé.</p><p>Le README précise que les offres publiques non favorites sont retirées du catalogue après 90 jours sans nouvelle observation ; les favoris restent jusqu'à leur retrait ou à la suppression des données. Les autres durées doivent être confirmées par l'exploitant. Les paramètres d'une éventuelle connexion web décrits dans le dépôt ne sont pas activés par ce site.</p>
-      <h2>4. Suppression et droits</h2><p>Le dépôt documente la commande <code>/mes-donnees</code> pour demander la suppression des favoris associés au compte. Sa documentation précise que cette commande ne supprime pas les réglages du serveur ni toutes les préférences et alertes personnelles. La procédure complète de contact et d'exercice des droits doit être confirmée par le responsable du traitement.</p><p>Contact pour les demandes relatives aux données : <strong>[À COMPLÉTER : adresse de contact du responsable]</strong>.</p>
+      <p class="legal-updated">Dernière mise à jour : 22 octobre 2026</p>
+      <h2>1. Responsable du traitement</h2><p>Éditeur / responsable du traitement : <strong>TOFazer</strong>, particulier éditant le projet OverX à titre personnel et non professionnel. Contact : <a href="mailto:tofazer067@gmail.com">tofazer067@gmail.com</a> ou Discord (<code>tof_azer1531.54</code>).</p>
+      <h2>2. Le site OverX</h2><p>Dans sa version actuelle, le site est constitué de pages statiques. Il ne propose ni connexion Discord, ni formulaire, ni compte, ni dashboard, ni outil d'analyse d'audience ; aucun cookie non essentiel n'est installé par le code du site. Le site peut lire, si elles sont configurées, les API publiques <code>/api/stats</code> et <code>/api/health</code> du bot pour afficher des mesures ; aucune donnée personnelle n'est transmise pour cela.</p><p>Le site est hébergé sur <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis). Comme pour tout site web, l'hébergeur peut traiter des données techniques de requête (par exemple adresse IP, date et navigateur) dans ses journaux de sécurité et d'exploitation selon la politique de confidentialité de GitHub.</p>
+      <h2>3. Bot FreeGameDrop</h2><p>Le bot Discord est un service séparé du site. Selon le README du dépôt <a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev</a>, son fonctionnement peut enregistrer dans SQLite des identifiants de serveurs, salons et rôles, des informations d'offres publiques, des favoris associés à un identifiant Discord, des préférences et réglages d'alertes, ainsi qu'un historique minimal d'alertes. Le dépôt indique que le bot ne stocke pas le contenu des messages ni la preuve qu'un jeu a été réclamé.</p><p>Le README précise que les offres publiques non favorites sont retirées du catalogue après 90 jours sans nouvelle observation ; les favoris restent jusqu'à leur retrait ou à la suppression des données. Les paramètres d'une éventuelle connexion web décrits dans le dépôt ne sont pas activés par ce site.</p>
+      <h2>4. Suppression et droits</h2><p>Le dépôt documente la commande <code>/mes-donnees</code> pour demander la suppression des favoris associés au compte Discord. Sa documentation précise que cette commande ne supprime pas les réglages du serveur ni toutes les préférences et alertes personnelles.</p><p>Contact pour toute question ou demande relative aux données : <a href="mailto:tofazer067@gmail.com">tofazer067@gmail.com</a> ou Discord (<code>tof_azer1531.54</code>).</p>
       <h2>5. Services tiers</h2><p>Les liens vers Discord et GitHub conduisent vers des services externes soumis à leurs propres conditions et politiques de confidentialité. Le site ne contrôle pas leurs traitements.</p>
-      <h2>6. Mise à jour</h2><p>Cette politique devra être complétée et mise à jour si un compte Discord, des statistiques, une API, des formulaires, des cookies ou un dashboard sont ajoutés. Dernière révision du brouillon : 7 octobre 2026.</p>
+      <h2>6. Mise à jour</h2><p>Cette politique sera mise à jour si un compte Discord, des statistiques, une API, des formulaires, des cookies ou un dashboard sont ajoutés. Dernière révision : 22 octobre 2026.</p>
     </article>
   </section>
 </main>
@@ -1410,7 +1410,7 @@ _PRIVACY_BODY = r"""
 PAGES.append({
     "path": "privacy/index.html",
     "title": "Politique de confidentialité — OverX",
-    "description": "Politique de confidentialité provisoire du site OverX et informations documentées sur les données utilisées par FreeGameDrop.",
+    "description": "Politique de confidentialité du site OverX et informations documentées sur les données utilisées par FreeGameDrop.",
     "active": "legal",
     "body": _PRIVACY_BODY,
 })
@@ -1419,19 +1419,19 @@ _TERMS_BODY = r"""
 <main id="main-content">
   <section class="page-hero container legal-hero" data-reveal>
     <p class="eyebrow">INFORMATIONS LÉGALES <span class="crumb-slash">/</span> CONDITIONS</p>
-    <h1>Des règles simples.<br><span>À finaliser avant lancement.</span></h1>
-    <p class="hero-lead narrow">Projet de conditions pour le site OverX et les liens vers ses applications.</p>
+    <h1>Des règles simples.<br><span>Claires et transparentes.</span></h1>
+    <p class="hero-lead narrow">Conditions d'utilisation du site OverX et des liens vers ses applications open source.</p>
   </section>
   <section class="section container legal-layout" data-reveal>
-    <div class="draft-warning"><span aria-hidden="true">!</span><div><strong>Document de travail</strong><p>Le nom et les coordonnées de l'éditeur, les modalités de support et le droit applicable doivent être validés avant publication. Ceci n'est pas un avis juridique.</p></div></div>
+    <div class="draft-warning"><span aria-hidden="true">i</span><div><strong>Projet personnel &amp; non commercial</strong><p>OverX et ses outils sont mis à disposition gratuitement par un particulier (TOFazer). Les logiciels sont fournis en l'état selon les licences indiquées dans leurs dépôts GitHub.</p></div></div>
     <article class="legal-content">
-      <p class="legal-updated">État : version de travail · 7 octobre 2026</p>
-      <h2>1. Éditeur et champ d'application</h2><p>Le site OverX est édité par <strong>[À COMPLÉTER : identité légale et coordonnées]</strong>. Les présentes conditions sont un brouillon couvrant la consultation des pages et les liens vers les projets OverX.</p>
-      <h2>2. Site et disponibilité</h2><p>Le site fournit des informations sur les projets OverX. Il est actuellement statique et ne fournit ni compte utilisateur, ni dashboard, ni API de configuration. Le statut des bots n'est pas vérifié en temps réel depuis ces pages ; aucune disponibilité permanente n'est promise.</p>
-      <h2>3. Utilisation du bot</h2><p>FreeGameDrop est une application distincte opérant sur Discord. Son utilisation dépend des règles de Discord, des permissions accordées au bot et de la disponibilité des sources d'offres. Les utilisateurs et administrateurs doivent respecter les règles de leur serveur et celles de Discord.</p>
+      <p class="legal-updated">Dernière mise à jour : 22 octobre 2026</p>
+      <h2>1. Éditeur et champ d'application</h2><p>Le site OverX est édité à titre personnel et non professionnel par <strong>TOFazer</strong> (<a href="mailto:tofazer067@gmail.com">tofazer067@gmail.com</a> · Discord <code>tof_azer1531.54</code>), et hébergé sur GitHub Pages. Les présentes conditions encadrent la consultation des pages du site et les liens vers les projets OverX.</p>
+      <h2>2. Site et disponibilité</h2><p>Le site fournit des informations sur les projets OverX. Il est statique et ne fournit ni compte utilisateur, ni dashboard, ni API de configuration. Le statut des bots n'est pas vérifié en temps réel depuis ces pages ; aucune disponibilité permanente n'est promise.</p>
+      <h2>3. Utilisation des projets (OverLoad &amp; FreeGameDrop)</h2><p>OverLoad est une application Windows distribuée via les releases officielles GitHub, et FreeGameDrop est une application distincte opérant sur Discord. Leur utilisation dépend des licences de leurs dépôts respectifs, des règles de Discord et de la disponibilité des sources d'offres. Les utilisateurs et administrateurs doivent respecter les règles de leur serveur, celles de Discord et la législation applicable.</p>
       <h2>4. Informations et services tiers</h2><p>Les offres de jeux proviennent de sources tierces et peuvent évoluer. Les liens vers Discord, GitHub, les boutiques et les fournisseurs de données sont soumis aux conditions de ces services. Les informations du site ne garantissent pas qu'une offre soit encore disponible au moment où elle est consultée.</p>
-      <h2>5. Propriété intellectuelle</h2><p>Les droits sur les éléments du site et des logiciels appartiennent à leurs titulaires respectifs. La licence et les modalités de réutilisation du code sont indiquées dans le dépôt de chaque projet lorsqu'elles sont applicables.</p>
-      <h2>6. Contact et modifications</h2><p>Contact de l'éditeur : <strong>[À COMPLÉTER : adresse de contact]</strong>. Ces conditions devront être complétées et révisées avant l'ouverture publique du service. Le droit applicable et la juridiction compétente restent à valider par l'éditeur.</p>
+      <h2>5. Propriété intellectuelle</h2><p>Les droits sur les éléments du site et des logiciels appartiennent à leurs titulaires respectifs. La licence et les modalités de réutilisation du code sont indiquées dans le dépôt GitHub de chaque projet (<a href="https://github.com/TOFazer/OverLoad" target="_blank" rel="noopener noreferrer">OverLoad</a>, <a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev</a>, <a href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">OverX</a>).</p>
+      <h2>6. Contact et modifications</h2><p>Contact de l'éditeur : <a href="mailto:tofazer067@gmail.com">tofazer067@gmail.com</a> ou Discord (<code>tof_azer1531.54</code>). Ces conditions peuvent être amenées à évoluer en fonction des fonctionnalités du site.</p>
     </article>
   </section>
 </main>
@@ -1440,7 +1440,7 @@ _TERMS_BODY = r"""
 PAGES.append({
     "path": "terms/index.html",
     "title": "Conditions d'utilisation — OverX",
-    "description": "Conditions d'utilisation provisoires du site OverX et des informations relatives à ses projets.",
+    "description": "Conditions d'utilisation du site OverX et des informations relatives à ses projets.",
     "active": "legal",
     "body": _TERMS_BODY,
 })
@@ -1449,16 +1449,16 @@ _LEGAL_BODY = r"""
 <main id="main-content">
   <section class="page-hero container legal-hero" data-reveal>
     <p class="eyebrow">INFORMATIONS LÉGALES <span class="crumb-slash">/</span> MENTIONS LÉGALES</p>
-    <h1>Qui édite ce site ?<br><span>Informations à renseigner.</span></h1>
-    <p class="hero-lead narrow">Les coordonnées légales n'ont pas été fournies. Cette page est volontairement marquée comme incomplète afin de ne pas inventer l'identité de l'éditeur.</p>
+    <h1>Qui édite ce site ?<br><span>Un projet indépendant.</span></h1>
+    <p class="hero-lead narrow">OverX est un projet personnel et non commercial édité par TOFazer et hébergé sur GitHub Pages. Retrouve ci-dessous les informations d'édition, d'hébergement et de contact.</p>
   </section>
   <section class="section container legal-layout" data-reveal>
-    <div class="draft-warning"><span aria-hidden="true">!</span><div><strong>À compléter avant la mise en ligne publique</strong><p>Renseigne l'identité de l'éditeur et les informations de l'hébergeur avec des données exactes. Fais vérifier les obligations applicables à ton statut.</p></div></div>
+    <div class="draft-warning"><span aria-hidden="true">i</span><div><strong>Édition à titre non professionnel</strong><p>Site édité par un particulier à titre personnel et bénévole, sans société ni numéro d'immatriculation (SIRET/RCS). Conformément à l'article 6, III, 2° de la loi n° 2004-575 du 21 juin 2004 (LCEN), l'éditeur non professionnel publie sous pseudonyme.</p></div></div>
     <article class="legal-content">
-      <h2>Éditeur du site</h2><ul class="legal-fields"><li><strong>Nom / raison sociale</strong><span>[À COMPLÉTER]</span></li><li><strong>Forme juridique</strong><span>[À COMPLÉTER, le cas échéant]</span></li><li><strong>Adresse</strong><span>[À COMPLÉTER]</span></li><li><strong>Adresse e-mail ou contact</strong><span>[À COMPLÉTER]</span></li><li><strong>Numéro d'immatriculation</strong><span>[À COMPLÉTER si applicable]</span></li><li><strong>Directeur de publication</strong><span>[À COMPLÉTER]</span></li></ul>
-      <h2>Hébergement</h2><ul class="legal-fields"><li><strong>Nom de l'hébergeur</strong><span>[À COMPLÉTER après choix du déploiement]</span></li><li><strong>Adresse et contact de l'hébergeur</strong><span>[À COMPLÉTER]</span></li></ul>
-      <h2>Propriété intellectuelle</h2><p>Les informations de licence et de réutilisation du code du bot sont à consulter dans le dépôt <a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev</a>. Les marques, logos et contenus tiers restent la propriété de leurs titulaires.</p>
-      <h2>Contact</h2><p>Pour une demande relative au site : <strong>[À COMPLÉTER : moyen de contact vérifié]</strong>.</p>
+      <h2>Éditeur du site</h2><ul class="legal-fields"><li><strong>Nom / pseudonyme</strong><span>TOFazer (OverX)</span></li><li><strong>Statut</strong><span>Particulier · projet personnel à titre non professionnel</span></li><li><strong>Forme juridique &amp; immatriculation</strong><span>Non applicable (aucune société ni numéro SIRET / RCS)</span></li><li><strong>Identité civile &amp; adresse</strong><span>Conservées sous anonymat légal (art. 6, III, 2° de la LCEN)</span></li><li><strong>Directeur de la publication</strong><span>TOFazer</span></li><li><strong>Adresse e-mail</strong><span><a href="mailto:tofazer067@gmail.com">tofazer067@gmail.com</a></span></li><li><strong>Discord</strong><span><code>tof_azer1531.54</code></span></li></ul>
+      <h2>Hébergement</h2><ul class="legal-fields"><li><strong>Nom de l'hébergeur</strong><span>GitHub, Inc. (service GitHub Pages)</span></li><li><strong>Adresse de l'hébergeur</strong><span>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</span></li><li><strong>Entité européenne</strong><span>GitHub B.V., Prins Bernhardplein 200, 1097 JB Amsterdam, Pays-Bas</span></li><li><strong>Site &amp; contact de l'hébergeur</strong><span><a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">pages.github.com</a> · <a href="https://support.github.com" target="_blank" rel="noopener noreferrer">support.github.com</a></span></li></ul>
+      <h2>Propriété intellectuelle</h2><p>Les informations de licence et de réutilisation du code sont à consulter dans les dépôts GitHub des projets : <a href="https://github.com/TOFazer/OverLoad" target="_blank" rel="noopener noreferrer">OverLoad</a>, <a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev</a> et <a href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">OverX</a>. Les marques, logos et contenus tiers restent la propriété de leurs titulaires respectifs.</p>
+      <h2>Contact</h2><p>Pour toute demande relative au site : par e-mail à <a href="mailto:tofazer067@gmail.com">tofazer067@gmail.com</a> ou sur Discord (<code>tof_azer1531.54</code>).</p>
     </article>
   </section>
 </main>
@@ -1467,7 +1467,7 @@ _LEGAL_BODY = r"""
 PAGES.append({
     "path": "legal/index.html",
     "title": "Mentions légales — OverX",
-    "description": "Mentions légales provisoires du site OverX. Les informations de l'éditeur et de l'hébergeur restent à renseigner.",
+    "description": "Mentions légales du site OverX : éditeur indépendant à titre non professionnel (TOFazer), hébergement GitHub Pages et moyens de contact.",
     "active": "legal",
     "body": _LEGAL_BODY,
 })
