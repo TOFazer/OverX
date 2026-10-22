@@ -1722,3 +1722,56 @@ html.js-ready [data-reveal].is-visible {
     transform: none !important;
   }
 }
+
+/* OverX / independent tech studio — brand system */
+:root { --bg:#070907; --bg-soft:#0d100e; --panel:#121613; --panel-raised:#191e1a; --panel-anthracite:#141915; --text-soft:#c5ccc5; --muted:#9aa59c; --line:rgba(225,240,225,.1); --line-strong:rgba(194,255,99,.3); --violet:#a9e855; --violet-bright:#c2ff63; --lime:#c2ff63; }
+body { background:radial-gradient(ellipse 70% 650px at 75% 0,rgba(132,190,65,.065),transparent),#070907; }
+body::before { display:none; }
+.site-header { background:rgba(7,9,7,.9); border-color:var(--line); }
+.brand-word > span { color:#c2ff63; background:none; -webkit-text-fill-color:currentColor; }
+.brand-word small { letter-spacing:.16em; color:#a2ada1; }
+.button { border-radius:8px; }
+.button-primary { background:#c2ff63; color:#11180a; border:1px solid #c2ff63; box-shadow:none; }
+.button-primary:hover { background:#d4ff95; box-shadow:0 8px 32px #c2ff631f; }
+.button-header { background:#171d13; border-color:#455533; color:#d4f4b4; }
+.button-secondary { background:#121612; border-color:#343c32; color:#f2f5ef; }
+.eyebrow { color:#b7c2b2; letter-spacing:.16em; }
+.eyebrow-dot { background:#c2ff63; box-shadow:0 0 12px #c2ff6340; }
+.brand-hero { display:grid; grid-template-columns:1.25fr 1fr; align-items:center; min-height:720px; position:relative; padding-block:80px; gap:12px; }
+.brand-hero-copy { z-index:1; }
+.brand-hero h1 { font-size:clamp(52px,5.5vw,82px); line-height:1.04; letter-spacing:-.065em; font-weight:750; margin:28px 0; }
+.brand-hero h1 span { color:#c2ff63; }
+.brand-hero .hero-lead { font-size:17px; line-height:1.8; color:#aeb8ad; max-width:540px; }
+.brand-hero .hero-actions { margin-top:32px; }
+.brand-signature { display:flex; gap:10px; align-items:center; margin-top:48px; font-size:9px; letter-spacing:.13em; color:#879180; }
+.brand-signature > span { width:22px; height:1px; background:#c2ff63; }
+.brand-monument { position:relative; min-width:0; }
+.brand-monument img { display:block; width:125%; max-width:none; height:auto; margin-left:-12%; animation:monument-arrive 1.6s var(--ease-out) both; }
+.monument-orbit { position:absolute; inset:15%; border:1px solid #a6c78619; border-radius:50%; transform:rotateX(65deg) rotate(-25deg); }
+.monument-label { position:absolute; bottom:5%; right:8%; font:9px monospace; letter-spacing:.15em; color:#85917d; }
+.brand-strip { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-block:26px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.brand-strip > span { color:#8f9c8b; font-size:10px; letter-spacing:.16em; }
+.brand-strip a { font-size:18px; font-weight:600; }
+.brand-strip small { font-size:9px; font-weight:400; color:#8f9c8b; margin-inline:14px; }
+.truth-band { background:transparent; border:0; }
+.truth-icon { color:#c2ff63; background:#171e13; }
+.featured-bot-card { border-radius:20px; background:#101310; box-shadow:none; }
+.featured-bot-card::before { opacity:.25; }
+#bots { border-color:#a99bff40; background:linear-gradient(110deg,#14121c,#101113); }
+#bots .button-primary { background:#bcafff; border-color:#bcafff; color:#1c1231; }
+#bots .bot-category { color:#bcafff; }
+.overload-card { background:linear-gradient(110deg,#0e171b,#101513); }
+.overload-card .bot-category { color:#88d6f7; }
+.overload-card .button-primary { background:#98ddfb; border-color:#98ddfb; color:#0b2330; }
+.bot-card-main h3 { letter-spacing:-.045em; }
+.overload-visual-stage .app-window-primary { transform:rotate(-2deg); }
+.section-alt { background:#0c0f0c; }
+.section-heading h2 span, .stats-band-copy h2 span { color:#a2ada0; background:none; -webkit-text-fill-color:currentColor; }
+.principle-card { background:#111510; }
+.principle-icon { color:#c2ff63; background:#1c2517; border-color:#34412b; }
+.footer-dot { background:#c2ff63; }
+@keyframes monument-arrive { from { opacity:0; transform:translateY(28px) rotate(5deg); } to { opacity:1; transform:none; } }
+@media(min-width:1500px) { .brand-hero { min-height:780px; } }
+@media(max-width:1000px) { .brand-hero h1 { font-size:60px; } .brand-hero { min-height:620px; } }
+@media(max-width:820px) { .brand-hero { grid-template-columns:1fr; padding-top:56px; padding-bottom:32px; gap:0; } .brand-hero h1 { font-size:clamp(46px,9vw,72px); } .brand-monument { width:min(420px,90%); margin:-16px auto 0; } .brand-monument img { width:100%; margin:0; } .brand-signature { margin-top:28px; } .brand-strip { flex-wrap:wrap; } .brand-strip > span { width:100%; } .brand-strip a { font-size:15px; } .brand-strip small { margin-inline:5px; } }
+@media(prefers-reduced-motion:reduce) { .brand-monument img { animation:none; } }
