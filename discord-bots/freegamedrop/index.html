@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#203D2D">
+  <meta name="theme-color" content="#101713">
 
   <meta name="description" content="FreeGameDrop annonce les jeux gratuits de Steam, Epic Games Store, GOG et Ubisoft sur Discord : salons par plateforme, alertes personnalisées, favoris, rappels et statistiques mesurées. Open source (MIT).">
   <meta property="og:type" content="website">
@@ -17,7 +17,6 @@
   <title>FreeGameDrop — bot Discord jeux gratuits (Steam, Epic, GOG, Ubisoft) | OverX</title>
   <link rel="icon" type="image/svg+xml" href="../../assets/brand-mark.svg">
   <link rel="stylesheet" href="../../assets/css/site.css">
-  <link rel="stylesheet" href="../../assets/css/forest-minimal.css">
   <script type="application/ld+json">{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"../../index.html"},{"@type":"ListItem","position":2,"name":"Bots","item":"../../discord-bots/index.html"},{"@type":"ListItem","position":3,"name":"FreeGameDrop","item":"../../discord-bots/freegamedrop/index.html"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"FreeGameDrop","applicationCategory":"UtilitiesApplication","operatingSystem":"Discord","url":"discord-bots/freegamedrop/index.html","description":"Les jeux gratuits de Steam, Epic, GOG et Ubisoft annoncés automatiquement sur Discord, plateforme par plateforme.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@id":"#org"},"featureList":["Alertes de jeux gratuits par plateforme","Favoris, recherche et rappels d'expiration","Permissions minimales et salons en lecture seule","Statistiques mesurées (/stats, /sante)"]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Le bot est-il vraiment gratuit ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Le code de FreeGameDrop est publié sous licence MIT : l'auto-hébergement est libre, et l'instance publique, quand elle est ouverte, s'ajoute sans abonnement. Le site n'invente ni tarif ni offre."}},{"@type":"Question","name":"Quelles plateformes sont suivies ?","acceptedAnswer":{"@type":"Answer","text":"Steam, l'Epic Games Store (via son API officielle et GamerPower), GOG et Ubisoft. La liste est extensible : ajouter une plateforme tient en une ligne de configuration côté bot."}},{"@type":"Question","name":"Est-ce que tout le serveur reçoit toutes les annonces ?","acceptedAnswer":{"@type":"Answer","text":"Non. Chaque plateforme a son rôle et son salon : un membre ne voit que ce qu'il a choisi. Les alertes personnelles (/alertes) partent en message privé, jamais en spam public."}},{"@type":"Question","name":"Le bot lit-il les messages des membres ?","acceptedAnswer":{"@type":"Answer","text":"Non. La documentation du dépôt indique que le contenu des messages n'est jamais stocké ni journalisé ; seules des données de configuration, d'offres publiques et de préférences sont conservées."}},{"@type":"Question","name":"Une source tombe, que se passe-t-il ?","acceptedAnswer":{"@type":"Answer","text":"Les sources sont interrogées en parallèle et une panne est isolée : les autres continuent d'alimenter les annonces. /sante affiche l'état mesuré de chacune et des alertes automatiques préviennent le propriétaire."}},{"@type":"Question","name":"Comment vérifier que l'instance est en ligne ?","acceptedAnswer":{"@type":"Answer","text":"Sur un serveur où le bot est installé, /sante donne son état mesuré. Le tableau de bord optionnel expose aussi /api/health, que la page Statut du site peut brancher dès qu'une URL publique est fournie."}}]}</script>
@@ -28,14 +27,14 @@
   <a class="skip-link" href="#main-content">Aller au contenu</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="../../index.html" aria-label="OverX — accueil"><img src="../../assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a>
+      <a class="brand" href="../../index.html" aria-label="OverX — accueil"><img src="../../assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>STUDIO LOGICIEL</small></span></a>
       <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Navigation principale">
         <a href="../../index.html">Accueil</a>
         <a href="../../overload/index.html">OverLoad</a>
         <a href="../../discord-bots/index.html" aria-current="page">Bots Discord</a>
         <a href="../../docs/index.html">Documentation</a>
         <a href="../../status/index.html">Statut</a>
-        <a class="mobile-nav-cta" href="../../index.html#projets">Nos projets</a>
+        <a class="mobile-nav-cta" href="../../index.html#projets">Découvrir nos projets</a>
       </nav>
       <div class="header-actions"><a class="button button-header" href="../../index.html#projets">Nos projets <span aria-hidden="true">→</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle><span></span><span></span><span></span></button></div>
     </div>
@@ -44,7 +43,7 @@
   <section class="product-hero container" id="installation">
     <div class="product-copy" data-reveal>
       <p class="eyebrow"><a href="../../discord-bots/index.html">BOTS</a> <span class="crumb-slash">/</span> FREEGAMEDROP</p>
-      <div class="product-heading"><span class="product-mark product-mark-large" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Disponibilité publique à confirmer</span></div>
+      <div class="product-heading"><span class="product-mark product-mark-large" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Bot open source · MIT</span></div>
       <h1>Ne rate plus<br><span>les jeux gratuits.</span></h1>
       <p class="hero-lead">Toutes les heures, FreeGameDrop vérifie Steam, l'Epic Games Store, GOG et Ubisoft, puis annonce chaque offre dans le salon de sa plateforme. Chaque membre choisit exactement ce qu'il veut suivre.</p>
       <div class="hero-actions">
@@ -58,12 +57,12 @@
       <div class="product-preview-top"><span class="preview-led"></span><span>FREEGAMEDROP</span><span class="preview-top-right">APERÇU</span></div>
       <div class="product-preview-body">
         <div class="offer-type"><span>✦</span> EXEMPLE D'ANNONCE</div>
-        <h2>🔥 Offre exceptionnelle</h2>
-        <p>Cyberpunk 2077 · <s>59,99 €</s> ➜ GRATUIT · 🔵 Steam ·  dans 23 heures. Un jeu complet d'une valeur d'au moins 19,99 € offert temporairement.</p>
-        <div class="offer-platforms"><span class="platform-icon platform-epic">E</span><span>Epic Games Store</span><span class="platform-separator">·</span><span>🔵 Steam</span><span class="platform-separator">·</span><span>🟣 GOG</span><span class="platform-separator">·</span><span>🔷 Ubisoft</span></div>
-        <div class="preview-cta-line"><span>🎁 Récupérer le jeu</span><span aria-hidden="true">→</span></div>
+        <h2>Offre temporaire mise en avant</h2>
+        <p>Orbit — Aventure spatiale (jeu fictif) · <s>59,99 €</s> → Gratuit · 🔵 Steam · Expire dans 23 heures. Un jeu complet d'au moins 19,99 € offert temporairement.</p>
+        <div class="offer-platforms"><span class="platform-icon">E</span><span>Epic Games Store</span><span class="platform-separator">·</span><span>🔵 Steam</span><span class="platform-separator">·</span><span>🟣 GOG</span><span class="platform-separator">·</span><span>🔷 Ubisoft</span></div>
+        <div class="preview-cta-line"><span>Récupérer le jeu</span><span aria-hidden="true">→</span></div>
       </div>
-      <div class="preview-disclaimer">Maquette de présentation · pas une annonce en direct</div>
+      <div class="preview-disclaimer">Maquette de démonstration · pas une offre en direct</div>
     </div>
   </section>
 
@@ -81,20 +80,20 @@
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-heading" data-reveal><p class="eyebrow">FONCTIONNALITÉS DOCUMENTÉES</p><h2>Tout ce qu'il faut<br><span>pour trouver sa prochaine offre.</span></h2><p class="section-intro">Les fonctionnalités ci-dessous sont tirées de la documentation du dépôt FreeGameDropDev. L'état de l'instance publique n'est pas vérifié par ce site.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">FONCTIONNALITÉS DOCUMENTÉES</p><h2>Tout ce qu'il faut<br><span>pour suivre les bonnes offres.</span></h2><p class="section-intro">Les fonctionnalités ci-dessous sont tirées de la documentation du dépôt FreeGameDropDev. L'état de l'instance publique n'est pas vérifié par ce site.</p></div>
       <div class="feature-grid">
-        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-violet">⌁</div><h3>Multi-sources résilientes</h3><p>GamerPower et l'API officielle Epic agrégées en parallèle : une source en panne ne bloque jamais les autres.</p><span class="feature-index">01</span></article>
-        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-orange">🔥</div><h3>Offres exceptionnelles</h3><p>Un jeu complet d'au moins 19,99 € offert temporairement est mis en avant, avec la valeur affichée par la source.</p><span class="feature-index">02</span></article>
-        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-cyan">◉</div><h3>Un salon par plateforme</h3><p>/setup-auto crée catégorie, rôles, salons en lecture seule et panneau de boutons ; chaque membre choisit ses plateformes.</p><span class="feature-index">03</span></article>
-        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-pink">♡</div><h3>Favoris & rappels</h3><p>Bouton ❤️, /favoris, alertes privées et « ton jeu favori expire dans 6 heures » : rien ne passe à la trappe.</p><span class="feature-index">04</span></article>
-        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-lime">⌕</div><h3>Catalogue & préférences</h3><p>/free, /historique, /recherche et /preferences : filtres par plateforme, type, valeur minimale et genre.</p><span class="feature-index">05</span></article>
-        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-blue">◎</div><h3>Santé & statistiques</h3><p>/sante mesure le bot, Discord, la base et chaque source ; /stats n'affiche que des valeurs réellement mesurées.</p><span class="feature-index">06</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon">⌁</div><h3>Multi-sources résilientes</h3><p>GamerPower et l'API officielle Epic agrégées en parallèle : une source en panne ne bloque jamais les autres.</p><span class="feature-index">01</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon icon-orange">✦</div><h3>Offres exceptionnelles</h3><p>Un jeu complet d'au moins 19,99 € offert temporairement est mis en avant, avec la valeur affichée par la source.</p><span class="feature-index">02</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon">◉</div><h3>Un salon par plateforme</h3><p>/setup-auto crée catégorie, rôles, salons en lecture seule et panneau de boutons ; chaque membre choisit ses plateformes.</p><span class="feature-index">03</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon">♡</div><h3>Favoris &amp; rappels</h3><p>Bouton favori, /favoris, alertes privées et rappel avant expiration : rien ne passe à la trappe.</p><span class="feature-index">04</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon">⌕</div><h3>Catalogue &amp; préférences</h3><p>/free, /historique, /recherche et /preferences : filtres par plateforme, type, valeur minimale et genre.</p><span class="feature-index">05</span></article>
+        <article class="feature-card" data-spotlight data-reveal><div class="feature-icon">◎</div><h3>Santé &amp; statistiques</h3><p>/sante mesure le bot, Discord, la base et chaque source ; /stats n'affiche que des valeurs réellement mesurées.</p><span class="feature-index">06</span></article>
       </div>
     </div>
   </section>
 
   <section class="section container" data-reveal>
-    <div class="privacy-callout" data-spotlight><div class="callout-icon" aria-hidden="true">➕</div><div><p class="eyebrow">BOUCLE DE DÉCOUVERTE</p><h2>Chaque annonce présente le bot.</h2><p>Chaque message se termine par le pied « 🎁 FreeGameDrop » et un bouton « ➕ Ajouter FreeGameDrop » : un serveur alerté devient une vitrine, sans spam. La commande /info construit aussi le lien d'invitation de l'instance.</p><a class="text-link" href="../../install/index.html#ajouter">Comment se passe l'ajout ? <span aria-hidden="true">→</span></a></div></div>
+    <div class="privacy-callout" data-spotlight><div class="callout-icon" aria-hidden="true">➕</div><div><p class="eyebrow">BOUCLE DE DÉCOUVERTE</p><h2>Chaque annonce présente le bot.</h2><p>Chaque message se termine par une signature discrète FreeGameDrop et un bouton d'ajout : un serveur alerté devient une vitrine, sans spam. La commande /info construit aussi le lien d'invitation de l'instance.</p><a class="text-link" href="../../install/index.html#ajouter">Comment se passe l'ajout ? <span aria-hidden="true">→</span></a></div></div>
   </section>
 
   <section class="section container two-column-section" data-reveal>
@@ -136,37 +135,75 @@
   </section>
 
   <section class="section container" data-reveal>
-    <div class="privacy-callout" data-spotlight><div class="callout-icon" aria-hidden="true">⌑</div><div><p class="eyebrow">DONNÉES & CONFIDENTIALITÉ</p><h2>Pas de collecte de messages.</h2><p>Le bot ne stocke ni le contenu des messages ni la preuve qu'un jeu a été réclamé. Il conserve la configuration des serveurs, les offres publiques, les favoris et préférences liés à un identifiant Discord ; /mes-donnees les supprime.</p><a class="text-link" href="../../privacy/index.html">Lire la politique de confidentialité <span aria-hidden="true">→</span></a></div></div>
+    <div class="privacy-callout" data-spotlight><div class="callout-icon" aria-hidden="true">⌑</div><div><p class="eyebrow">DONNÉES &amp; CONFIDENTIALITÉ</p><h2>Pas de collecte de messages.</h2><p>Le bot ne stocke ni le contenu des messages ni la preuve qu'un jeu a été réclamé. Il conserve la configuration des serveurs, les offres publiques, les favoris et préférences liés à un identifiant Discord ; /mes-donnees les supprime.</p><a class="text-link" href="../../privacy/index.html">Lire la politique de confidentialité <span aria-hidden="true">→</span></a></div></div>
   </section>
 
   <section class="section section-alt" data-reveal>
     <div class="container">
-      <div class="section-heading"><p class="eyebrow">L'ÉCOSYSTÈME OVERX</p><h2>D’autres usages.<br><span>Le même univers.</span></h2><p class="section-intro">OverX rassemble aussi des applications Windows et les futurs projets. Découvre les autres outils de la collection.</p></div>
+      <div class="section-heading"><p class="eyebrow">L'ÉCOSYSTÈME OVERX</p><h2>D’autres usages.<br><span>La même exigence.</span></h2><p class="section-intro">OverX réunit des applications de bureau et des outils Discord conçus avec le même soin.</p></div>
       <div class="other-bots-grid">
         <a class="other-bot-card" data-spotlight href="../../overload/index.html"><span class="product-mark overload-mark" aria-hidden="true">OL</span><div><strong>OverLoad · Windows</strong><p>Télécharge, analyse et organise tes médias dans une application de bureau.</p></div><span aria-hidden="true">→</span></a>
-        <div class="other-bot-card other-bot-soon" data-spotlight><span class="product-mark product-mark-dim">＋<span></span></span><div><strong>Les prochains bots</strong><p>Annoncés quand leur développement et leur disponibilité seront confirmés.</p></div><a class="text-link" href="../../roadmap/index.html">Roadmap <span aria-hidden="true">→</span></a></div>
+        <div class="other-bot-card other-bot-soon" data-spotlight><span class="product-mark product-mark-dim">＋<span></span></span><div><strong>Les prochains outils</strong><p>Annoncés uniquement lorsque leur développement et leur disponibilité sont confirmés.</p></div><a class="text-link" href="../../roadmap/index.html">Roadmap <span aria-hidden="true">→</span></a></div>
       </div>
     </div>
   </section>
 
   <section class="section container" data-reveal>
     <div class="cta-panel" data-spotlight>
-      <div class="cta-glow" aria-hidden="true"></div>
       <div><p class="eyebrow">PRÊT À ESSAYER ?</p><h2>Sur ton serveur.<br><span>En quelques étapes.</span></h2><p>Invite le bot, lance /setup-auto, choisis tes plateformes. Le guide d'installation détaille chaque étape et les permissions.</p></div>
-      <div class="cta-actions"><a class="button button-light" data-install-cta href="https://discord.com/oauth2/authorize?client_id=1556443310053130260&amp;permissions=268528656&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank" rel="noopener noreferrer">Ajouter FreeGameDrop <span aria-hidden="true">↗</span></a><a class="text-link" href="../../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-héberger le bot <span aria-hidden="true">→</span></a></div>
+      <div class="cta-actions"><a class="button button-primary" data-install-cta href="https://discord.com/oauth2/authorize?client_id=1556443310053130260&amp;permissions=268528656&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank" rel="noopener noreferrer">Ajouter à Discord <span aria-hidden="true">↗</span></a><a class="text-link" href="../../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-héberger le bot <span aria-hidden="true">→</span></a></div>
     </div>
   </section>
 </main>
 
   <footer class="site-footer">
     <div class="container footer-main">
-      <div class="footer-brand-block"><a class="brand" href="../../index.html" aria-label="OverX — accueil"><img src="../../assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>INDEPENDENT SOFTWARE STUDIO</small></span></a><p>Des outils numériques conçus avec soin. OverX réunit les projets d’aujourd’hui et les idées de demain.</p><a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Projet du site sur GitHub <span aria-hidden="true">↗</span></a><a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a></div>
-      <div class="footer-links"><div><p class="footer-label">EXPLORER</p><a href="../../index.html#projets">Tous les projets</a><a href="../../overload/index.html">OverLoad pour Windows</a><a href="../../discord-bots/index.html">Bots Discord</a><a href="../../install/index.html">Installer FreeGameDrop</a><a href="../../docs/index.html">Documentation</a><a href="../../status/index.html">Statut des services</a><a href="../../changelog/index.html">Changelog</a></div><div><p class="footer-label">PLATEFORMES</p><a href="../../discord-bots/freegamedrop/steam/index.html">Jeux gratuits Steam</a>
+      <div class="footer-brand-block">
+        <a class="brand" href="../../index.html" aria-label="OverX — accueil"><img src="../../assets/brand-mark.svg" alt="" width="34" height="34"><span class="brand-word">OVER<span>X</span><small>STUDIO LOGICIEL</small></span></a>
+        <p>Des outils numériques conçus avec soin, pensés pour rester simples, durables et agréables au quotidien.</p>
+        <a class="footer-github" href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">GitHub OverX <span aria-hidden="true">↗</span></a>
+        <a class="footer-github" data-community-cta href="#" hidden>Rejoindre le Discord communautaire <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-links">
+        <div>
+          <p class="footer-label">NAVIGATION</p>
+          <a href="../../index.html">Accueil</a>
+          <a href="../../index.html#projets">Nos projets</a>
+          <a href="../../overload/index.html">OverLoad</a>
+          <a href="../../discord-bots/index.html">Bots Discord</a>
+          <a href="../../roadmap/index.html">Feuille de route</a>
+          <a href="../../changelog/index.html">Changelog</a>
+        </div>
+        <div>
+          <p class="footer-label">DOCUMENTATION</p>
+          <a href="../../docs/index.html">Guide FreeGameDrop</a>
+          <a href="../../install/index.html">Installation Discord</a>
+          <a href="../../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a>
+          <a href="../../status/index.html">Statut des services</a>
+          <a href="../../discord-bots/freegamedrop/steam/index.html">Jeux gratuits Steam</a>
 <a href="../../discord-bots/freegamedrop/epic-games/index.html">Jeux gratuits Epic Games Store</a>
 <a href="../../discord-bots/freegamedrop/gog/index.html">Jeux gratuits GOG</a>
-<a href="../../discord-bots/freegamedrop/ubisoft/index.html">Jeux gratuits Ubisoft</a><a href="../../discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a></div><div><p class="footer-label">COMMUNAUTÉ</p><a href="../../support/index.html">Support</a><a href="../../roadmap/index.html">Roadmap</a><a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">FreeGameDropDev ↗</a></div><div><p class="footer-label">LÉGAL</p><a href="../../privacy/index.html">Confidentialité</a><a href="../../terms/index.html">Conditions</a><a href="../../legal/index.html">Mentions légales</a></div></div>
+<a href="../../discord-bots/freegamedrop/ubisoft/index.html">Jeux gratuits Ubisoft</a>
+        </div>
+        <div>
+          <p class="footer-label">GITHUB &amp; SUPPORT</p>
+          <a href="../../support/index.html">Support</a>
+          <a href="https://github.com/TOFazer/OverX" target="_blank" rel="noopener noreferrer">Dépôt du site ↗</a>
+          <a href="https://github.com/TOFazer/OverLoad" target="_blank" rel="noopener noreferrer">Dépôt OverLoad ↗</a>
+          <a href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Dépôt FreeGameDrop ↗</a>
+        </div>
+        <div>
+          <p class="footer-label">LÉGAL</p>
+          <a href="../../privacy/index.html">Confidentialité</a>
+          <a href="../../terms/index.html">Conditions</a>
+          <a href="../../legal/index.html">Mentions légales</a>
+        </div>
+      </div>
     </div>
-    <div class="container footer-bottom"><span>© <span data-current-year>2026</span> OverX · Projet indépendant</span><span class="footer-transparency"><span class="footer-dot"></span> Pas de statistiques non vérifiées</span></div>
+    <div class="container footer-bottom">
+      <span>© <span data-current-year>2026</span> OverX · Studio logiciel indépendant</span>
+      <span class="footer-transparency"><span class="footer-dot"></span> Liens officiels · aucune statistique inventée</span>
+    </div>
   </footer>
   <div class="sr-only" role="status" aria-live="polite" data-site-announcer></div>
 

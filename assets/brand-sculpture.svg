@@ -1,1 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" role="img" aria-labelledby="title"><title id="title">Sculpture géométrique OverX</title><defs><linearGradient id="face" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#718371"/><stop offset=".34" stop-color="#354A38"/><stop offset=".72" stop-color="#203D2D"/><stop offset="1" stop-color="#526A55"/></linearGradient><linearGradient id="edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#D7E0D2"/><stop offset=".55" stop-color="#A5B5A0"/><stop offset="1" stop-color="#607965"/></linearGradient></defs><ellipse cx="320" cy="536" rx="158" ry="14" fill="#203D2D" opacity=".08"/><g transform="translate(28 5) rotate(-9 320 320)"><path d="M145 131h106l250 353-35 29H360L110 160z" fill="#192B1E"/><path d="M145 131h106l250 353H395z" fill="url(#face)" stroke="#718371" stroke-width="2"/><path d="M395 484h106l-35 29H360z" fill="url(#edge)"/><path d="M389 131h108L351 333l-56-77zM252 340l56 79-69 94H132z" fill="#192B1E"/><path d="M389 131h108L351 333l-56-77zM252 311l56 79-69 94H132z" fill="url(#face)" stroke="#718371" stroke-width="2"/><path d="M132 484h107l-26 29H110zM351 333l-21 24-56-78 21-23z" fill="url(#edge)"/><path d="M145 131h106l250 353M389 131h108L351 333M132 484l120-173" fill="none" stroke="#A5B5A0" stroke-width="2"/><path d="M151 140h94l235 333" fill="none" stroke="#F3F1E8" stroke-opacity=".12" stroke-width="2"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" role="img" aria-labelledby="title">
+  <title id="title">Emblème architectural OverX</title>
+  <defs>
+    <linearGradient id="ox-face" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#A9C7AE" stop-opacity=".9"/>
+      <stop offset=".45" stop-color="#315E43"/>
+      <stop offset="1" stop-color="#1A261F"/>
+    </linearGradient>
+    <linearGradient id="ox-edge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E1E8E1"/>
+      <stop offset="1" stop-color="#A9C7AE"/>
+    </linearGradient>
+  </defs>
+  <circle cx="320" cy="320" r="250" fill="none" stroke="#A9C7AE" stroke-opacity=".14" stroke-width="1"/>
+  <circle cx="320" cy="320" r="184" fill="none" stroke="#A9C7AE" stroke-opacity=".1" stroke-dasharray="4 8" stroke-width="1"/>
+  <g transform="translate(20 6) rotate(-7 320 320)">
+    <path d="M148 136h104l244 348-32 26H360L116 162z" fill="#101713"/>
+    <path d="M148 136h104l244 348H392z" fill="url(#ox-face)" stroke="#A9C7AE" stroke-opacity=".35" stroke-width="1.5"/>
+    <path d="M392 484h104l-32 26H360z" fill="url(#ox-edge)" fill-opacity=".85"/>
+    <path d="M388 136h106L350 334l-54-76zM254 314l54 76-68 94H134z" fill="url(#ox-face)" stroke="#A9C7AE" stroke-opacity=".3" stroke-width="1.5"/>
+  </g>
+</svg>

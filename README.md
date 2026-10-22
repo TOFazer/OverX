@@ -125,14 +125,21 @@ Une fois le domaine et l'hébergeur choisis :
 
 Les pages légales portent un avertissement visible et doivent être complétées avant d'être présentées comme définitives.
 
-## Identité OverX — Forest Minimal (2026)
+## Direction artistique OverX (2026)
 
-- Direction visuelle : studio de logiciels indépendant, sobre et éditorial — fond ivoire, charbon pour le texte, vert sapin pour les actions et quelques sections sombres. Pas de néons ni d’effets lumineux ; le doré reste un accent discret pour FreeGameDrop.
-- Palette : vert sapin `#203D2D`, vert forêt `#345641`, sauge `#A5B5A0`, ivoire `#F3F1E8`, charbon `#20231F` et doré doux `#C6A566`.
-- Le système visuel est défini dans `assets/css/forest-minimal.css`, chargé après les styles structurels de `assets/css/site.css`. Le symbole géométrique partagé entre navigation, pied de page et favicon est `assets/brand-mark.svg`.
-- Le hero de l’accueil présente une vraie capture locale d’OverLoad (`assets/overload/accueil.png`) ; les téléchargements et les fiches de projet gardent leurs liens officiels.
-- Le bloc « Notre approche » reste accessible via `#overx`. Les deux actions du hero fonctionnent sans JavaScript.
-- Les animations de révélation restent discrètes et respectent `prefers-reduced-motion`. Le menu mobile conserve son fonctionnement clavier.
-- L’aperçu Discord est une **démonstration fictive**, pas une annonce de promotion réelle. Les compteurs non connectés ne figurent plus sur l’accueil ; la page Statut reste disponible.
+- **Identité** : studio logiciel indépendant, sombre, confortable et soigné — sans néon ni surcharge de bordures.
+- **Palette unique définie dans `:root` (`assets/css/site.css`)** :
+  - Fond principal vert-noir profond : `#101713`
+  - Surfaces secondaires vert forêt : `#1A261F`
+  - Action vert naturel : `#315E43`
+  - Accent visuel vert sauge : `#A9C7AE`
+  - Texte principal clair doux : `#E1E8E1`
+- **Architecture de l'accueil (`index.html`)** :
+  1. Hero studio OverX (« Des outils pensés pour vous. », actions vers `#projets` et `#overx`, détail vectoriel architectural) ;
+  2. Scène de bureau grand format dédiée à **OverLoad** avec vraies captures commutables et liens officiels Windows ;
+  3. Section dédiée à **FreeGameDrop** avec composition distincte, aperçu de message Discord (clairement identifié comme démonstration fictive) et bouton « Ajouter à Discord » ;
+  4. Identité et philosophie du studio OverX (`#overx`) ;
+  5. Conclusion soignée (`#conclusion`) et pied de page structuré (navigation, documentation, GitHub, support et pages légales).
+- **Accessibilité & mouvement** : hiérarchie typographique unifiée, contrastes élevés sans blanc agressif, animations lentes et prise en charge complète de `prefers-reduced-motion`.
 
 Après toute modification de contenu, modifier `scripts/build_site.py`, puis régénérer les pages (ne pas modifier uniquement le HTML généré).
