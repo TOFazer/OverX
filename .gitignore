@@ -1,5 +1,7 @@
 __pycache__/
 *.py[cod]
+.venv/
+.cache/
 .DS_Store
 .idea/
 .vscode/

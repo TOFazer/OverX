@@ -11,6 +11,7 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_PAGES = [
     "index.html",
+    "overload/index.html",
     "discord-bots/index.html",
     "discord-bots/freegamedrop/index.html",
     "discord-bots/freegamedrop/auto-hebergement/index.html",
@@ -84,7 +85,7 @@ def main() -> int:
         parsed_pages[path] = parser
         if not " ".join(parser.title_text).strip():
             errors.append(f"Missing <title>: {relative}")
-        if "{{ROOT}}" in text or "{{STATS_BAND}}" in text or "{{PLATFORM_STRIP}}" in text:
+        if re.search(r"\{\{[A-Z_]+\}\}", text):
             errors.append(f"Unexpanded placeholder: {relative}")
         for index, chunks in enumerate(parser.ld_chunks):
             try:
@@ -133,7 +134,7 @@ def main() -> int:
         if site_url_match and "Sitemap:" not in robots_text:
             errors.append("robots.txt lacks the Sitemap directive although siteUrl is set")
 
-    for image in ("assets/og/overx.png", "assets/og/freegamedrop.png"):
+    for image in ("assets/og/overx.png", "assets/og/overload.png", "assets/og/freegamedrop.png"):
         if not (ROOT / image).is_file():
             errors.append(f"Missing share image {image} (run scripts/build_og_images.py with Pillow)")
 
