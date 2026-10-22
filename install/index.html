@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090a11">
+  <meta name="theme-color" content="#05060b">
 
   <meta name="description" content="Guide pas à pas pour ajouter FreeGameDrop à un serveur Discord : autoriser l&#x27;application avec les bons scopes et permissions, sélectionner son serveur et lancer /setup-auto.">
   <meta property="og:type" content="website">
@@ -39,7 +39,7 @@
   </header>
 <main id="main-content">
   <section class="install-hero container">
-    <div class="install-copy">
+    <div class="install-copy" data-reveal>
       <p class="eyebrow"><a href="../discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> INSTALLATION</p>
       <span class="status-pill status-current install-state" data-install-state><span></span> Invitation prête</span>
       <h1>Sur ton serveur.<br><span>En quelques étapes.</span></h1>
@@ -47,7 +47,7 @@
       <div class="install-copy-actions"><a class="button button-primary install-main-cta" data-discord-install href="https://discord.com/oauth2/authorize?client_id=1556443310053130260&amp;permissions=268528656&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank" rel="noopener noreferrer">Ajouter à Discord <span aria-hidden="true">↗</span></a><button class="button button-secondary copy-admin-button" data-copy-admin type="button" hidden>Copier un message pour mon admin</button></div>
       <p class="install-live-note" data-install-status>Invitation officielle configurée. Discord te demandera de choisir un serveur et de vérifier les permissions.</p>
     </div>
-    <div class="install-flow-card" aria-label="Les trois étapes de l'installation">
+    <div class="install-flow-card" aria-label="Les trois étapes de l'installation" data-spotlight data-reveal data-reveal-delay="120">
       <div class="install-flow-header"><span class="flow-logo">FG<span>D</span></span><div><strong>Installation FreeGameDrop</strong><small>Parcours dans Discord</small></div><span class="flow-lock" aria-hidden="true">⌑</span></div>
       <div class="flow-step"><span class="flow-number">01</span><span class="flow-icon">↗</span><div><strong>Autoriser l'application</strong><small>Discord affiche les permissions demandées</small></div><span class="flow-check">✓</span></div>
       <div class="flow-connector"></div>
@@ -58,25 +58,25 @@
     </div>
   </section>
 
-  <section class="section section-alt" id="ajouter">
+  <section class="section section-alt" id="ajouter" data-reveal>
     <div class="container">
       <div class="section-heading"><p class="eyebrow">INSTALLATION, PAS À PAS</p><h2>Tu sais déjà utiliser Discord ?<br><span>Tu peux installer le bot.</span></h2><p class="section-intro">Suis ces étapes dans l'ordre. Si tu bloques à l'étape 2, ce n'est probablement pas toi : Discord réserve l'ajout d'applications aux membres qui peuvent gérer le serveur.</p></div>
       <div class="install-steps-grid">
-        <article class="install-step-card"><span class="install-step-index">ÉTAPE 01</span><div class="install-step-icon">↗</div><h3>Clique sur Ajouter à Discord</h3><p>Le bouton ouvre la page d'autorisation officielle de Discord avec les scopes <strong>bot</strong> et <strong>applications.commands</strong>. Connecte-toi au compte qui gère ton serveur si Discord te le demande.</p></article>
-        <article class="install-step-card"><span class="install-step-index">ÉTAPE 02</span><div class="install-step-icon icon-cyan">⌂</div><h3>Sélectionne ton serveur</h3><p>Choisis le serveur dans la liste. Il faut la permission <strong>Gérer le serveur</strong> ou <strong>Administrateur</strong>. Si le serveur n'apparaît pas, demande à un admin de faire l'installation.</p></article>
-        <article class="install-step-card"><span class="install-step-index">ÉTAPE 03</span><div class="install-step-icon icon-lime">✓</div><h3>Autorise puis configure</h3><p>Vérifie les permissions affichées par Discord, clique sur <strong>Autoriser</strong>, puis lance <code>/setup-auto</code> dans le serveur pour créer les salons de jeux.</p></article>
+        <article class="install-step-card" data-spotlight><span class="install-step-index">ÉTAPE 01</span><div class="install-step-icon">↗</div><h3>Clique sur Ajouter à Discord</h3><p>Le bouton ouvre la page d'autorisation officielle de Discord avec les scopes <strong>bot</strong> et <strong>applications.commands</strong>. Connecte-toi au compte qui gère ton serveur si Discord te le demande.</p></article>
+        <article class="install-step-card" data-spotlight><span class="install-step-index">ÉTAPE 02</span><div class="install-step-icon icon-cyan">⌂</div><h3>Sélectionne ton serveur</h3><p>Choisis le serveur dans la liste. Il faut la permission <strong>Gérer le serveur</strong> ou <strong>Administrateur</strong>. Si le serveur n'apparaît pas, demande à un admin de faire l'installation.</p></article>
+        <article class="install-step-card" data-spotlight><span class="install-step-index">ÉTAPE 03</span><div class="install-step-icon icon-lime">✓</div><h3>Autorise puis configure</h3><p>Vérifie les permissions affichées par Discord, clique sur <strong>Autoriser</strong>, puis lance <code>/setup-auto</code> dans le serveur pour créer les salons de jeux.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="section container">
+  <section class="section container" data-reveal>
     <div class="install-permissions-layout">
       <div><p class="eyebrow">PERMISSIONS AFFICHÉES PAR DISCORD</p><h2>Le minimum utile<br><span>pour faire fonctionner le bot.</span></h2><p class="section-intro">FreeGameDrop doit pouvoir créer les espaces de jeux et publier les offres. Discord t'affichera la demande avant l'ajout. Pas d'Administrateur.</p></div>
-      <div class="install-permissions-card"><div class="permission-heading"><span class="permission-discord-icon">◉</span><div><strong>Permissions du serveur</strong><small>Demandées lors de l'ajout</small></div></div><div class="permission-check-row"><span>✓</span> Gérer les salons</div><div class="permission-check-row"><span>✓</span> Gérer les rôles</div><div class="permission-check-row"><span>✓</span> Voir les salons</div><div class="permission-check-row"><span>✓</span> Envoyer des messages</div><div class="permission-check-row"><span>✓</span> Intégrer des liens</div><div class="permission-check-row"><span>✓</span> Lire l'historique des messages</div><div class="permission-check-row"><span>✓</span> Gérer les messages</div><div class="permission-optional"><strong>Deux permissions facultatives incluses :</strong><p>Lire l'historique et gérer les messages servent au nettoyage d'anciens panneaux dans #choisir-ses-roles ; elles ne sont pas nécessaires pour recevoir les alertes.</p></div><p class="permission-footnote">Discord affiche la demande exacte avant l'ajout. Tu peux annuler si les permissions ne te conviennent pas.</p></div>
+      <div class="install-permissions-card" data-spotlight><div class="permission-heading"><span class="permission-discord-icon">◉</span><div><strong>Permissions du serveur</strong><small>Demandées lors de l'ajout</small></div></div><div class="permission-check-row"><span>✓</span> Gérer les salons</div><div class="permission-check-row"><span>✓</span> Gérer les rôles</div><div class="permission-check-row"><span>✓</span> Voir les salons</div><div class="permission-check-row"><span>✓</span> Envoyer des messages</div><div class="permission-check-row"><span>✓</span> Intégrer des liens</div><div class="permission-check-row"><span>✓</span> Lire l'historique des messages</div><div class="permission-check-row"><span>✓</span> Gérer les messages</div><div class="permission-optional"><strong>Deux permissions facultatives incluses :</strong><p>Lire l'historique et gérer les messages servent au nettoyage d'anciens panneaux dans #choisir-ses-roles ; elles ne sont pas nécessaires pour recevoir les alertes.</p></div><p class="permission-footnote">Discord affiche la demande exacte avant l'ajout. Tu peux annuler si les permissions ne te conviennent pas.</p></div>
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" data-reveal>
     <div class="container install-help-layout">
       <div><p class="eyebrow">ÇA NE MARCHE PAS ?</p><h2>Les blocages<br><span>les plus fréquents.</span></h2><p class="section-intro">Une aide directe plutôt qu'un écran d'erreur incompréhensible.</p></div>
       <div class="install-help-list">
@@ -89,8 +89,8 @@
     </div>
   </section>
 
-  <section class="section container">
-    <div class="install-bottom-cta"><div><p class="eyebrow">BESOIN D'UN COUP DE MAIN ?</p><h2>On t'accompagne.</h2><p>Consulte le guide complet ou signale un problème dans le dépôt du bot. Ne publie jamais de token Discord.</p></div><div class="install-bottom-actions"><a class="button button-primary" href="../docs/index.html#installation">Lire le guide complet <span aria-hidden="true">→</span></a><a class="text-link" href="../support/index.html">Contacter le support <span aria-hidden="true">→</span></a></div></div>
+  <section class="section container" data-reveal>
+    <div class="install-bottom-cta" data-spotlight><div><p class="eyebrow">BESOIN D'UN COUP DE MAIN ?</p><h2>On t'accompagne.</h2><p>Consulte le guide complet ou signale un problème dans le dépôt du bot. Ne publie jamais de token Discord.</p></div><div class="install-bottom-actions"><a class="button button-primary" href="../docs/index.html#installation">Lire le guide complet <span aria-hidden="true">→</span></a><a class="text-link" href="../support/index.html">Contacter le support <span aria-hidden="true">→</span></a></div></div>
   </section>
 </main>
 

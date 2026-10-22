@@ -5,6 +5,18 @@
   const menuButton = document.querySelector("[data-menu-toggle]");
   const nav = document.querySelector("[data-site-nav]");
   const announcer = document.querySelector("[data-site-announcer]");
+  const header = document.querySelector(".site-header");
+
+  // Mark document as JS-enhanced for progressive reveal animations
+  document.documentElement.classList.add("js-ready");
+
+  if (header) {
+    const updateHeaderScroll = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 18);
+    };
+    updateHeaderScroll();
+    window.addEventListener("scroll", updateHeaderScroll, { passive: true });
+  }
 
   if (menuButton && nav) {
     const closeMenu = () => {
@@ -33,6 +45,94 @@
       }
     });
   }
+
+  // ------------------------------------------------------------------
+  // Scroll-reveal animations (progressive & reduced-motion friendly)
+  // ------------------------------------------------------------------
+  const revealNodes = Array.from(document.querySelectorAll("[data-reveal]"));
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (revealNodes.length) {
+    revealNodes.forEach((node) => {
+      const delay = node.getAttribute("data-reveal-delay");
+      if (delay) {
+        node.style.setProperty("--reveal-delay", `${Number(delay)}ms`);
+      }
+    });
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      revealNodes.forEach((node) => node.classList.add("is-visible"));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -36px 0px" }
+      );
+      revealNodes.forEach((node) => observer.observe(node));
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Subtle spotlight tracking on interactive surfaces
+  // ------------------------------------------------------------------
+  if (!reduceMotion) {
+    document.querySelectorAll("[data-spotlight]").forEach((card) => {
+      card.addEventListener(
+        "pointermove",
+        (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+          card.style.setProperty("--spot-x", `${x}px`);
+          card.style.setProperty("--spot-y", `${y}px`);
+        },
+        { passive: true }
+      );
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // Interactive OverLoad App Showcase tabs
+  // ------------------------------------------------------------------
+  document.querySelectorAll("[data-app-showcase]").forEach((showcase) => {
+    const tabs = Array.from(showcase.querySelectorAll("[data-showcase-tab]"));
+    const panels = Array.from(showcase.querySelectorAll("[data-showcase-panel]"));
+    if (!tabs.length || !panels.length) return;
+
+    const activateTab = (targetId, focusTab = false) => {
+      tabs.forEach((tab) => {
+        const selected = tab.dataset.showcaseTab === targetId;
+        tab.classList.toggle("is-active", selected);
+        tab.setAttribute("aria-selected", String(selected));
+        if (selected && focusTab) tab.focus();
+      });
+      panels.forEach((panel) => {
+        const active = panel.dataset.showcasePanel === targetId;
+        panel.classList.toggle("is-active", active);
+        panel.hidden = !active;
+      });
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => {
+        activateTab(tab.dataset.showcaseTab);
+      });
+      tab.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+          event.preventDefault();
+          const delta = event.key === "ArrowRight" ? 1 : -1;
+          const next = tabs[(index + delta + tabs.length) % tabs.length];
+          if (next) activateTab(next.dataset.showcaseTab, true);
+        }
+      });
+    });
+  });
 
   function validDiscordInstallUrl(rawUrl) {
     if (!rawUrl || typeof rawUrl !== "string") return null;

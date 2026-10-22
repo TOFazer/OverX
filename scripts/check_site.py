@@ -138,6 +138,17 @@ def main() -> int:
         if not (ROOT / image).is_file():
             errors.append(f"Missing share image {image} (run scripts/build_og_images.py with Pillow)")
 
+    for capture in (
+        "assets/overload/accueil.png",
+        "assets/overload/telechargements.png",
+        "assets/overload/createurs.png",
+        "assets/overload/historique.png",
+        "assets/overload/parametres.png",
+        "assets/overload/theme-clair.png",
+    ):
+        if not (ROOT / capture).is_file():
+            errors.append(f"Missing OverLoad application capture {capture}")
+
     if errors:
         print("Site check failed:")
         for error in errors:

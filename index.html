@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090a11">
+  <meta name="theme-color" content="#05060b">
 
   <meta name="description" content="OverX réunit mes applications et mes futurs projets : OverLoad pour télécharger et organiser tes médias sur Windows, FreeGameDrop pour les jeux gratuits sur Discord.">
   <meta property="og:type" content="website">
@@ -41,50 +41,86 @@
     </div>
   </header>
 <main id="main-content">
-  <section class="hero container">
-    <div class="hero-copy">
-      <p class="eyebrow"><span class="eyebrow-dot"></span> OVERX · APPLICATIONS & PROJETS</p>
-      <h1>Des outils utiles.<br><span>Un même univers.</span></h1>
-      <p class="hero-lead">OverX rassemble mes applications et mes futurs projets. Avec <strong>OverLoad</strong> pour tes médias sur Windows et <strong>FreeGameDrop</strong> pour ta communauté Discord, retrouve chaque outil et ses liens officiels au même endroit.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="#projets">Découvrir les projets <span aria-hidden="true">↓</span></a>
-        <a class="button button-secondary" href="#overload">Explorer OverLoad <span aria-hidden="true">→</span></a>
-      </div>
-      <div class="hero-caption"><span class="caption-check" aria-hidden="true">✓</span> Un site pour découvrir. Des applications à utiliser.</div>
+  <section class="hero hero-spectacular container">
+    <div class="hero-ambient" aria-hidden="true">
+      <div class="ambient-glow glow-violet"></div>
+      <div class="ambient-glow glow-blue"></div>
+      <div class="overx-sigil"></div>
     </div>
-    <div class="hero-visual project-showcase">
+    <div class="hero-copy hero-copy-spectacular" data-reveal>
+      <div class="hero-brand-badge">
+        <img src="assets/brand-mark.svg" alt="" width="40" height="40">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> OVERX · APPLICATIONS &amp; PROJETS</p>
+      </div>
+      <h1>Des outils utiles.<br><span>Un même univers.</span></h1>
+      <p class="hero-lead">OverX rassemble mes applications et mes futurs projets. Avec <strong>OverLoad</strong> pour télécharger, analyser et organiser tes médias sur Windows et <strong>FreeGameDrop</strong> pour ta communauté Discord, retrouve chaque logiciel et ses liens officiels au même endroit.</p>
+      <div class="hero-actions">
+        <a class="button button-primary button-lg" href="#projets">Découvrir les projets <span aria-hidden="true">↓</span></a>
+        <a class="button button-secondary button-lg" href="#overload">Explorer OverLoad <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="hero-caption"><span class="caption-check" aria-hidden="true">✓</span> Un site pour découvrir. Des applications natives à utiliser.</div>
+    </div>
+
+    <div class="hero-visual project-showcase hero-stage" data-reveal data-reveal-delay="140">
       <div class="visual-grid" aria-hidden="true"></div>
       <div class="visual-orbit orbit-one" aria-hidden="true"></div>
       <div class="visual-orbit orbit-two" aria-hidden="true"></div>
-      <div class="project-showcase-panel">
-        <div class="showcase-heading"><img src="assets/brand-mark.svg" alt="" width="46" height="46"><div><strong>OverX</strong><span>Le point de départ de tes applications.</span></div></div>
-        <a class="showcase-project" href="overload/index.html"><span class="showcase-mark overload-mark" aria-hidden="true">OL</span><div><strong>OverLoad</strong><span>Tes médias, à ta façon.</span></div><span class="showcase-platform">WINDOWS</span><span aria-hidden="true">↗</span></a>
-        <a class="showcase-project" href="discord-bots/freegamedrop/index.html"><span class="showcase-mark" aria-hidden="true">FG</span><div><strong>FreeGameDrop</strong><span>Les jeux gratuits, sur ton serveur.</span></div><span class="showcase-platform">DISCORD</span><span aria-hidden="true">↗</span></a>
-        <div class="showcase-future"><span aria-hidden="true">＋</span> Et les projets à venir.</div>
+
+      <div class="hero-stage-centerpiece">
+        <div class="app-window hero-main-window" data-spotlight>
+          <div class="app-window-bar">
+            <div class="window-controls" aria-hidden="true"><i></i><i></i><i></i></div>
+            <span class="app-window-title">OverLoad.exe — Media Suite v1.1 (Windows 11 · 64 bits)</span>
+            <span class="app-window-badge"><span class="live-dot"></span> NATIVE</span>
+          </div>
+          <div class="app-window-viewport">
+            <img src="assets/overload/accueil.png" alt="Aperçu de l'application Windows OverLoad v1.1 : téléchargement direct, débit en temps réel et organisation multimédia" width="1200" height="840" fetchpriority="high">
+          </div>
+        </div>
+
+        <div class="project-showcase-panel hero-floating-dock" data-spotlight>
+          <div class="showcase-heading"><img src="assets/brand-mark.svg" alt="" width="42" height="42"><div><strong>OverX</strong><span>Le point de départ de tes logiciels.</span></div></div>
+          <a class="showcase-project" href="overload/index.html"><span class="showcase-mark overload-mark" aria-hidden="true">OL</span><div><strong>OverLoad</strong><span>Tes médias, à ta façon.</span></div><span class="showcase-platform">WINDOWS</span><span aria-hidden="true">↗</span></a>
+          <a class="showcase-project" href="discord-bots/freegamedrop/index.html"><span class="showcase-mark" aria-hidden="true">FG</span><div><strong>FreeGameDrop</strong><span>Les jeux gratuits, sur ton serveur.</span></div><span class="showcase-platform">DISCORD</span><span aria-hidden="true">↗</span></a>
+          <div class="showcase-future"><span aria-hidden="true">＋</span> Et les projets à venir.</div>
+        </div>
+
+        <a class="hero-floating-discord" href="discord-bots/freegamedrop/index.html" aria-label="Découvrir FreeGameDrop pour Discord" data-spotlight>
+          <div class="floating-discord-top">
+            <span class="preview-avatar" aria-hidden="true">FG</span>
+            <div><strong>FreeGameDrop</strong> <span class="bot-tag">BOT</span><small>#jeux-epic · Alerte automatique</small></div>
+          </div>
+          <div class="floating-discord-embed">
+            <span class="embed-kicker"><span class="embed-dot"></span> 🔥 OFFRE EXCEPTIONNELLE</span>
+            <strong>Jeu complet offert · <s>59,99 €</s> ➜ GRATUIT</strong>
+            <div class="floating-discord-tags"><span>🔵 Steam</span><span>⚪ Epic</span><span>🟣 GOG</span><span>🔷 Ubisoft</span></div>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="truth-band" aria-label="Les liens officiels des projets">
+  <section class="truth-band" aria-label="Les liens officiels des projets" data-reveal>
     <div class="container truth-band-inner">
       <div class="truth-icon" aria-hidden="true">↗</div>
-      <div><p class="truth-title">Les bons liens. Au bon endroit.</p><p class="truth-copy">Les téléchargements OverLoad mènent à la dernière release stable sur GitHub, sans version figée.</p></div>
+      <div><p class="truth-title">Les bons liens. Au bon endroit.</p><p class="truth-copy">Les téléchargements OverLoad mènent directement à la dernière release stable sur GitHub, sans version figée.</p></div>
       <a class="text-link" href="overload/index.html#installation">Comment l'installer ? <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
   <section class="section container" id="projets" aria-labelledby="projects-heading">
-    <div class="section-heading section-heading-split">
-      <div><p class="eyebrow">LA COLLECTION OVERX</p><h2 id="projects-heading">Les projets OverX.<br><span>À chacun son usage.</span></h2></div>
-      <p class="section-intro">Une application Windows, un bot Discord et de la place pour la suite. Chaque projet garde sa propre identité ; OverX les réunit.</p>
+    <div class="section-heading section-heading-split" data-reveal>
+      <div><p class="eyebrow"><span class="eyebrow-dot"></span> LA COLLECTION OVERX</p><h2 id="projects-heading">Les projets OverX.<br><span>À chacun son usage.</span></h2></div>
+      <p class="section-intro">Une application Windows native avec de vrais outils médias, un bot Discord de veille automatique et de la place pour la suite. Chaque logiciel possède son propre univers ; OverX les réunit.</p>
     </div>
-    <article class="featured-bot-card overload-card" id="overload" aria-labelledby="overload-heading">
+
+    <article class="featured-bot-card overload-card" id="overload" aria-labelledby="overload-heading" data-spotlight data-reveal>
       <div class="bot-card-main">
-        <div class="bot-card-topline"><span class="product-mark overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows</span></div>
+        <div class="bot-card-topline"><span class="product-mark overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows · v1.1</span></div>
         <p class="eyebrow bot-category">TÉLÉCHARGEMENT · ANALYSE · ORGANISATION</p>
         <h3 id="overload-heading">OverLoad</h3>
-        <p class="bot-description">Télécharge des fichiers depuis des liens directs HTTP(S), analyse tes vidéos, musiques et images, puis prépare tes projets de montage dans une application native Windows.</p>
-        <div class="chip-row"><span class="chip">Liens directs HTTP(S)</span><span class="chip">Analyse multimédia</span><span class="chip">Espace Créateurs</span></div>
+        <p class="bot-description">Télécharge des fichiers depuis des liens directs HTTP(S) avec reprise automatique, analyse tes vidéos, musiques et images via FFprobe, puis prépare tes projets de montage dans l'Espace Créateurs d'une application native Windows.</p>
+        <div class="chip-row"><span class="chip">Liens directs HTTP(S)</span><span class="chip">Reprise HTTP Range</span><span class="chip">Analyse multimédia</span><span class="chip">Espace Créateurs</span><span class="chip">Thèmes Sombre &amp; Clair</span></div>
         <div class="overload-downloads" id="telecharger" role="group" aria-label="Télécharger OverLoad pour Windows">
       <div class="hero-actions">
         <a class="button button-primary" data-overload-download="installer" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe" aria-describedby="overload-download-note">Télécharger pour Windows <span aria-hidden="true">↓</span></a>
@@ -97,17 +133,33 @@
       <p class="overload-download-note" id="overload-download-note">Dernière version stable publiée sur GitHub · Windows 11, 64 bits.<br>Télécharge <code>OverLoad-Setup.exe</code>, puis lance l'installateur sur ton PC.</p>
     </div>
       </div>
-      <div class="bot-card-art overload-card-art" aria-hidden="true">
-        <div class="art-halo"></div>
-        <div class="art-symbol">OL</div>
-        <div class="overload-art-label">TÉLÉCHARGER · ANALYSER · ORGANISER</div>
-        <div class="art-caption"><span class="art-caption-dot"></span> OVERLOAD <small>WINDOWS · 64 BITS</small></div>
-        <div class="art-line line-a"></div><div class="art-line line-b"></div>
-        <div class="art-orbit-dot"></div>
+      <div class="bot-card-art overload-card-art overload-visual-stage">
+        <div class="art-halo" aria-hidden="true"></div>
+        <div class="app-window app-window-primary">
+          <div class="app-window-bar" aria-hidden="true">
+            <div class="window-controls"><i></i><i></i><i></i></div>
+            <span class="app-window-title">OverLoad.exe — Media Suite v1.1</span>
+            <span class="app-window-badge">WINDOWS 11 · 64 BITS</span>
+          </div>
+          <div class="app-window-viewport">
+            <img src="assets/overload/accueil.png" alt="Capture de l'interface principale d'OverLoad sur Windows : téléchargement direct, débit global et file d'attente" width="1200" height="840" loading="lazy">
+          </div>
+        </div>
+        <div class="app-window app-window-secondary" aria-hidden="true">
+          <div class="app-window-bar">
+            <div class="window-controls"><i></i><i></i><i></i></div>
+            <span class="app-window-title">Espace Créateurs &amp; Téléchargements</span>
+          </div>
+          <div class="app-window-viewport">
+            <img src="assets/overload/telechargements.png" alt="" width="1200" height="840" loading="lazy">
+          </div>
+        </div>
+        <div class="app-floating-pill pill-speed" aria-hidden="true"><span class="art-caption-dot"></span> 1,23 Mo/s · Reprise HTTP Range</div>
+        <div class="app-floating-pill pill-creators" aria-hidden="true"><span class="pill-accent">⚡</span> Espace Créateurs &amp; FFprobe</div>
       </div>
     </article>
 
-    <article class="featured-bot-card" id="bots">
+    <article class="featured-bot-card" id="bots" data-spotlight data-reveal>
       <div class="bot-card-main">
         <div class="bot-card-topline"><span class="product-mark" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Disponibilité publique à confirmer</span></div>
         <p class="eyebrow bot-category">JEUX GRATUITS · STEAM · EPIC · GOG · UBISOFT</p>
@@ -120,29 +172,61 @@
         </div>
         <p class="micro-note" data-install-status>Invitation Discord configurée. Choisis le serveur, puis autorise le bot dans Discord.</p>
       </div>
-      <div class="bot-card-art" aria-hidden="true">
+      <div class="bot-card-art fgd-visual-stage" aria-hidden="true">
         <div class="art-halo"></div>
-        <div class="art-symbol">FG<span>D</span></div>
-        <div class="art-caption"><span class="art-caption-dot"></span> FREEGAMEDROP <small>BOT DISCORD</small></div>
-        <div class="art-line line-a"></div><div class="art-line line-b"></div>
-        <div class="art-orbit-dot"></div>
+        <div class="discord-app-window">
+          <div class="app-window-bar">
+            <div class="window-controls"><i></i><i></i><i></i></div>
+            <span class="app-window-title">Discord — Serveur Communauté</span>
+            <span class="app-window-badge">BOT ACTIF</span>
+          </div>
+          <div class="discord-app-layout">
+            <div class="discord-sidebar-mini">
+              <div class="sidebar-cat">JEUX GRATUITS</div>
+              <div class="sidebar-chan"><span class="hash">#</span> choisir-ses-roles</div>
+              <div class="sidebar-chan is-active"><span class="hash">#</span> jeux-epic <span class="chan-badge">1</span></div>
+              <div class="sidebar-chan"><span class="hash">#</span> jeux-steam</div>
+              <div class="sidebar-chan"><span class="hash">#</span> jeux-gog</div>
+              <div class="sidebar-chan"><span class="hash">#</span> jeux-ubisoft</div>
+            </div>
+            <div class="discord-chat-mini">
+              <div class="preview-message">
+                <div class="preview-avatar">FG</div>
+                <div class="preview-message-body">
+                  <div class="preview-author">FreeGameDrop <span class="bot-tag">APP</span> <time>Aujourd'hui à 18:00</time></div>
+                  <div class="preview-embed">
+                    <div class="embed-kicker"><span class="embed-dot"></span> 🔥 OFFRE EXCEPTIONNELLE · EPIC GAMES</div>
+                    <div class="embed-game-title">Cyberpunk 2077 — Édition Complète</div>
+                    <p><s>59,99 €</s> ➜ <strong>GRATUIT</strong> · 🟢 Expire dans 23 heures</p>
+                    <div class="embed-meta"><span>⚪ Rôle Epic Games</span><span>·</span><span>Vérifié via API officielle</span></div>
+                    <div class="embed-actions-row">
+                      <span class="embed-button">🎁 Récupérer le jeu <span>↗</span></span>
+                      <span class="embed-button embed-button-ghost">❤️ Favori</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-floating-pill pill-discord"><span class="art-caption-dot"></span> 4 boutiques · Salons dédiés sans spam</div>
       </div>
     </article>
-    <div class="coming-soon-row"><span class="coming-icon" aria-hidden="true">＋</span><div><strong>Les prochains projets ?</strong><p>Ils seront présentés ici au fil de leur développement, avec leur disponibilité clairement indiquée.</p></div><span class="coming-badge">À VENIR</span></div>
+    <div class="coming-soon-row" data-spotlight data-reveal><span class="coming-icon" aria-hidden="true">＋</span><div><strong>Les prochains projets ?</strong><p>Ils seront présentés ici au fil de leur développement, avec de vraies captures et leur disponibilité clairement indiquée.</p></div><span class="coming-badge">À VENIR</span></div>
   </section>
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow">UN POINT D'ENTRÉE COMMUN</p><h2>Découvrir. Choisir.<br><span>Passer à l'action.</span></h2><p class="section-intro">OverX est la vitrine des projets, pas une application à installer. Chaque outil possède son propre parcours.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">UN POINT D'ENTRÉE COMMUN</p><h2>Découvrir. Choisir.<br><span>Passer à l'action.</span></h2><p class="section-intro">OverX est la vitrine des projets, pas un installateur intermédiaire. Chaque logiciel conserve son parcours direct et transparent.</p></div>
       <div class="principles-grid">
-        <article class="principle-card"><div class="principle-index">01</div><div class="principle-icon icon-violet" aria-hidden="true">⌕</div><h3>Un espace pour chaque projet</h3><p>Une présentation claire pour comprendre à quoi sert chaque outil, avant de le télécharger ou de l'ajouter à Discord.</p></article>
-        <article class="principle-card"><div class="principle-index">02</div><div class="principle-icon icon-cyan" aria-hidden="true">↓</div><h3>Des téléchargements officiels</h3><p>OverLoad se télécharge depuis ses releases GitHub. Le lien suit la dernière version stable, sans manipulation sur le site.</p></article>
-        <article class="principle-card"><div class="principle-index">03</div><div class="principle-icon icon-lime" aria-hidden="true">＋</div><h3>De la place pour la suite</h3><p>Les nouvelles applications et les futurs projets rejoindront OverX. Pas de fausse date ni de disponibilité inventée.</p></article>
+        <article class="principle-card" data-spotlight data-reveal data-reveal-delay="0"><div class="principle-index">01</div><div class="principle-icon icon-violet" aria-hidden="true">⌕</div><h3>Un espace pour chaque projet</h3><p>Une présentation claire avec de vrais aperçus pour comprendre chaque logiciel avant de le télécharger ou de l'ajouter à Discord.</p></article>
+        <article class="principle-card" data-spotlight data-reveal data-reveal-delay="80"><div class="principle-index">02</div><div class="principle-icon icon-cyan" aria-hidden="true">↓</div><h3>Des téléchargements officiels</h3><p>OverLoad se télécharge directement depuis ses releases GitHub. Le lien suit la dernière version stable, sans intermédiaire.</p></article>
+        <article class="principle-card" data-spotlight data-reveal data-reveal-delay="160"><div class="principle-index">03</div><div class="principle-icon icon-lime" aria-hidden="true">＋</div><h3>De la place pour la suite</h3><p>Les nouvelles applications et les futurs projets rejoindront OverX. Pas de fausse date ni de disponibilité inventée.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="section-alt stats-band" aria-label="Chiffres publics FreeGameDrop">
+  <section class="section-alt stats-band" aria-label="Chiffres publics FreeGameDrop" data-reveal>
     <div class="container stats-band-inner">
       <div class="stats-band-copy">
         <p class="eyebrow">FREEGAMEDROP EN CHIFFRES</p>
@@ -150,10 +234,10 @@
         <p class="stats-band-note" data-stats-note>Aucune API publique n'est encore reliée : chaque compteur reste à « — » plutôt que d'être inventé. Renseigne <code>statsApiUrl</code> et <code>healthApiUrl</code> dans la configuration pour publier les mesures du bot.</p>
       </div>
       <dl class="stats-grid">
-        <div class="stat-cell"><dt>Serveurs</dt><dd data-stat="guilds">—</dd></div>
-        <div class="stat-cell"><dt>Offres détectées</dt><dd data-stat="offers">—</dd></div>
-        <div class="stat-cell"><dt>Offres actives</dt><dd data-stat="active_offers">—</dd></div>
-        <div class="stat-cell"><dt>Disponibilité</dt><dd data-stat="uptime">—</dd></div>
+        <div class="stat-cell" data-spotlight><dt>Serveurs</dt><dd data-stat="guilds">—</dd></div>
+        <div class="stat-cell" data-spotlight><dt>Offres détectées</dt><dd data-stat="offers">—</dd></div>
+        <div class="stat-cell" data-spotlight><dt>Offres actives</dt><dd data-stat="active_offers">—</dd></div>
+        <div class="stat-cell" data-spotlight><dt>Disponibilité</dt><dd data-stat="uptime">—</dd></div>
       </dl>
     </div>
   </section>

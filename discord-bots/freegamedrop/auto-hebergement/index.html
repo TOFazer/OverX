@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090a11">
+  <meta name="theme-color" content="#05060b">
 
   <meta name="description" content="FreeGameDrop est open source sous licence MIT : installation Python ou Docker, variables d&#x27;environnement, séparation DEV/PROD, tableau de bord web et endpoints /api/health et /api/stats documentés.">
   <meta property="og:type" content="website">
@@ -38,12 +38,12 @@
     </div>
   </header>
 <main id="main-content">
-  <section class="page-hero container">
+  <section class="page-hero container" data-reveal>
     <p class="eyebrow"><a href="../../../discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> AUTO-HÉBERGEMENT</p>
     <h1>Ton instance.<br><span>Ton bot.</span></h1>
     <p class="hero-lead narrow">FreeGameDrop est publié sous licence MIT : le code se lit, se vérifie et s'héberge librement, en Python ou avec Docker. Cette page résume le guide du dépôt FreeGameDropDev.</p>
   </section>
-  <section class="section container section-compact docs-layout">
+  <section class="section container section-compact docs-layout" data-reveal>
     <aside class="docs-toc"><p class="eyebrow">DANS CE GUIDE</p><a href="#demarrage">Démarrage express</a><a href="#docker">Docker & PaaS</a><a href="#env">DEV / PROD</a><a href="#dashboard">Tableau de bord web</a><a href="#api">Relier ce site</a></aside>
     <div class="docs-content">
       <section class="doc-section" id="demarrage"><p class="eyebrow">01 · DÉMARRER</p><h2>Installation express</h2><p>Prérequis : Python 3.10 ou plus. Le dépôt contient <code>requirements.txt</code>, un modèle <code>.env.example</code> et la commande <code>/setup-auto</code> qui crée salons, rôles et panneau dès la première exécution.</p><div class="code-block"><pre><code>git clone https://github.com/TOFazer/FreeGameDropDev.git

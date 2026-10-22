@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090a11">
+  <meta name="theme-color" content="#05060b">
 
   <meta name="description" content="Télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et prépare tes projets vidéo dans une application native Windows.">
   <meta property="og:type" content="website">
@@ -41,11 +41,11 @@
   </header>
 <main id="main-content" class="overload-page">
   <section class="product-hero container overload-hero">
-    <div class="product-copy">
+    <div class="product-copy" data-reveal>
       <p class="eyebrow"><a href="../index.html#projets">PROJETS OVERX</a> <span class="crumb-slash">/</span> OVERLOAD</p>
-      <div class="product-heading"><span class="product-mark product-mark-large overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows</span></div>
+      <div class="product-heading"><span class="product-mark product-mark-large overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows · v1.1</span></div>
       <h1>Tes médias.<br><span>Prêts pour la suite.</span></h1>
-      <p class="hero-lead">OverLoad télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et t'aide à préparer tes projets vidéo. Une application de bureau native Windows, avec un espace dédié aux créateurs.</p>
+      <p class="hero-lead">OverLoad télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et t'aide à préparer tes projets vidéo. Une application de bureau native Windows (`OverLoad.exe`), avec un espace dédié aux créateurs et une interface sombre ou claire.</p>
       <div class="overload-downloads" id="telecharger" role="group" aria-label="Télécharger OverLoad pour Windows">
       <div class="hero-actions">
         <a class="button button-primary" data-overload-download="installer" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe" aria-describedby="overload-download-note">Télécharger pour Windows <span aria-hidden="true">↓</span></a>
@@ -57,29 +57,72 @@
       <p class="overload-download-note" id="overload-download-note">Dernière version stable publiée sur GitHub · Windows 11, 64 bits.<br>Télécharge <code>OverLoad-Setup.exe</code>, puis lance l'installateur sur ton PC.</p>
     </div>
     </div>
-    <div class="bot-card-art overload-card-art" aria-hidden="true">
-        <div class="art-halo"></div>
-        <div class="art-symbol">OL</div>
-        <div class="overload-art-label">TÉLÉCHARGER · ANALYSER · ORGANISER</div>
-        <div class="art-caption"><span class="art-caption-dot"></span> OVERLOAD <small>WINDOWS · 64 BITS</small></div>
-        <div class="art-line line-a"></div><div class="art-line line-b"></div>
-        <div class="art-orbit-dot"></div>
+    <div data-reveal data-reveal-delay="120">
+      <div class="bot-card-art overload-card-art overload-visual-stage">
+        <div class="art-halo" aria-hidden="true"></div>
+        <div class="app-window app-window-primary">
+          <div class="app-window-bar" aria-hidden="true">
+            <div class="window-controls"><i></i><i></i><i></i></div>
+            <span class="app-window-title">OverLoad.exe — Media Suite v1.1</span>
+            <span class="app-window-badge">WINDOWS 11 · 64 BITS</span>
+          </div>
+          <div class="app-window-viewport">
+            <img src="../assets/overload/accueil.png" alt="Capture de l'interface principale d'OverLoad sur Windows : téléchargement direct, débit global et file d'attente" width="1200" height="840" loading="lazy">
+          </div>
+        </div>
+        <div class="app-window app-window-secondary" aria-hidden="true">
+          <div class="app-window-bar">
+            <div class="window-controls"><i></i><i></i><i></i></div>
+            <span class="app-window-title">Espace Créateurs &amp; Téléchargements</span>
+          </div>
+          <div class="app-window-viewport">
+            <img src="../assets/overload/telechargements.png" alt="" width="1200" height="840" loading="lazy">
+          </div>
+        </div>
+        <div class="app-floating-pill pill-speed" aria-hidden="true"><span class="art-caption-dot"></span> 1,23 Mo/s · Reprise HTTP Range</div>
+        <div class="app-floating-pill pill-creators" aria-hidden="true"><span class="pill-accent">⚡</span> Espace Créateurs &amp; FFprobe</div>
       </div>
+    </div>
+  </section>
+
+  <section class="section container overload-gallery-section" id="apercu" aria-labelledby="overload-gallery-heading" data-reveal>
+    <div class="section-heading section-heading-split">
+      <div><p class="eyebrow"><span class="eyebrow-dot"></span> L'APPLICATION EN IMAGES · V1.1</p><h2 id="overload-gallery-heading">De vraies captures.<br><span>Une interface taillée pour Windows.</span></h2></div>
+      <p class="section-intro">Parcours les différentes vues d'OverLoad : tableau de bord de téléchargement, suivi en direct, Espace Créateurs, historique avec diagnostic et personnalisation des thèmes.</p>
+    </div>
+    <div class="overload-interactive-showcase" data-app-showcase>
+      <div class="showcase-tabs" role="tablist" aria-label="Vues de l'application OverLoad">
+        <button class="showcase-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-accueil" id="tab-accueil" data-showcase-tab="accueil"><span class="showcase-tab-badge">TABLEAU DE BORD</span><strong>Accueil</strong></button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-telechargements" id="tab-telechargements" data-showcase-tab="telechargements"><span class="showcase-tab-badge">FILE ACTIVE &amp; REPRISE</span><strong>Téléchargements</strong></button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-createurs" id="tab-createurs" data-showcase-tab="createurs"><span class="showcase-tab-badge">MONTAGE VIDÉO</span><strong>Espace Créateurs</strong></button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-historique" id="tab-historique" data-showcase-tab="historique"><span class="showcase-tab-badge">DIAGNOSTIC CLAIR</span><strong>Historique</strong></button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-parametres" id="tab-parametres" data-showcase-tab="parametres"><span class="showcase-tab-badge">PERSONNALISATION</span><strong>Paramètres</strong></button>
+        <button class="showcase-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-theme-clair" id="tab-theme-clair" data-showcase-tab="theme-clair"><span class="showcase-tab-badge">ACCENT BLEU ÉLECTRIQUE</span><strong>Thème clair</strong></button>
+      </div>
+      <div class="showcase-panels">
+        <div class="showcase-screen-panel is-active" id="panel-accueil" role="tabpanel" aria-labelledby="tab-accueil" data-showcase-panel="accueil"><div class="showcase-window-frame"><div class="app-window-bar" aria-hidden="true"><div class="window-controls"><i></i><i></i><i></i></div><span class="app-window-title">OverLoad.exe — Accueil</span><span class="app-window-badge">TABLEAU DE BORD</span></div><div class="showcase-window-body"><img src="../assets/overload/accueil.png" alt="Un accueil actionnable dès l&#x27;ouverture — Colle un lien direct HTTP(S) avec validation instantanée, surveille le débit global (1,23 Mo/s), la file active, l&#x27;espace disque et tes téléchargements récents avec vignettes." width="1200" height="840" loading="lazy"></div><div class="showcase-window-caption"><div><span class="eyebrow">TABLEAU DE BORD</span><h3>Un accueil actionnable dès l&#x27;ouverture</h3><p>Colle un lien direct HTTP(S) avec validation instantanée, surveille le débit global (1,23 Mo/s), la file active, l&#x27;espace disque et tes téléchargements récents avec vignettes.</p></div><a class="button button-primary" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe">Télécharger OverLoad <span aria-hidden="true">↓</span></a></div></div></div>
+      <div class="showcase-screen-panel" id="panel-telechargements" role="tabpanel" aria-labelledby="tab-telechargements" data-showcase-panel="telechargements" hidden><div class="showcase-window-frame"><div class="app-window-bar" aria-hidden="true"><div class="window-controls"><i></i><i></i><i></i></div><span class="app-window-title">OverLoad.exe — Téléchargements</span><span class="app-window-badge">FILE ACTIVE &amp; REPRISE</span></div><div class="showcase-window-body"><img src="../assets/overload/telechargements.png" alt="Suivi en temps réel et reprise HTTP Range — Chaque transfert affiche sa barre de progression animée, sa vitesse glissante, le temps restant et les actions Pause, Reprendre, Relancer ou Ouvrir dans l&#x27;Explorateur." width="1200" height="840" loading="lazy"></div><div class="showcase-window-caption"><div><span class="eyebrow">FILE ACTIVE &amp; REPRISE</span><h3>Suivi en temps réel et reprise HTTP Range</h3><p>Chaque transfert affiche sa barre de progression animée, sa vitesse glissante, le temps restant et les actions Pause, Reprendre, Relancer ou Ouvrir dans l&#x27;Explorateur.</p></div><a class="button button-primary" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe">Télécharger OverLoad <span aria-hidden="true">↓</span></a></div></div></div>
+      <div class="showcase-screen-panel" id="panel-createurs" role="tabpanel" aria-labelledby="tab-createurs" data-showcase-panel="createurs" hidden><div class="showcase-window-frame"><div class="app-window-bar" aria-hidden="true"><div class="window-controls"><i></i><i></i><i></i></div><span class="app-window-title">OverLoad.exe — Espace Créateurs</span><span class="app-window-badge">MONTAGE VIDÉO</span></div><div class="showcase-window-body"><img src="../assets/overload/createurs.png" alt="Prépare tes projets sans jamais toucher aux originaux — Arborescence de montage en un clic (Premiere Pro, DaVinci Resolve, Final Cut, CapCut), renommage par lots avec aperçu, extraction de sous-titres .srt et export CSV." width="1200" height="840" loading="lazy"></div><div class="showcase-window-caption"><div><span class="eyebrow">MONTAGE VIDÉO</span><h3>Prépare tes projets sans jamais toucher aux originaux</h3><p>Arborescence de montage en un clic (Premiere Pro, DaVinci Resolve, Final Cut, CapCut), renommage par lots avec aperçu, extraction de sous-titres .srt et export CSV.</p></div><a class="button button-primary" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe">Télécharger OverLoad <span aria-hidden="true">↓</span></a></div></div></div>
+      <div class="showcase-screen-panel" id="panel-historique" role="tabpanel" aria-labelledby="tab-historique" data-showcase-panel="historique" hidden><div class="showcase-window-frame"><div class="app-window-bar" aria-hidden="true"><div class="window-controls"><i></i><i></i><i></i></div><span class="app-window-title">OverLoad.exe — Historique</span><span class="app-window-badge">DIAGNOSTIC CLAIR</span></div><div class="showcase-window-body"><img src="../assets/overload/historique.png" alt="Présence vérifiée sur le disque et erreurs expliquées — Filtre tes téléchargements passés, vérifie si chaque fichier est toujours présent sur ton PC et profite d&#x27;explications en français clair en cas d&#x27;interruption réseau." width="1200" height="840" loading="lazy"></div><div class="showcase-window-caption"><div><span class="eyebrow">DIAGNOSTIC CLAIR</span><h3>Présence vérifiée sur le disque et erreurs expliquées</h3><p>Filtre tes téléchargements passés, vérifie si chaque fichier est toujours présent sur ton PC et profite d&#x27;explications en français clair en cas d&#x27;interruption réseau.</p></div><a class="button button-primary" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe">Télécharger OverLoad <span aria-hidden="true">↓</span></a></div></div></div>
+      <div class="showcase-screen-panel" id="panel-parametres" role="tabpanel" aria-labelledby="tab-parametres" data-showcase-panel="parametres" hidden><div class="showcase-window-frame"><div class="app-window-bar" aria-hidden="true"><div class="window-controls"><i></i><i></i><i></i></div><span class="app-window-title">OverLoad.exe — Paramètres</span><span class="app-window-badge">PERSONNALISATION</span></div><div class="showcase-window-body"><img src="../assets/overload/parametres.png" alt="Thèmes, 6 couleurs d&#x27;accent et contrôle du débit — Bascule entre le thème Sombre et le thème Clair, choisis parmi 6 couleurs d&#x27;accent (violet, bleu électrique, cyan, émeraude, ambre, rose) et ajuste la limite de vitesse globale." width="1200" height="840" loading="lazy"></div><div class="showcase-window-caption"><div><span class="eyebrow">PERSONNALISATION</span><h3>Thèmes, 6 couleurs d&#x27;accent et contrôle du débit</h3><p>Bascule entre le thème Sombre et le thème Clair, choisis parmi 6 couleurs d&#x27;accent (violet, bleu électrique, cyan, émeraude, ambre, rose) et ajuste la limite de vitesse globale.</p></div><a class="button button-primary" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe">Télécharger OverLoad <span aria-hidden="true">↓</span></a></div></div></div>
+      <div class="showcase-screen-panel" id="panel-theme-clair" role="tabpanel" aria-labelledby="tab-theme-clair" data-showcase-panel="theme-clair" hidden><div class="showcase-window-frame"><div class="app-window-bar" aria-hidden="true"><div class="window-controls"><i></i><i></i><i></i></div><span class="app-window-title">OverLoad.exe — Thème clair</span><span class="app-window-badge">ACCENT BLEU ÉLECTRIQUE</span></div><div class="showcase-window-body"><img src="../assets/overload/theme-clair.png" alt="Une interface lumineuse et contrastée pour la journée — Le thème clair conserve toute la lisibilité d&#x27;OverLoad avec des surfaces blanches, des bordures douces et un accent bleu électrique commutable sans redémarrer." width="1200" height="840" loading="lazy"></div><div class="showcase-window-caption"><div><span class="eyebrow">ACCENT BLEU ÉLECTRIQUE</span><h3>Une interface lumineuse et contrastée pour la journée</h3><p>Le thème clair conserve toute la lisibilité d&#x27;OverLoad avec des surfaces blanches, des bordures douces et un accent bleu électrique commutable sans redémarrer.</p></div><a class="button button-primary" href="https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe">Télécharger OverLoad <span aria-hidden="true">↓</span></a></div></div></div>
+      </div>
+    </div>
   </section>
 
   <section class="section section-alt">
     <div class="container">
-      <div class="section-heading"><p class="eyebrow">TÉLÉCHARGER · ANALYSER · ORGANISER</p><h2>De tes fichiers<br><span>à ton prochain projet.</span></h2><p class="section-intro">Les fonctionnalités présentées ici sont documentées dans le dépôt officiel OverLoad.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">TÉLÉCHARGER · ANALYSER · ORGANISER</p><h2>De tes fichiers<br><span>à ton prochain projet.</span></h2><p class="section-intro">Les fonctionnalités présentées ici sont intégrées dans l'exécutable Windows natif et documentées dans le dépôt officiel OverLoad.</p></div>
       <div class="feature-grid overload-features">
-        <article class="feature-card"><div class="feature-icon icon-violet" aria-hidden="true">↓</div><h3>Gérer tes téléchargements</h3><p>Ajoute des liens directs HTTP(S), télécharge par lots, règle la limite de vitesse et retrouve ton historique. La reprise dépend de sa prise en charge par le serveur source.</p></article>
-        <article class="feature-card"><div class="feature-icon icon-cyan" aria-hidden="true">⌕</div><h3>Comprendre tes médias</h3><p>Consulte les codecs, la résolution et les pistes audio, vidéo ou sous-titres de tes fichiers locaux. Les alertes de compatibilité t'aident avant le montage.</p></article>
-        <article class="feature-card"><div class="feature-icon icon-lime" aria-hidden="true">▤</div><h3>Préparer ton projet vidéo</h3><p>L'Espace Créateurs prépare les dossiers, organise des copies de tes médias et exporte un inventaire. Les originaux restent intacts, les copies sont soumises à confirmation.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="0"><div class="feature-icon icon-violet" aria-hidden="true">↓</div><h3>Gérer tes téléchargements</h3><p>Ajoute des liens directs HTTP(S), télécharge par lots (1 à 16 simultanés), règle la limite de vitesse globale et profite de la reprise HTTP Range automatique après coupure.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="80"><div class="feature-icon icon-cyan" aria-hidden="true">⌕</div><h3>Comprendre tes médias</h3><p>Consulte les codecs, la résolution, le débit et les pistes audio, vidéo ou sous-titres de tes fichiers locaux grâce à FFprobe embarqué. Les alertes de compatibilité t'aident avant le montage.</p></article>
+        <article class="feature-card" data-spotlight data-reveal data-reveal-delay="160"><div class="feature-icon icon-lime" aria-hidden="true">▤</div><h3>Préparer ton projet vidéo</h3><p>L'Espace Créateurs prépare l'arborescence de dossiers (Premiere Pro, DaVinci Resolve, CapCut), renomme par lots et exporte un inventaire CSV sans jamais modifier tes originaux.</p></article>
       </div>
-      <div class="notice"><strong>Des sources directes, sans contournement.</strong><p>OverLoad prend en charge les adresses HTTP(S) qui pointent directement vers un fichier. Il ne contourne ni les protections d'accès, ni les DRM, ni les restrictions d'une plateforme. Utilise uniquement les médias que tu es autorisé à télécharger.</p></div>
+      <div class="notice" data-reveal><strong>Des sources directes, sans contournement.</strong><p>OverLoad prend en charge les adresses HTTP(S) qui pointent directement vers un fichier. Il ne contourne ni les protections d'accès, ni les DRM, ni les restrictions d'une plateforme. Utilise uniquement les médias que tu es autorisé à télécharger.</p></div>
     </div>
   </section>
 
-  <section class="section container overload-install" id="installation" aria-labelledby="overload-install-heading">
+  <section class="section container overload-install" id="installation" aria-labelledby="overload-install-heading" data-reveal>
     <div class="section-heading"><p class="eyebrow">INSTALLATION WINDOWS</p><h2 id="overload-install-heading">Télécharge ici.<br><span>Installe sur ton PC.</span></h2><p class="section-intro">Le site fournit le fichier ; c'est toi qui lances l'installation. Aucune installation ni mise à jour n'est déclenchée dans ton ordinateur par OverX.</p></div>
     <ol class="overload-steps">
       <li><span class="overload-step-number" aria-hidden="true">01</span><div><h3>Télécharge l'installateur</h3><p>Le bouton « Télécharger pour Windows » récupère <code>OverLoad-Setup.exe</code> depuis la dernière release stable publiée sur GitHub.</p></div></li>
@@ -89,7 +132,7 @@
     <div class="notice"><strong>Tu préfères une version sans installation ?</strong><p>Choisis « Version portable (.zip) », extrais l'archive dans un dossier puis lance <code>OverLoad.exe</code>. Les notes de version restent disponibles sur GitHub si tu souhaites consulter les changements ou les fichiers publiés.</p></div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" data-reveal>
     <div class="container install-help-layout">
       <div><p class="eyebrow">QUESTIONS FRÉQUENTES</p><h2>Avant le<br><span>téléchargement.</span></h2><p class="section-intro">OverX présente l'application. Le code et les releases restent dans le dépôt OverLoad.</p></div>
       <div class="install-help-list">
@@ -100,8 +143,8 @@
     </div>
   </section>
 
-  <section class="section container">
-    <div class="install-bottom-cta"><div><p class="eyebrow">LE PROJET OVERLOAD</p><h2>Le code, les versions, les échanges.</h2><p>Consulte le README, les releases et les problèmes signalés dans le dépôt officiel de l'application.</p></div><div class="install-bottom-actions"><a class="button button-secondary" href="https://github.com/TOFazer/OverLoad" target="_blank" rel="noopener noreferrer">Dépôt OverLoad <span aria-hidden="true">↗</span></a><a class="text-link" href="../index.html#projets">Tous les projets OverX <span aria-hidden="true">→</span></a></div></div>
+  <section class="section container" data-reveal>
+    <div class="install-bottom-cta" data-spotlight><div><p class="eyebrow">LE PROJET OVERLOAD</p><h2>Le code, les versions, les échanges.</h2><p>Consulte le README, les releases et les problèmes signalés dans le dépôt officiel de l'application.</p></div><div class="install-bottom-actions"><a class="button button-secondary" href="https://github.com/TOFazer/OverLoad" target="_blank" rel="noopener noreferrer">Dépôt OverLoad <span aria-hidden="true">↗</span></a><a class="text-link" href="../index.html#projets">Tous les projets OverX <span aria-hidden="true">→</span></a></div></div>
   </section>
 </main>
 
