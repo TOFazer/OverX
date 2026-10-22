@@ -1,0 +1,103 @@
+# -*- mode: python ; coding: utf-8 -*-
+"""Spécification PyInstaller directe : `pyinstaller OverLoad.spec` -> `dist/OverLoad.exe`."""
+
+from pathlib import Path
+
+from PyInstaller.utils.hooks import collect_submodules
+
+ROOT = Path(SPECPATH)
+_DATAS = [(str(ROOT / "src" / "overload" / "ui" / "web" / "static"), "overload/ui/web/static")]
+if (ROOT / "tools").is_dir():
+    _DATAS.append((str(ROOT / "tools"), "tools"))
+
+a = Analysis(
+    [str(ROOT / "src" / "overload" / "exe_entry.py")],
+    pathex=[str(ROOT / "src")],
+    binaries=[],
+    datas=_DATAS,
+    hiddenimports=[
+        "overload",
+        "overload.core",
+    "overload.core.diagnostics",
+        "overload.core.errors",
+        "overload.core.formatting",
+        "overload.core.paths",
+        "overload.creators",
+        "overload.creators.fsutil",
+        "overload.creators.models",
+        "overload.creators.profiles",
+        "overload.creators.renaming",
+        "overload.creators.scan",
+        "overload.creators.store",
+        "overload.creators.structure",
+        "overload.creators.subtitles",
+        "overload.creators.workspace",
+        "overload.downloads",
+        "overload.downloads.bandwidth",
+        "overload.downloads.duplicates",
+        "overload.downloads.engine",
+        "overload.downloads.files",
+        "overload.downloads.manager",
+        "overload.downloads.models",
+        "overload.downloads.netguard",
+        "overload.downloads.state",
+        "overload.downloads.telemetry",
+        "overload.downloads.urls",
+        "overload.downloads.youtube",
+        "overload.history",
+    "overload.history.store",
+        "overload.media",
+    "overload.media.analyzer",
+        "overload.settings",
+    "overload.settings.store",
+        "overload.ui",
+    "overload.ui.analyzer",
+        "overload.ui.components",
+        "overload.ui.creators",
+        "overload.ui.desktop",
+        "overload.ui.failure_text",
+        "overload.ui.filedialogs",
+        "overload.ui.help_page",
+        "overload.ui.icons",
+        "overload.ui.library",
+        "overload.ui.theme",
+        "overload.ui.web.server",
+        "overload.ui.window",
+        "yt_dlp",
+        *collect_submodules("yt_dlp"),
+    ],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[
+        "pytest",
+        "_pytest",
+        "ruff",
+        "tkinter",
+        "PySide6.QtQml",
+        "PySide6.QtQuick",
+        "PySide6.QtOpenGL",
+        "PySide6.QtOpenGLWidgets",
+        "PySide6.QtNetwork",
+        "PySide6.QtDesigner",
+        "PySide6.QtHelp",
+    ],
+    noarchive=False,
+)
+pyz = PYZ(a.pure)
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.datas,
+    [],
+    name="OverLoad",
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=False,
+    icon=str(ROOT / "assets" / "overload.ico"),
+)
