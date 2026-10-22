@@ -27,7 +27,7 @@ window.OVERX_CONFIG = Object.freeze({
   communityInviteUrl: "",
 
   // Optional public endpoints of the bot dashboard (read-only JSON, no secrets inside).
-  // They feed the "OverX en chiffres" band and the status page. The dashboard must allow
+  // They feed the "FreeGameDrop en chiffres" band and the status page. The dashboard must allow
   // CORS from this site's origin (or be served behind the same domain). While empty,
   // every counter stays at "—" — real numbers only.
   statsApiUrl: "",

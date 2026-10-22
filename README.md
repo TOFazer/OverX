@@ -1,8 +1,9 @@
 # OverX Website
 
-Site statique, responsive et indexable pour l'écosystème OverX. Cette version transforme la vitrine en plateforme de découverte : fiche FreeGameDrop enrichie, une page indexable par plateforme suivie (Steam, Epic Games Store, GOG, Ubisoft), catalogue avec recherche et filtres, sitemap, canonical, cartes de partage OpenGraph et données structurées JSON-LD — sans jamais inventer de statistique.
+Site principal de l'écosystème **OverX** : une vitrine statique, responsive et indexable qui rassemble les applications et les futurs projets. L'accueil présente **OverLoad**, l'application Windows de téléchargement et d'organisation des médias, ainsi que **FreeGameDrop**, le bot Discord de jeux gratuits. Les pages et fonctionnalités existantes de FreeGameDrop sont conservées.
 
-> Le nom affiché est **OverX**, conformément au brief. Le dépôt et le README du bot FreeGameDrop mentionnent encore **Orvex** : harmoniser ce nom dans les dépôts avant une annonce publique.
+- **Ce dépôt (`TOFazer/OverX`) contient uniquement le site.**
+- **`TOFazer/OverLoad` contient l'application et ses releases.** Le site y renvoie sans modifier l'application, ses workflows ou ses releases et sans héberger ses exécutables.
 
 ## Stack
 
@@ -20,17 +21,19 @@ python3 -m http.server 4173 --bind 0.0.0.0
 
 Puis ouvre `http://localhost:4173`.
 
-Pour vérifier les fichiers générés, les liens locaux, le JSON-LD et le sitemap :
+Pour vérifier les fichiers générés, les liens locaux, le JSON-LD et le sitemap, puis exécuter les tests de non-régression hors ligne (bibliothèque standard Python uniquement) :
 
 ```bash
 python3 scripts/check_site.py
+python3 -m unittest discover -s tests -v
 ```
 
 ## Pages
 
 | URL du dépôt | Contenu |
 | --- | --- |
-| `/` | Présentation OverX, chiffres réels (API optionnelle), plateformes et FreeGameDrop |
+| `/` | Accueil OverX, collection de projets, section OverLoad et FreeGameDrop |
+| `/overload/` | Présentation OverLoad, téléchargements Windows, étapes d’installation et FAQ |
 | `/discord-bots/` | Catalogue avec recherche et filtres par catégorie |
 | `/discord-bots/freegamedrop/` | Fonctionnalités, commandes, FAQ et configuration du bot |
 | `/discord-bots/freegamedrop/steam/` | Page d'atterrissage « jeux gratuits Steam sur Discord » |
@@ -45,6 +48,22 @@ python3 scripts/check_site.py
 | `/changelog/` | Notes de version publiées |
 | `/support/` | Documentation et issues GitHub, emplacement du serveur communautaire |
 | `/privacy/`, `/terms/`, `/legal/` | Brouillons de pages légales à finaliser (`noindex`) |
+
+## OverLoad : toujours la dernière release stable
+
+Les boutons sont des liens HTML natifs, utilisables **sans JavaScript** et sans appel d'API GitHub au chargement. GitHub résout lui-même la dernière release stable : aucun numéro de version, tag, taille de fichier ou compteur de téléchargement n'est figé dans le site.
+
+- Installateur Windows : <https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Setup.exe>
+- Version portable : <https://github.com/TOFazer/OverLoad/releases/latest/download/OverLoad-Portable-win64.zip>
+- Notes et fichiers de la dernière release : <https://github.com/TOFazer/OverLoad/releases/latest>
+
+Ces URL sont centralisées dans `OVERLOAD` de `scripts/build_site.py`, puis rendues dans l'accueil et la page `/overload/`. Le lien vers les notes de version reste accessible à côté des téléchargements. Les brouillons et préversions ne sont pas ciblés par `releases/latest`.
+
+**Contrat de publication côté OverLoad :** chaque nouvelle release stable doit continuer à joindre les assets avec les noms exacts `OverLoad-Setup.exe` et `OverLoad-Portable-win64.zip`. Si un fichier est absent de la dernière release stable, GitHub renverra une erreur pour son lien permanent ; les tests du site vérifient les URL mais ne publient ni ne corrigent les releases. Aucune régénération ou modification d'OverX n'est nécessaire à chaque nouvelle version respectant ces noms.
+
+**Parcours utilisateur :** télécharger `OverLoad-Setup.exe`, puis le lancer sur son PC Windows 11 (64 bits). Pour la version portable, extraire le ZIP et lancer `OverLoad.exe`. Le site ne lance aucun exécutable, n'installe rien à distance et n'ajoute aucun système de mise à jour automatique à l'application.
+
+La présentation des fonctionnalités suit le README officiel d'OverLoad : fichiers accessibles par liens directs HTTP(S), analyse multimédia et préparation de projets vidéo. Elle ne promet pas de téléchargement depuis toutes les plateformes ni de contournement de DRM.
 
 ## Configurer l'installation Discord
 
@@ -73,7 +92,7 @@ Le site construit alors l'URL OAuth2 Discord avec les scopes `bot applications.c
 
 ## SEO et découverte
 
-- Chaque page indexable reçoit un titre et une description ciblés, OpenGraph, Twitter Card et un `BreadcrumbList` JSON-LD ; l'accueil ajoute `Organization`, `WebSite` et `ItemList`, la fiche bot ajoute `SoftwareApplication` + `FAQPage`.
+- Chaque page indexable reçoit un titre et une description ciblés, OpenGraph, Twitter Card et un `BreadcrumbList` JSON-LD ; l'accueil ajoute `Organization`, `WebSite` et `ItemList`, les fiches FreeGameDrop et OverLoad ajoutent `SoftwareApplication` + `FAQPage`. OverLoad déclare Windows et son URL de téléchargement stable, sans version codée en dur.
 - `scripts/build_og_images.py` rend les cartes de partage 1200×630 (`assets/og/*.png`, commitées) ; Pillow n'est requis que pour les régénérer : `python3 -m venv .venv && .venv/bin/pip install pillow && .venv/bin/python scripts/build_og_images.py`.
 - Dès que `siteUrl` est renseigné, le build écrit `sitemap.xml` et ajoute la directive `Sitemap:` dans `robots.txt`, ainsi que `canonical`/`og:url`/`og:image` absolus. Tant que le domaine n'est pas choisi, rien n'est inventé.
 - Les pages légales restent en `noindex` et hors sitemap.
@@ -84,10 +103,11 @@ Aucun endpoint de statistiques n'est connecté par défaut : les compteurs de l'
 
 La fiche FreeGameDrop s'appuie sur le README du dépôt `TOFazer/FreeGameDropDev` : plateformes documentées (Steam, Epic via API officielle + GamerPower, GOG, Ubisoft), commandes, permissions, licence MIT, surveillance et confidentialité. Les chiffres et l'état en ligne ne sont jamais déduits du seul code source.
 
-## Ajouter un bot ou une plateforme
+## Ajouter un projet, un bot ou une plateforme
 
-- **Un bot** : une entrée dans `BOTS` de `scripts/build_site.py` (nom, catégorie, fiche) ; le catalogue, l'accueil, le bloc « écosystème » et l'`ItemList` JSON-LD se mettent à jour au build.
-- **Une plateforme** : une entrée dans `FGD_PLATFORMS` ; sa page d'atterrissage indexable, sa tuile sur l'accueil et la fiche bot, et son lien de pied de page sont générés automatiquement.
+- **Une application ou un projet** : ajouter sa présentation à l’accueil, sa page dans `PAGES` de `scripts/build_site.py` et son entrée dans l’`ItemList` de l’accueil, puis régénérer. Ajouter sa page à `EXPECTED_PAGES` dans `scripts/check_site.py` et couvrir ses liens par des tests. La navigation et le pied de page partagés gardent OverX comme point d’entrée.
+- **Un bot** : une entrée dans `BOTS` de `scripts/build_site.py` (nom, catégorie, fiche) ; l’`ItemList` de l’accueil et le bloc « écosystème » sont générés à partir de ce registre. Ajouter aussi le contenu de sa fiche et de sa carte au catalogue et à l’accueil.
+- **Une plateforme** : une entrée dans `FGD_PLATFORMS` ; sa page d'atterrissage indexable, sa tuile sur la fiche bot, et son lien de pied de page sont générés automatiquement.
 
 ## Publication
 

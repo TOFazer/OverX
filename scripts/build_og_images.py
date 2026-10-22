@@ -176,7 +176,7 @@ def render(path: Path, *, eyebrow: str, lines: list[str], lead: str, chips: list
     brand_font = load_font(24)
     letterspaced(draw, (78, 570), "OVERX", brand_font, (*TEXT, 255), 5)
     tag_font = load_font(17)
-    letterspaced(draw, (200, 576), "DISCORD TOOLS", tag_font, (*MUTED, 255), 6)
+    letterspaced(draw, (200, 576), "APPLICATIONS & PROJETS", tag_font, (*MUTED, 255), 5)
     draw.ellipse((1096, 572, 1108, 584), fill=(*LIME, 255))
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -187,12 +187,21 @@ def render(path: Path, *, eyebrow: str, lines: list[str], lead: str, chips: list
 def main() -> None:
     render(
         OUT_DIR / "overx.png",
-        eyebrow="DES OUTILS DISCORD, SANS COMPLEXITÉ",
-        lines=["Des bots Discord", "qui simplifient", "vos serveurs."],
-        lead="Des outils utiles, simples et transparents, pensés pour les communautés Discord.",
-        chips=["Installation guidée", "Permissions minimales", "Documentation complète"],
+        eyebrow="LE POINT DE DÉPART",
+        lines=["Des applications.", "Des projets.", "Un même univers."],
+        lead="OverLoad pour Windows, FreeGameDrop pour Discord. Et les projets à venir.",
+        chips=["OverLoad · Windows", "FreeGameDrop · Discord", "Nouveaux projets"],
         mark="O",
         mark_sub="OVERX",
+    )
+    render(
+        OUT_DIR / "overload.png",
+        eyebrow="OVERLOAD · WINDOWS",
+        lines=["Télécharge.", "Analyse.", "Organise tes médias."],
+        lead="Des liens directs aux projets vidéo, dans une application native Windows.",
+        chips=["Liens HTTP(S) directs", "Analyse multimédia", "Espace Créateurs"],
+        mark="OL",
+        mark_sub="OVERLOAD",
     )
     render(
         OUT_DIR / "freegamedrop.png",
