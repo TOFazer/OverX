@@ -26,14 +26,14 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "assets" / "og"
 
 WIDTH, HEIGHT = 1200, 630
-BG = (9, 10, 17, 255)
-PANEL = (21, 23, 35)
-TEXT = (243, 243, 251)
-SOFT = (168, 171, 188)
-MUTED = (146, 150, 170)
-VIOLET = (183, 161, 255)
-VIOLET_DEEP = (142, 112, 218)
-LIME = (185, 239, 140)
+BG = (20, 37, 27, 255)  # sapin #14251B
+PANEL = (32, 39, 34)  # charbon #202722
+TEXT = (232, 237, 229)  # creme #E8EDE5
+SOFT = (168, 191, 165)  # sauge #A8BFA5
+MUTED = (157, 176, 155)
+VIOLET = (168, 191, 165)  # sauge
+VIOLET_DEEP = (82, 118, 91)  # mousse #52765B
+LIME = (82, 118, 91)  # mousse
 
 FONT_CANDIDATES = [
     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
@@ -83,7 +83,7 @@ def dotted_grid(base: Image.Image) -> None:
             fade = max(0.0, 1 - (y / HEIGHT) * 1.25)
             if fade <= 0.02:
                 continue
-            draw.ellipse((x, y, x + 2, y + 2), fill=(195, 198, 231, int(46 * fade)))
+            draw.ellipse((x, y, x + 2, y + 2), fill=(168, 191, 165, int(46 * fade)))
     base.alpha_composite(overlay)
 
 
@@ -123,12 +123,12 @@ def render(path: Path, *, eyebrow: str, lines: list[str], lead: str, chips: list
 
     # Framed "Discord window" on the right, echoing the site's hero visual.
     card = composite_shape(image, layers)
-    card.rounded_rectangle((760, 118, 1132, 512), radius=26, fill=(*PANEL, 235), outline=(232, 228, 255, 38), width=2)
+    card.rounded_rectangle((760, 118, 1132, 512), radius=26, fill=(*PANEL, 235), outline=(232, 237, 229, 38), width=2)
     card.rounded_rectangle((792, 158, 1100, 236), radius=16, fill=(*VIOLET_DEEP, 255))
     mark_font = load_font(44)
     probe = ImageDraw.Draw(image)
     box = probe.textbbox((0, 0), mark, font=mark_font)
-    card.text((946 - (box[2] - box[0]) / 2, 197 - (box[3] - box[1]) / 2 - box[1]), mark, font=mark_font, fill=(23, 19, 32, 255))
+    card.text((946 - (box[2] - box[0]) / 2, 197 - (box[3] - box[1]) / 2 - box[1]), mark, font=mark_font, fill=(20, 37, 27, 255))
     sub_font = load_font(16)
     box = probe.textbbox((0, 0), mark_sub, font=sub_font)
     letterspaced(card, (int(946 - ((box[2] - box[0]) + 10 * (len(mark_sub) - 1)) / 2), 258), mark_sub, sub_font, (*MUTED, 255), 10)
@@ -136,16 +136,16 @@ def render(path: Path, *, eyebrow: str, lines: list[str], lead: str, chips: list
         top = 300 + index * 58
         chip_font = load_font(18)
         label = truncate(card, chip, chip_font, 1100 - 842)
-        card.rounded_rectangle((792, top, 1100, top + 44), radius=11, fill=(255, 255, 255, 14), outline=(235, 236, 255, 26), width=1)
+        card.rounded_rectangle((792, top, 1100, top + 44), radius=11, fill=(255, 255, 255, 14), outline=(232, 237, 229, 26), width=1)
         card.ellipse((812, top + 16, 824, top + 28), fill=(*LIME, 255))
-        card.text((842, top + 11), label, font=chip_font, fill=(226, 229, 240, 255))
+        card.text((842, top + 11), label, font=chip_font, fill=(232, 237, 229, 255))
 
     # Left column: brand, headline, lead.
     draw = ImageDraw.Draw(image)
     eyebrow_font = load_font(21)
     letterspaced(draw, (78, 108), eyebrow, eyebrow_font, (*VIOLET, 255), 7)
     line_layer = composite_shape(image, layers)
-    line_layer.line((78, 164, 210, 164), fill=(167, 139, 250, 140), width=2)
+    line_layer.line((78, 164, 210, 164), fill=(168, 191, 165, 140), width=2)
 
     y = 186
     for index, text in enumerate(lines):
@@ -170,7 +170,7 @@ def render(path: Path, *, eyebrow: str, lines: list[str], lead: str, chips: list
 
     # Bottom rule with the wordmark, mirroring the site footer.
     rule = composite_shape(image, layers)
-    rule.line((78, 548, 1122, 548), fill=(235, 236, 255, 26), width=1)
+    rule.line((78, 548, 1122, 548), fill=(232, 237, 229, 26), width=1)
     flush(layers)
     draw = ImageDraw.Draw(image)
     brand_font = load_font(24)

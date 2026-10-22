@@ -1374,7 +1374,7 @@ def render_page(page: dict) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05060b">
+  <meta name="theme-color" content="#14251B">
 {robots}
   <meta name="description" content="{description}">
 {seo_head(page)}

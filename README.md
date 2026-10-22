@@ -129,7 +129,7 @@ Les pages légales portent un avertissement visible et doivent être complétée
 
 - Symbole géométrique partagé entre navigation, pied de page et favicon : `assets/brand-mark.svg`.
 - Sculpture vectorielle en relief sur l’accueil : `assets/brand-sculpture.svg` (aucun WebGL, CDN ni bibliothèque 3D).
-- Palette marque : noir `#070907`, graphite et accent vert `#c2ff63`. Les sections produits utilisent bleu glacier (OverLoad) et violet (FreeGameDrop).
+- Palette marque « OverX Forest » : vert sapin `#14251B` (fond), vert forêt `#244A35` (marque), vert mousse `#52765B` (boutons/actif), vert sauge `#A8BFA5` (détails), crème naturel `#E8EDE5` (texte) et charbon `#202722` (cartes/panneaux). Accent doré réservé à FreeGameDrop (offres/cadeaux).
 - Le bloc « Découvrir OverX » est accessible via `#overx`. Les deux actions du hero fonctionnent sans JavaScript.
 - Animations progressives et respect de `prefers-reduced-motion`. Le menu mobile conserve son fonctionnement clavier.
 - L’aperçu Discord est une **démonstration fictive**, pas une annonce de promotion réelle. Les compteurs non connectés ne figurent plus sur l’accueil ; la page Statut reste disponible.
