@@ -124,3 +124,14 @@ Une fois le domaine et l'hébergeur choisis :
 7. viser l'App Directory Discord : application vérifiée, description, tags, serveur de support public et URL d'installation (prérequis listés dans la roadmap).
 
 Les pages légales portent un avertissement visible et doivent être complétées avant d'être présentées comme définitives.
+
+## Identité OverX — édition 2026
+
+- Symbole géométrique partagé entre navigation, pied de page et favicon : `assets/brand-mark.svg`.
+- Sculpture vectorielle en relief sur l’accueil : `assets/brand-sculpture.svg` (aucun WebGL, CDN ni bibliothèque 3D).
+- Palette marque : noir `#070907`, graphite et accent vert `#c2ff63`. Les sections produits utilisent bleu glacier (OverLoad) et violet (FreeGameDrop).
+- Le bloc « Découvrir OverX » est accessible via `#overx`. Les deux actions du hero fonctionnent sans JavaScript.
+- Animations progressives et respect de `prefers-reduced-motion`. Le menu mobile conserve son fonctionnement clavier.
+- L’aperçu Discord est une **démonstration fictive**, pas une annonce de promotion réelle. Les compteurs non connectés ne figurent plus sur l’accueil ; la page Statut reste disponible.
+
+Après toute modification de contenu, modifier `scripts/build_site.py`, puis régénérer les pages (ne pas modifier uniquement le HTML généré).
