@@ -457,4 +457,267 @@
       }
     });
   }
+
+  // ------------------------------------------------------------------
+  // Jeux gratuits : catalogue commun FreeGameDrop ↔ OverX
+  // Lit data/offers.json (ou offersApiUrl) et rend filtres + cartes.
+  // ------------------------------------------------------------------
+  const offersRoot = document.querySelector("[data-offers-catalog]");
+  if (offersRoot) {
+    const grid = offersRoot.querySelector("[data-offers-grid]");
+    const searchInput = offersRoot.querySelector("[data-offers-search]");
+    const platformChips = Array.from(offersRoot.querySelectorAll("[data-offers-platform]"));
+    const typeChips = Array.from(offersRoot.querySelectorAll("[data-offers-type]"));
+    const sortSelect = offersRoot.querySelector("[data-offers-sort]");
+    const countNode = document.querySelector("[data-offers-count]");
+    const updatedNode = document.querySelector("[data-offers-updated]");
+    const emptyNode = offersRoot.querySelector("[data-offers-empty]");
+    const loadingNode = offersRoot.querySelector("[data-offers-loading]");
+    const noticeNode = document.querySelector("[data-offers-notice]");
+    const expiryToggle = offersRoot.querySelector("[data-offers-expiring]");
+
+    let allOffers = [];
+    let activePlatform = "all";
+    let activeType = "all";
+    let onlyExpiring = false;
+
+    // Pré-filtre via URL : ?platform=steam&type=dlc&q=orbit&expiring=1
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const p = params.get("platform") || params.get("boutique");
+      if (p && ["steam","epic","gog","ubisoft"].includes(p.toLowerCase())) activePlatform = p.toLowerCase();
+      const t = params.get("type");
+      if (t && ["game","dlc","pack"].includes(t.toLowerCase())) activeType = t.toLowerCase();
+      const q = params.get("q") || params.get("search");
+      if (q && searchInput) searchInput.value = q;
+      if (params.get("expiring") === "1" || params.get("urgent") === "1") onlyExpiring = true;
+    } catch {}
+    // Sync visuel des chips avec l'état initial (URL ou défaut)
+    platformChips.forEach((c) => c.classList.toggle("is-active", (c.dataset.offersPlatform || "all") === activePlatform));
+    typeChips.forEach((c) => c.classList.toggle("is-active", (c.dataset.offersType || "all") === activeType));
+    if (expiryToggle) expiryToggle.checked = onlyExpiring;
+
+    const PLATFORM_LABELS = { steam: "Steam", epic: "Epic Games Store", gog: "GOG", ubisoft: "Ubisoft" };
+    const TYPE_LABELS = { game: "Jeu complet", dlc: "DLC", pack: "Contenu bonus" };
+
+    const normalize = (value) => String(value || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    const formatExpiry = (offer) => {
+      if (offer.is_permanent || offer.availability === "permanent" || !offer.expires_at) {
+        return { text: "Toujours gratuit", cls: "permanent", urgent: false, ms: Infinity };
+      }
+      const expiry = new Date(offer.expires_at);
+      if (Number.isNaN(expiry.getTime())) return { text: "Durée limitée", cls: "permanent", urgent: false, ms: Infinity };
+      const diff = expiry.getTime() - Date.now();
+      if (diff <= 0) return { text: "Expiré", cls: "urgency-high", urgent: false, ms: diff, expired: true };
+      const hours = diff / 3600000;
+      let cls = "urgency-low";
+      if (hours <= 6) cls = "urgency-high";
+      else if (hours <= 24) cls = "urgency-mid";
+      const days = Math.floor(hours / 24);
+      const remHours = Math.floor(hours % 24);
+      let text = "";
+      if (days > 0) text = `Expire dans ${days}j ${remHours}h`;
+      else if (hours >= 1) text = `Expire dans ${Math.floor(hours)}h`;
+      else text = `Expire dans ${Math.floor(diff / 60000)} min`;
+      return { text, cls, urgent: hours <= 24, ms: diff };
+    };
+
+    const isExpired = (offer) => {
+      if (offer.is_permanent || offer.availability === "permanent" || !offer.expires_at) return false;
+      const d = new Date(offer.expires_at);
+      return !Number.isNaN(d.getTime()) && d.getTime() <= Date.now();
+    };
+
+    const offerCard = (offer) => {
+      const expiry = formatExpiry(offer);
+      const platformLabel = offer.platform_label || PLATFORM_LABELS[offer.platform] || offer.platform || "—";
+      const typeLabel = offer.type_label || TYPE_LABELS[offer.type] || offer.type || "Offre";
+      const initial = (offer.title || "?").trim().charAt(0).toUpperCase() || "?";
+      const titleEsc = String(offer.title || "Offre sans titre").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
+      const descEsc = String(offer.description || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
+      const urlEsc = String(offer.url || "#").replace(/\"/g, "&quot;");
+      const priceOrig = offer.price_original ? `<s>${String(offer.price_original).replace(/</g, "&lt;")}</s>` : "";
+      const hasImage = Boolean(offer.image);
+      const expiredCls = expiry.expired ? " is-expired" : "";
+      const visual = hasImage
+        ? `<div class="offer-visual has-image"><img src="${String(offer.image).replace(/\"/g, "&quot;")}" alt="" loading=\"lazy\"><div class=\"offer-badges\"><span class=\"offer-badge offer-badge-platform\">${platformLabel}</span><span class=\"offer-badge offer-badge-type\">${typeLabel}</span></div><span class=\"offer-expiry ${expiry.cls}\">${expiry.text}</span></div>`
+        : `<div class="offer-visual"><div class="offer-visual-placeholder">${initial}<span>•</span></div><div class="offer-badges"><span class="offer-badge offer-badge-platform">${platformLabel}</span><span class="offer-badge offer-badge-type">${typeLabel}</span></div><span class="offer-expiry ${expiry.cls}">${expiry.text}</span></div>`;
+      return `<article class="offer-card${expiredCls}" data-platform="${offer.platform || ""}" data-type="${offer.type || ""}" data-title="${titleEsc.toLowerCase()}" data-spotlight>
+        ${visual}
+        <div class="offer-body">
+          <h3 class="offer-title">${titleEsc}</h3>
+          <div class="offer-meta"><strong>${platformLabel}</strong> · ${typeLabel}${offer.availability === "permanent" ? " · Permanent" : ""}</div>
+          <p class="offer-desc">${descEsc}</p>
+          <div class="offer-price">${priceOrig} <b>Gratuit</b></div>
+          <div class="offer-actions">
+            <a class="button button-primary" href="${urlEsc}" target="_blank" rel="noopener noreferrer">Récupérer <span aria-hidden="true\">↗</span></a>
+            <span class="offer-badge offer-badge-free" aria-hidden="true">Gratuit</span>
+          </div>
+        </div>
+      </article>`;
+    };
+
+    const applyFilters = () => {
+      if (!grid) return;
+      const query = normalize(searchInput?.value || "");
+      const sort = sortSelect?.value || "urgent";
+      let visible = 0;
+      const now = Date.now();
+
+      let filtered = allOffers.filter((offer) => {
+        if (activePlatform !== "all" && offer.platform !== activePlatform) return false;
+        if (activeType !== "all" && offer.type !== activeType) return false;
+        if (onlyExpiring) {
+          if (offer.is_permanent || offer.availability === "permanent" || !offer.expires_at) return false;
+          const expiry = new Date(offer.expires_at);
+          if (Number.isNaN(expiry.getTime()) || expiry.getTime() <= now) return false;
+          const hours = (expiry.getTime() - now) / 3600000;
+          if (hours > 72) return false;
+        }
+        if (query) {
+          const haystack = normalize(`${offer.title || ""} ${offer.description || ""} ${offer.platform_label || ""} ${offer.type_label || ""}`);
+          if (!haystack.includes(query)) return false;
+        }
+        if (isExpired(offer)) return false;
+        return true;
+      });
+
+      filtered = filtered.slice().sort((a, b) => {
+        if (sort === "alpha") return String(a.title).localeCompare(String(b.title), "fr");
+        if (sort === "platform") return String(a.platform).localeCompare(String(b.platform));
+        const ea = formatExpiry(a).ms;
+        const eb = formatExpiry(b).ms;
+        if (ea !== eb) return ea - eb;
+        return String(a.title).localeCompare(String(b.title), "fr");
+      });
+
+      grid.innerHTML = filtered.map(offerCard).join("");
+
+      visible = filtered.length;
+
+      if (countNode) {
+        const total = allOffers.filter((o) => !isExpired(o)).length;
+        countNode.innerHTML = visible === total
+          ? `<strong>${visible}</strong> offre${visible !== 1 ? "s" : ""} disponible${visible !== 1 ? "s" : ""}`
+          : `<strong>${visible}</strong> / ${total} offre${total !== 1 ? "s" : ""}`;
+      }
+
+      if (emptyNode) {
+        emptyNode.hidden = visible !== 0;
+        if (visible === 0 && allOffers.length > 0) {
+          const msg = query ? `Aucun résultat pour « ${String(searchInput.value).replace(/</g, "&lt;")} ».` : "Aucune offre ne correspond à ces filtres.";
+          emptyNode.querySelector("p").textContent = msg + " Essaie un autre filtre ou efface la recherche.";
+        }
+      }
+    };
+
+    const bindChips = (chips, getActive, setActive) => {
+      chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          setActive(chip.dataset.offersPlatform || chip.dataset.offersType || "all");
+          chips.forEach((c) => c.classList.toggle("is-active", c === chip));
+          applyFilters();
+        });
+      });
+    };
+    bindChips(platformChips, () => activePlatform, (v) => { activePlatform = v; });
+    bindChips(typeChips, () => activeType, (v) => { activeType = v; });
+
+    searchInput?.addEventListener("input", applyFilters);
+    sortSelect?.addEventListener("change", applyFilters);
+    expiryToggle?.addEventListener("change", () => {
+      onlyExpiring = Boolean(expiryToggle.checked);
+      applyFilters();
+    });
+
+    const offersUrl = (() => {
+      const apiUrl = String(config.offersApiUrl || "").trim();
+      if (apiUrl) {
+        try {
+          const u = new URL(apiUrl);
+          if (u.protocol === "https:" || u.protocol === "http:") return u.href;
+        } catch {}
+      }
+      const jsonUrl = String(config.offersJsonUrl || "").trim();
+      if (jsonUrl) {
+        try {
+          const u = new URL(jsonUrl, window.location.href);
+          return u.href;
+        } catch {
+          return jsonUrl;
+        }
+      }
+      const fallback = offersRoot.dataset.offersUrl || "data/offers.json";
+      try {
+        return new URL(fallback, window.location.href).href;
+      } catch {
+        return fallback;
+      }
+    })();
+
+    const showError = (msg) => {
+      if (loadingNode) loadingNode.hidden = true;
+      if (noticeNode) {
+        noticeNode.hidden = false;
+        noticeNode.innerHTML = `<strong>Catalogue temporairement indisponible</strong><p>${msg} — Vérifie <code>data/offers.json</code> ou <code>offersApiUrl</code> dans <code>assets/site-config.js</code>. Le bot doit publier le fichier comme décrit dans <code>data/README.md</code>.</p>`;
+      }
+      if (countNode) countNode.textContent = "0 offre";
+    };
+
+    fetchJson(offersUrl, 7000).then((payload) => {
+      if (loadingNode) loadingNode.hidden = true;
+      if (!payload) {
+        showError("Le fichier d'offres n'a pas répondu depuis ce navigateur.");
+        return;
+      }
+      const offers = Array.isArray(payload) ? payload : payload.offers;
+      if (!Array.isArray(offers)) {
+        showError("Format d'offres invalide (attendu : { offers: [] }).");
+        return;
+      }
+      allOffers = offers.filter((o) => o && typeof o.title === "string" && typeof o.url === "string");
+
+      if (updatedNode && payload.generated_at) {
+        try {
+          const d = new Date(payload.generated_at);
+          const fmt = d.toLocaleString("fr-FR", { day: "2-digit", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" });
+          updatedNode.textContent = `Actualisé le ${fmt}`;
+          updatedNode.dateTime = d.toISOString();
+        } catch {
+          updatedNode.textContent = `Actualisé : ${String(payload.generated_at)}`;
+        }
+      } else if (updatedNode) {
+        updatedNode.textContent = "Actualisé automatiquement par FreeGameDrop";
+      }
+
+      if (noticeNode && payload.notice) {
+        const isExample = /exemple/i.test(payload.notice);
+        if (isExample) {
+          noticeNode.hidden = false;
+          noticeNode.innerHTML = `<strong>Catalogue d'exemple</strong><p>Les offres affichées sont illustratives — remplace <code>data/offers.json</code> par l'export automatique du bot pour afficher les vraies offres en temps réel. Voir <code>data/README.md</code>.</p>`;
+        } else {
+          noticeNode.hidden = true;
+        }
+      } else if (noticeNode) {
+        noticeNode.hidden = true;
+      }
+
+      if (allOffers.length === 0) {
+        if (emptyNode) {
+          emptyNode.hidden = false;
+          emptyNode.querySelector("h3").textContent = "Aucune offre pour le moment.";
+          emptyNode.querySelector("p").textContent = "Le catalogue est vide : le bot n'a pas encore publié d'offres, ou toutes les offres temporaires ont expiré.";
+        }
+        if (countNode) countNode.textContent = "0 offre";
+        return;
+      }
+
+      applyFilters();
+      // Refresh urgency labels every minute
+      setInterval(applyFilters, 60000);
+    }).catch(() => {
+      showError("Une erreur réseau a empêché le chargement du catalogue.");
+    });
+  }
 })();

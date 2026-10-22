@@ -11,9 +11,11 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_PAGES = [
     "index.html",
+    "jeux-gratuits/index.html",
     "overload/index.html",
     "discord-bots/index.html",
     "discord-bots/freegamedrop/index.html",
+    "discord-bots/freegamedrop/catalogue/index.html",
     "discord-bots/freegamedrop/auto-hebergement/index.html",
     "discord-bots/freegamedrop/steam/index.html",
     "discord-bots/freegamedrop/epic-games/index.html",
