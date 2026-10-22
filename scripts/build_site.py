@@ -857,8 +857,10 @@ _HOME_BODY = r"""
           <div class="card-actions">
             <a class="button button-primary" data-install-cta href="{{ROOT}}install/index.html#ajouter">Guide d'installation <span aria-hidden="true">↗</span></a>
             <a class="button button-secondary" href="{{ROOT}}discord-bots/freegamedrop/index.html">Découvrir FreeGameDrop <span aria-hidden="true">→</span></a>
+            <a class="button button-secondary" href="{{ROOT}}jeux-gratuits/index.html">Parcourir le catalogue <span aria-hidden="true">→</span></a>
           </div>
           <p class="micro-note" data-install-status>Le lien d'invitation Discord n'a pas encore été communiqué.</p>
+          <p class="micro-note">Catalogue commun : les mêmes offres alimentent Discord et <a class="inline-link" href="{{ROOT}}jeux-gratuits/index.html">la page Jeux gratuits</a>, avec filtres par boutique, type (jeu / DLC) et échéance.</p>
         </div>
       </div>
     </section>
@@ -913,6 +915,167 @@ PAGES.append({
                 for index, project in enumerate([OVERLOAD, *BOTS])
             ],
         },
+    ],
+})
+
+_JEUX_GRATUITS_BODY = r"""
+<main id="main-content">
+  <section class="page-hero container jeux-hero" data-reveal>
+    <p class="eyebrow"><a href="{{ROOT}}index.html">OVERX</a> <span class="crumb-slash">/</span> <a href="{{ROOT}}discord-bots/freegamedrop/index.html">FREEGAMEDROP</a> <span class="crumb-slash">/</span> JEUX GRATUITS</p>
+    <div class="jeux-hero-top">
+      <span class="status-pill status-current"><span></span> Catalogue commun Discord ↔ OverX</span>
+      <span class="jeux-meta-live">Actualisé automatiquement</span>
+    </div>
+    <h1>Jeux gratuits<br><span>Les offres à récupérer en ce moment.</span></h1>
+    <p class="hero-lead narrow">Le même catalogue qui alimente FreeGameDrop sur Discord — Steam, Epic Games Store, GOG et Ubisoft — consultable directement sur OverX. Recherche par nom, filtres par boutique et par type (jeu, DLC, contenu bonus), et mention claire de la fin d'offre quand elle est connue.</p>
+    <div class="jeux-hero-meta">
+      <span class="jeux-meta-pill"><span class="catalogue-dot"></span> <span data-offers-count>— offres</span> <span class="meta-divider"></span> <time data-offers-updated>Chargement…</time></span>
+      <a class="button button-primary" data-install-cta href="{{ROOT}}install/index.html#ajouter">Ajouter à Discord <span aria-hidden="true">↗</span></a>
+      <a class="button button-secondary" href="{{ROOT}}discord-bots/freegamedrop/index.html">Comment ça marche ? <span aria-hidden="true">→</span></a>
+    </div>
+    <p class="micro-note">Maquette de principe pour la mise en page : les offres affichées proviennent de <code>data/offers.json</code> et sont filtrées côté navigateur. Tant que le fichier contient les exemples illustratifs, un bandeau l'indique.</p>
+  </section>
+
+  <section class="section container section-compact" id="offres" data-reveal>
+    <div class="offers-notice" data-offers-notice hidden>
+      <span aria-hidden="true">⌑</span>
+      <div><strong>Chargement…</strong><p>Le catalogue se charge depuis le fichier partagé.</p></div>
+    </div>
+
+    <!-- Catalogue : recherche + filtres -->
+    <div data-offers-catalog data-offers-url="{{ROOT}}data/offers.json">
+      <div class="offers-toolbar" data-reveal>
+        <label class="offers-search" aria-label="Rechercher un jeu">
+          <span aria-hidden="true">⌕</span>
+          <input type="search" data-offers-search placeholder="Rechercher un jeu, DLC ou pack…" autocomplete="off" spellcheck="false">
+        </label>
+        <div class="offers-filters" role="group" aria-label="Filtrer par boutique">
+          <span class="offers-filter-label">Plateforme</span>
+          <button class="offers-chip is-active" type="button" data-offers-platform="all">Toutes</button>
+          <button class="offers-chip" type="button" data-offers-platform="steam">Steam</button>
+          <button class="offers-chip" type="button" data-offers-platform="epic">Epic Games</button>
+          <button class="offers-chip" type="button" data-offers-platform="gog">GOG</button>
+          <button class="offers-chip" type="button" data-offers-platform="ubisoft">Ubisoft</button>
+        </div>
+      </div>
+
+      <div class="offers-secondary-row" data-reveal>
+        <div class="offers-filters" role="group" aria-label="Filtrer par type">
+          <span class="offers-filter-label">Type</span>
+          <button class="offers-chip is-active" type="button" data-offers-type="all">Tous</button>
+          <button class="offers-chip" type="button" data-offers-type="game">Jeux complets</button>
+          <button class="offers-chip" type="button" data-offers-type="dlc">DLC / Extensions</button>
+          <button class="offers-chip" type="button" data-offers-type="pack">Contenu bonus</button>
+        </div>
+        <label class="offers-sort" style="gap:10px">
+          <span class="offers-filter-label">Échéance</span>
+          <input type="checkbox" data-offers-expiring> <span style="font-size:13px;color:var(--text-body)">Se termine bientôt (< 3j)</span>
+        </label>
+        <label class="offers-sort">
+          <span class="offers-filter-label">Trier</span>
+          <select data-offers-sort aria-label="Trier les offres">
+            <option value="urgent">Fin d'offre la plus proche</option>
+            <option value="alpha">Nom A → Z</option>
+            <option value="platform">Plateforme</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="offers-secondary-row" style="margin-top:-8px">
+        <span class="offers-count" data-offers-count>— offres</span>
+        <span class="micro-note">Les boutons « Récupérer » ouvrent la page officielle de la boutique. Les offres expirées sont masquées automatiquement.</span>
+      </div>
+
+      <div class="offers-loading" data-offers-loading>
+        <div class="offers-skeleton"></div>
+        <div class="offers-skeleton"></div>
+        <div class="offers-skeleton"></div>
+        <div class="offers-skeleton"></div>
+        <div class="offers-skeleton"></div>
+        <div class="offers-skeleton"></div>
+      </div>
+
+      <div class="offers-grid" data-offers-grid aria-live="polite"></div>
+      <noscript>
+        <div class="offers-notice">
+          <span aria-hidden="true">⚠</span>
+          <div><strong>JavaScript désactivé</strong><p>Le catalogue se charge dynamiquement depuis <code>data/offers.json</code>. Active JavaScript pour filtrer et rechercher les offres, ou consulte les pages par boutique (<a class="inline-link" href="{{ROOT}}discord-bots/freegamedrop/steam/index.html">Steam</a>, <a class="inline-link" href="{{ROOT}}discord-bots/freegamedrop/epic-games/index.html">Epic Games</a>, <a class="inline-link" href="{{ROOT}}discord-bots/freegamedrop/gog/index.html">GOG</a>, <a class="inline-link" href="{{ROOT}}discord-bots/freegamedrop/ubisoft/index.html">Ubisoft</a>) et ajoute le bot à Discord pour recevoir les alertes.</p></div>
+        </div>
+      </noscript>
+
+      <div class="offers-empty" data-offers-empty hidden>
+        <div class="empty-orbit" aria-hidden="true"><span>⌕</span></div>
+        <h3>Aucun résultat.</h3>
+        <p>Essaie un autre filtre ou efface la recherche.</p>
+        <div class="hero-actions" style="justify-content:center;margin-top:16px">
+          <a class="button button-secondary" href="{{ROOT}}jeux-gratuits/index.html">Réinitialiser les filtres</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" data-reveal>
+    <div class="container">
+      <div class="section-heading"><p class="eyebrow">DISCORD · SALONS DÉDIÉS</p><h2>Jeux et DLC<br><span>ne jouent pas dans le même salon.</span></h2><p class="section-intro">FreeGameDrop sépare les jeux complets des DLC gratuits, comme suggéré pour OverX. Sur Discord, <code># 🎮・jeux-gratuits</code> reste pour les jeux, <code># 🧩・dlc-gratuits</code> accueille extensions, packs et cosmétiques. Sur le site, le filtre « Type » fait la même distinction et indique « Toujours gratuit » vs « Offre temporaire ».</p></div>
+      <div class="platform-facts">
+        <article class="platform-fact" data-spotlight><span>✓</span><p><strong>Jeux gratuits</strong> — titre complet, boutique, prix barré et compte à rebours quand la source fournit une date de fin.</p></article>
+        <article class="platform-fact" data-spotlight><span>✓</span><p><strong>DLC gratuits</strong> — extensions, packs et contenus bonus. Le bot distingue « gratuit en permanence » et « temporairement offert ».</p></article>
+        <article class="platform-fact" data-spotlight><span>✓</span><p><strong>Bons plans (plus tard)</strong> — réductions non gratuites. Non affiché ici pour garder le catalogue lisible : jeux gratuits uniquement.</p></article>
+        <article class="platform-fact" data-spotlight><span>✓</span><p><strong>Source fiable</strong> — GamerPower + API officielle Epic côté bot. Une source DLC dédiée sera ajoutée quand elle sera identifiée.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" data-reveal>
+    <div class="section-heading section-heading-split">
+      <div><p class="eyebrow">ARCHITECTURE · CATALOGUE COMMUN</p><h2>Une source.<br><span>Deux vitrines.</span></h2></div>
+      <p class="section-intro">Pas deux systèmes qui collectent chacun leurs offres. Une seule collecte normalisée, publiée dans un fichier partagé, lue par Discord et par OverX.</p>
+    </div>
+    <div class="arch-diagram" data-spotlight>
+      <div class="arch-row">
+        <div class="arch-node"><strong>Sources des offres</strong><small>Steam · Epic (API officielle + GamerPower) · GOG · Ubisoft · Sources DLC à ajouter</small></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node" style="background:var(--surface-raised);border-color:var(--accent)"><strong>Catalogue commun FreeGameDrop</strong><small><code>data/offers.json</code> · offres normalisées, dates, plateformes, liens officiels</small></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node"><strong>Discord + OverX</strong><small>Alertes automatiques dans les salons · Catalogue consultable avec filtres et recherche</small></div>
+      </div>
+      <div class="notice" style="margin-top:8px"><strong>GitHub Pages = statique.</strong><p>OverX ne fait pas tourner le bot Python comme un serveur. Le bot publie <code>data/offers.json</code> (ou une API), le site le lit. Pour commencer, le JSON versionné suffit : simple, hébergeable et maintenable. Une petite API pourra le remplacer quand le volume ou les favoris le justifieront.</p></div>
+    </div>
+  </section>
+
+  <section class="section container" data-reveal>
+    <div class="cta-panel" data-spotlight>
+      <div><p class="eyebrow">RECEVOIR LES ALERTES</p><h2>Tu veux être prévenu ?<br><span>Ajoute le bot.</span></h2><p>Découvre les offres ici, puis reçois-les sur ton serveur Discord : un rôle par boutique, un salon par plateforme, aucune annonce en dehors de ce que tu choisis.</p></div>
+      <div class="cta-actions"><a class="button button-primary" data-install-cta href="{{ROOT}}install/index.html#ajouter">Ajouter à Discord <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ROOT}}discord-bots/freegamedrop/index.html">Voir le fonctionnement <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <section class="section container" data-reveal>
+    <div class="privacy-callout" data-spotlight><div class="callout-icon" aria-hidden="true">◎</div><div><p class="eyebrow">TRANSPARENCE</p><h2>Pas de promesse sur ce qu'on ne sait pas.</h2><p>Ce catalogue n'invente pas d'offre. Il affiche la date de fin quand la source la fournit, indique « Toujours gratuit » quand c'est permanent, et masque les offres expirées. Chaque carte « Récupérer » ouvre la page officielle de la boutique.</p><a class="text-link" href="{{ROOT}}discord-bots/freegamedrop/auto-hebergement/index.html">Comment le fichier est généré <span aria-hidden="true">→</span></a></div></div>
+  </section>
+</main>
+"""
+
+PAGES.append({
+    "path": "jeux-gratuits/index.html",
+    "title": "Jeux gratuits — catalogue Steam, Epic, GOG, Ubisoft | OverX",
+    "description": "Parcourez les jeux gratuits du moment sur OverX : catalogue commun avec FreeGameDrop, filtres par boutique (Steam, Epic, GOG, Ubisoft), par type (jeu, DLC, contenu bonus), recherche et échéance.",
+    "active": "jeux",
+    "og_image": "freegamedrop.png",
+    "body": _JEUX_GRATUITS_BODY,
+    "ld_extra": lambda: [
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Jeux gratuits — catalogue OverX",
+            "description": "Offres de jeux gratuits agrégées par FreeGameDrop et publiées sur OverX.",
+            "itemListElement": [
+                {"@type": "ListItem", "position": 1, "name": "Steam", "url": "discord-bots/freegamedrop/steam/index.html"},
+                {"@type": "ListItem", "position": 2, "name": "Epic Games Store", "url": "discord-bots/freegamedrop/epic-games/index.html"},
+                {"@type": "ListItem", "position": 3, "name": "GOG", "url": "discord-bots/freegamedrop/gog/index.html"},
+                {"@type": "ListItem", "position": 4, "name": "Ubisoft", "url": "discord-bots/freegamedrop/ubisoft/index.html"},
+            ],
+        }
     ],
 })
 
@@ -1072,6 +1235,13 @@ _BOT_BODY = r"""
   </section>
 
   {{PLATFORM_STRIP}}
+
+  <section class="section container" data-reveal>
+    <div class="cta-panel" data-spotlight style="background:radial-gradient(640px 320px at 85% 20%, rgba(49,94,67,0.24), transparent 72%), var(--surface)">
+      <div><p class="eyebrow">NOUVEAU · CATALOGUE OVERX</p><h2>Parcourir les offres<br><span>sans Discord.</span></h2><p>Le même catalogue qui alimente les salons Discord est consultable sur OverX : recherche, filtres par boutique et par type, échéance affichée. Idéal pour choisir avant d'ajouter le bot.</p></div>
+      <div class="cta-actions"><a class="button button-primary" href="{{ROOT}}jeux-gratuits/index.html">Ouvrir le catalogue <span aria-hidden="true">→</span></a><a class="text-link" href="{{ROOT}}jeux-gratuits/index.html#offres">Voir les offres en cours <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
 
   <section class="section section-alt">
     <div class="container">
@@ -1475,6 +1645,7 @@ PAGES.append({
 NAV_ITEMS = [
     ("Accueil", "index.html", "home"),
     ("OverLoad", "overload/index.html", "overload"),
+    ("Jeux gratuits", "jeux-gratuits/index.html", "jeux"),
     ("Bots Discord", "discord-bots/index.html", "bots"),
     ("Documentation", "docs/index.html", "docs"),
     ("Statut", "status/index.html", "status"),
@@ -1537,12 +1708,14 @@ def render_footer(root: str) -> str:
           <a href="{root}index.html">Accueil</a>
           <a href="{root}index.html#projets">Nos projets</a>
           <a href="{root}overload/index.html">OverLoad</a>
+          <a href="{root}jeux-gratuits/index.html">Jeux gratuits</a>
           <a href="{root}discord-bots/index.html">Bots Discord</a>
           <a href="{root}roadmap/index.html">Feuille de route</a>
           <a href="{root}changelog/index.html">Changelog</a>
         </div>
         <div>
           <p class="footer-label">DOCUMENTATION</p>
+          <a href="{root}jeux-gratuits/index.html">Catalogue Jeux gratuits</a>
           <a href="{root}docs/index.html">Guide FreeGameDrop</a>
           <a href="{root}install/index.html">Installation Discord</a>
           <a href="{root}discord-bots/freegamedrop/auto-hebergement/index.html">Auto-hébergement</a>

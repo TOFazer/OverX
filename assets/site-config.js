@@ -33,6 +33,13 @@ window.OVERX_CONFIG = Object.freeze({
   statsApiUrl: "",
   healthApiUrl: "",
 
+  // Catalogue commun FreeGameDrop ↔ OverX. Le site lit par défaut le JSON versionné
+  // dans ce dépôt (data/offers.json), actualisé par le bot (workflow GitHub Action).
+  // Si le bot expose une API (ex: https://api.example/offers), renseigne l'URL absolue
+  // ici : elle est prioritaire et doit autoriser CORS depuis l'origine du site.
+  offersJsonUrl: "",
+  offersApiUrl: "",
+
   // Project links (also referenced in page content and README).
   botSourceUrl: "https://github.com/TOFazer/FreeGameDropDev",
   supportUrl: "https://github.com/TOFazer/FreeGameDropDev/issues",

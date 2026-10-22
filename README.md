@@ -33,6 +33,7 @@ python3 -m unittest discover -s tests -v
 | URL du dépôt | Contenu |
 | --- | --- |
 | `/` | Accueil OverX, collection de projets, section OverLoad et FreeGameDrop |
+| `/jeux-gratuits/` | **Nouveau — Catalogue commun FreeGameDrop ↔ OverX** : offres en cours, recherche, filtres par boutique (Steam, Epic, GOG, Ubisoft) et par type (jeu / DLC / contenu bonus), échéance, bouton « Récupérer » |
 | `/overload/` | Présentation OverLoad, téléchargements Windows, étapes d’installation et FAQ |
 | `/discord-bots/` | Catalogue avec recherche et filtres par catégorie |
 | `/discord-bots/freegamedrop/` | Fonctionnalités, commandes, FAQ et configuration du bot |
@@ -78,6 +79,8 @@ window.OVERX_CONFIG = Object.freeze({
   communityInviteUrl: "",
   statsApiUrl: "",           // GET /api/stats du dashboard du bot (JSON, CORS requis)
   healthApiUrl: "",          // GET /api/health du dashboard du bot
+  offersJsonUrl: "",         // optionnel : URL absolue d'un JSON d'offres (prioritaire sur data/offers.json)
+  offersApiUrl: "",          // optionnel : API d'offres (ex: https://api.example/offers) — CORS requis
   // ...
 });
 ```
@@ -100,6 +103,8 @@ Le site construit alors l'URL OAuth2 Discord avec les scopes `bot applications.c
 ## Données et affirmations publiques
 
 Aucun endpoint de statistiques n'est connecté par défaut : les compteurs de l'accueil affichent « — » et la page Statut indique « non mesuré ». Si `statsApiUrl` / `healthApiUrl` pointent vers le tableau de bord du bot (`/api/stats`, `/api/health`, JSON sans secret), l'accueil et le statut affichent les valeurs réellement mesurées ; en cas d'API injoignable ou de CORS refusé, les compteurs restent à « — » et un message l'explique. Le dashboard du bot doit autoriser CORS depuis l'origine du site, ou être servi derrière le même domaine.
+
+**Catalogue Jeux gratuits** : la page `/jeux-gratuits/` lit `data/offers.json` (ou `offersApiUrl` si renseigné). Ce fichier est le **catalogue commun** FreeGameDrop ↔ OverX : les mêmes offres normalisées alimentent Discord et le site. Le JSON d'exemple commité contient 6 offres illustratives ; le bandeau indique « catalogue d'exemple » tant que le bot ne l'a pas remplacé par un export automatique. Chaque carte affiche la boutique, le type (jeu / DLC / contenu bonus), le prix barré, le badge « Gratuit » et l'échéance (« Toujours gratuit » ou compte à rebours). Les offres expirées sont masquées, les urgentes (<24h) sont mises en avant. Voir `data/README.md` pour le schéma et l'intégration.
 
 La fiche FreeGameDrop s'appuie sur le README du dépôt `TOFazer/FreeGameDropDev` : plateformes documentées (Steam, Epic via API officielle + GamerPower, GOG, Ubisoft), commandes, permissions, licence MIT, surveillance et confidentialité. Les chiffres et l'état en ligne ne sont jamais déduits du seul code source.
 
