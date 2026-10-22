@@ -151,7 +151,38 @@ class ProjectHubTests(unittest.TestCase):
         links = InspectPage(render("overload/index.html")).anchors
         current = [anchor for anchor in links if anchor.get("aria-current") == "page"]
         self.assertEqual(len(current), 1)
-        self.assertEqual(current[0]["href"], "../overload/index.html")
+        self.assertEqual(current[0]["href"], "../index.html#projets")
+
+    def test_navigation_is_concise_and_has_a_clear_primary_action(self) -> None:
+        links = InspectPage(render("index.html")).anchors
+        self.assertTrue(any(anchor.get("href") == "index.html#projets" for anchor in links))
+        home = render("index.html")
+        self.assertIn('>Produits</a>', home)
+        self.assertIn('>À propos</a>', home)
+        self.assertIn('class="button button-header"', home)
+        self.assertIn('>Explorer les projets', home)
+
+    def test_homepage_project_cards_are_visual_and_concise(self) -> None:
+        home = render("index.html")
+        self.assertIn("assets/overload/accueil.png", home)
+        self.assertIn("assets/overload/telechargements.png", home)
+        self.assertIn("Invitation configurée · activité à confirmer", home)
+        self.assertIn("Disponible · v1.1", home)
+        self.assertIn("Découvrir OverLoad", home)
+        self.assertIn("Découvrir FreeGameDrop", home)
+        overload_chips = home.split('id="overload"', 1)[1].split("</article>", 1)[0].count('class="chip"')
+        fgd_chips = home.split('id="bots"', 1)[1].split("</article>", 1)[0].count('class="chip"')
+        self.assertLessEqual(overload_chips, 3)
+        self.assertLessEqual(fgd_chips, 3)
+
+    def test_documentation_has_copyable_code_and_current_section_support(self) -> None:
+        docs = render("docs/index.html")
+        self.assertIn('aria-label="Sommaire de la documentation"', docs)
+        self.assertIn('data-copy-code', docs)
+        self.assertIn('>/setup-auto</code>', docs)
+        self.assertIn('href="../install/index.html"', docs)
+        self.assertIn('href="../status/index.html"', docs)
+        self.assertIn('data-install-cta', docs)
 
     def test_existing_bot_invite_is_preserved(self) -> None:
         links = InspectPage(render("discord-bots/freegamedrop/index.html")).anchors
@@ -218,6 +249,20 @@ class GeneratedSiteTests(unittest.TestCase):
                 header = (ROOT / "assets" / "og" / f"{name}.png").read_bytes()[:24]
                 self.assertEqual(header[:8], b"\x89PNG\r\n\x1a\n")
                 self.assertEqual(struct.unpack(">II", header[16:24]), (1200, 630))
+
+    def test_404_keeps_brand_and_social_metadata(self) -> None:
+        not_found = (ROOT / "404.html").read_text(encoding="utf-8")
+        self.assertIn("Page introuvable — OverX", not_found)
+        self.assertIn('href="assets/brand-mark.svg"', not_found)
+        self.assertIn('property="og:image" content="assets/og/overx.png"', not_found)
+        self.assertIn('name="twitter:card" content="summary_large_image"', not_found)
+
+    def test_motion_is_short_and_respects_reduced_motion(self) -> None:
+        css = (ROOT / "assets" / "css" / "site.css").read_text(encoding="utf-8")
+        js = (ROOT / "assets" / "js" / "site.js").read_text(encoding="utf-8")
+        self.assertIn("prefers-reduced-motion: reduce", css)
+        self.assertIn('window.matchMedia("(prefers-reduced-motion: reduce)")', js)
+        self.assertIn("opacity .52s", css)
 
 
 if __name__ == "__main__":

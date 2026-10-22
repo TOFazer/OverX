@@ -78,22 +78,72 @@
     }
   }
 
-  // ------------------------------------------------------------------
-  // Subtle spotlight tracking on interactive surfaces
-  // ------------------------------------------------------------------
-  if (!reduceMotion) {
+  // Keep the documentation's current section in sync with the reader.
+  const toc = document.querySelector(".docs-toc");
+  if (toc && "IntersectionObserver" in window && !reduceMotion) {
+    const tocLinks = Array.from(toc.querySelectorAll('a[href^="#"]'));
+    const sections = tocLinks
+      .map((link) => document.querySelector(link.getAttribute("href")))
+      .filter(Boolean);
+    const sectionObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (!visible) return;
+      tocLinks.forEach((link) => {
+        if (link.hash === `#${visible.target.id}`) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    }, { rootMargin: "-15% 0px -72% 0px", threshold: 0 });
+    sections.forEach((section) => sectionObserver.observe(section));
+  }
+
+  // Copy visible technical snippets without requiring a library.
+  document.querySelectorAll("[data-copy-code]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const code = button.closest(".code-block")?.querySelector("pre code");
+      if (!code) return;
+      const text = code.textContent.trim();
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const temporary = document.createElement("textarea");
+          temporary.value = text;
+          temporary.setAttribute("readonly", "");
+          temporary.style.position = "fixed";
+          temporary.style.opacity = "0";
+          document.body.append(temporary);
+          temporary.select();
+          const copied = document.execCommand("copy");
+          temporary.remove();
+          if (!copied) throw new Error("Clipboard unavailable");
+        }
+        button.textContent = "Copié ✓";
+        if (announcer) announcer.textContent = "Commande copiée dans le presse-papiers.";
+      } catch {
+        if (announcer) announcer.textContent = "La copie automatique a échoué. Sélectionne la commande et copie-la manuellement.";
+      }
+    });
+  });
+
+  // Subtle spotlight tracking on desktop pointers only; avoid touch listeners on phones.
+  const finePointer = window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
+  if (!reduceMotion && finePointer) {
     document.querySelectorAll("[data-spotlight]").forEach((card) => {
-      card.addEventListener(
-        "pointermove",
-        (event) => {
+      let framePending = false;
+      let lastEvent;
+      card.addEventListener("pointermove", (event) => {
+        lastEvent = event;
+        if (framePending) return;
+        framePending = true;
+        window.requestAnimationFrame(() => {
           const rect = card.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-          card.style.setProperty("--spot-x", `${x}px`);
-          card.style.setProperty("--spot-y", `${y}px`);
-        },
-        { passive: true }
-      );
+          card.style.setProperty("--spot-x", `${lastEvent.clientX - rect.left}px`);
+          card.style.setProperty("--spot-y", `${lastEvent.clientY - rect.top}px`);
+          framePending = false;
+        });
+      }, { passive: true });
     });
   }
 

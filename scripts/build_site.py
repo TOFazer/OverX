@@ -702,11 +702,11 @@ _HOME_BODY = r"""
 
     <article class="featured-bot-card overload-card" id="overload" aria-labelledby="overload-heading" data-spotlight data-reveal>
       <div class="bot-card-main">
-        <div class="bot-card-topline"><span class="product-mark overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows · v1.1</span></div>
+        <div class="bot-card-topline"><span class="product-mark overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Disponible · v1.1</span></div>
         <p class="eyebrow bot-category">TÉLÉCHARGEMENT · ANALYSE · ORGANISATION</p>
         <h3 id="overload-heading">OverLoad</h3>
-        <p class="bot-description">Télécharge des fichiers depuis des liens directs HTTP(S) avec reprise automatique, analyse tes vidéos, musiques et images via FFprobe, puis prépare tes projets de montage dans l'Espace Créateurs d'une application native Windows.</p>
-        <div class="chip-row"><span class="chip">Liens directs HTTP(S)</span><span class="chip">Reprise HTTP Range</span><span class="chip">Analyse multimédia</span><span class="chip">Espace Créateurs</span><span class="chip">Thèmes Sombre &amp; Clair</span></div>
+        <p class="bot-description">L'application Windows pour télécharger des liens directs, comprendre tes médias et préparer tes projets de montage — sans intermédiaire.</p>
+        <div class="chip-row"><span class="chip">Téléchargements directs</span><span class="chip">Analyse FFprobe</span><span class="chip">Espace Créateurs</span></div>
         {{OVERLOAD_DOWNLOADS_HOME}}
       </div>
       {{OVERLOAD_ART}}
@@ -714,13 +714,13 @@ _HOME_BODY = r"""
 
     <article class="featured-bot-card" id="bots" data-spotlight data-reveal>
       <div class="bot-card-main">
-        <div class="bot-card-topline"><span class="product-mark" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Disponibilité publique à confirmer</span></div>
+        <div class="bot-card-topline"><span class="product-mark" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Invitation configurée · activité à confirmer</span></div>
         <p class="eyebrow bot-category">JEUX GRATUITS · STEAM · EPIC · GOG · UBISOFT</p>
         <h3>FreeGameDrop</h3>
-        <p class="bot-description">Chaque heure, le bot vérifie les offres de jeux gratuits et les annonce dans ton serveur. Rôles et salons par plateforme, favoris, alertes privées et rappels de fin d'offre.</p>
-        <div class="chip-row"><span class="chip">🔵 Steam</span><span class="chip">⚪ Epic Games Store</span><span class="chip">🟣 GOG</span><span class="chip">🔷 Ubisoft</span><span class="chip">Licence MIT</span></div>
+        <p class="bot-description">Les offres de jeux gratuits de plusieurs boutiques, annoncées dans des salons dédiés à ta communauté Discord.</p>
+        <div class="chip-row"><span class="chip">Steam · Epic · GOG · Ubisoft</span><span class="chip">Favoris &amp; alertes</span><span class="chip">Open source · MIT</span></div>
         <div class="card-actions">
-          <a class="button button-primary" href="{{ROOT}}discord-bots/freegamedrop/index.html">Voir FreeGameDrop <span aria-hidden="true">↗</span></a>
+          <a class="button button-primary" href="{{ROOT}}discord-bots/freegamedrop/index.html">Découvrir FreeGameDrop <span aria-hidden="true">→</span></a>
           <a class="button button-outline" data-install-cta href="{{ROOT}}install/index.html#ajouter">Guide d'installation <span aria-hidden="true">↗</span></a>
         </div>
         <p class="micro-note" data-install-status>Le lien d'invitation Discord n'a pas encore été communiqué.</p>
@@ -730,9 +730,9 @@ _HOME_BODY = r"""
     <div class="coming-soon-row" data-spotlight data-reveal><span class="coming-icon" aria-hidden="true">＋</span><div><strong>Les prochains projets ?</strong><p>Ils seront présentés ici au fil de leur développement, avec de vraies captures et leur disponibilité clairement indiquée.</p></div><span class="coming-badge">À VENIR</span></div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section section-alt" id="apropos">
     <div class="container">
-      <div class="section-heading" data-reveal><p class="eyebrow">UN POINT D'ENTRÉE COMMUN</p><h2>Découvrir. Choisir.<br><span>Passer à l'action.</span></h2><p class="section-intro">OverX est la vitrine des projets, pas un installateur intermédiaire. Chaque logiciel conserve son parcours direct et transparent.</p></div>
+      <div class="section-heading" data-reveal><p class="eyebrow">À PROPOS D'OVERX</p><h2>Des outils utiles.<br><span>Sans détour.</span></h2><p class="section-intro">OverX rassemble des projets indépendants autour d'une même idée : des produits clairs, des liens officiels et aucune promesse inventée.</p></div>
       {{WHY_OVERX}}
     </div>
   </section>
@@ -763,7 +763,7 @@ _OVERLOAD_BODY = r"""
   <section class="product-hero container overload-hero">
     <div class="product-copy" data-reveal>
       <p class="eyebrow"><a href="{{ROOT}}index.html#projets">PROJETS OVERX</a> <span class="crumb-slash">/</span> OVERLOAD</p>
-      <div class="product-heading"><span class="product-mark product-mark-large overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Application Windows · v1.1</span></div>
+      <div class="product-heading"><span class="product-mark product-mark-large overload-mark" aria-hidden="true">OL</span><span class="status-pill status-current"><span></span> Disponible · v1.1</span></div>
       <h1>Tes médias.<br><span>Prêts pour la suite.</span></h1>
       <p class="hero-lead">OverLoad télécharge des fichiers depuis des liens directs HTTP(S), analyse tes médias et t'aide à préparer tes projets vidéo. Une application de bureau native Windows (`OverLoad.exe`), avec un espace dédié aux créateurs et une interface sombre ou claire.</p>
       {{OVERLOAD_DOWNLOADS}}
@@ -890,7 +890,7 @@ _BOT_BODY = r"""
   <section class="product-hero container" id="installation">
     <div class="product-copy" data-reveal>
       <p class="eyebrow"><a href="{{ROOT}}discord-bots/index.html">BOTS</a> <span class="crumb-slash">/</span> FREEGAMEDROP</p>
-      <div class="product-heading"><span class="product-mark product-mark-large" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Disponibilité publique à confirmer</span></div>
+      <div class="product-heading"><span class="product-mark product-mark-large" aria-hidden="true">FG<span>D</span></span><span class="status-pill status-neutral"><span></span> Invitation configurée · activité à confirmer</span></div>
       <h1>Ne rate plus<br><span>les jeux gratuits.</span></h1>
       <p class="hero-lead">Toutes les heures, FreeGameDrop vérifie Steam, l'Epic Games Store, GOG et Ubisoft, puis annonce chaque offre dans le salon de sa plateforme. Chaque membre choisit exactement ce qu'il veut suivre.</p>
       <div class="hero-actions">
@@ -1084,14 +1084,14 @@ _DOCS_BODY = r"""
   <section class="page-hero container docs-hero" data-reveal>
     <p class="eyebrow">GUIDES OVERX <span class="crumb-slash">/</span> FREEGAMEDROP</p>
     <h1>La documentation<br><span>sans chercher partout.</span></h1>
-    <p class="hero-lead narrow">Les étapes ci-dessous suivent les commandes et comportements décrits dans le dépôt FreeGameDropDev. Le lien d'invitation public reste à configurer.</p>
+    <p class="hero-lead narrow">Installation, configuration et commandes : des réponses lisibles, liées aux guides et au dépôt officiel.</p>
     <div class="docs-search-note"><span aria-hidden="true">⌕</span><span>Une question précise ? Utilise la recherche de ton navigateur avec <kbd>Ctrl</kbd> <span>+</span> <kbd>F</kbd>.</span></div>
   </section>
 
   <section class="section container docs-layout" data-reveal>
-    <aside class="docs-toc"><p class="eyebrow">DANS CE GUIDE</p><a href="#installation">Installation</a><a href="#configuration">Configuration</a><a href="#commandes">Commandes</a><a href="#permissions">Permissions</a><a href="#faq">FAQ</a><a href="#auto-hebergement">Auto-hébergement</a></aside>
+    <aside class="docs-toc" aria-label="Sommaire de la documentation"><p class="eyebrow">DANS CE GUIDE</p><a href="#installation">Installation</a><a href="#configuration">Configuration</a><a href="#commandes">Commandes</a><a href="#permissions">Permissions</a><a href="#faq">FAQ</a><a href="#auto-hebergement">Auto-hébergement</a><span class="docs-toc-divider"></span><a class="docs-related-link" href="{{ROOT}}install/index.html">Guide d'installation <span aria-hidden="true">↗</span></a><a class="docs-related-link" href="{{ROOT}}status/index.html">Statut du service <span aria-hidden="true">↗</span></a><a class="docs-related-link" href="{{ROOT}}support/index.html">Support <span aria-hidden="true">↗</span></a></aside>
     <div class="docs-content">
-      <section class="doc-section" id="installation"><p class="eyebrow">01 · DÉMARRER</p><h2>Installer le bot</h2><ol class="numbered-steps"><li><strong>Ajoute FreeGameDrop à ton serveur.</strong><p>L'invitation publique n'est pas encore configurée sur ce site. Elle sera activée dès que l'Application ID de l'instance sera fourni.</p></li><li><strong>Choisis un serveur où tu peux gérer les applications.</strong><p>Discord demande la permission de gérer le serveur pour autoriser l'installation d'un bot.</p></li><li><strong>Vérifie les permissions puis autorise.</strong><p>Le bot a besoin des permissions documentées ci-dessous pour créer les salons, rôles et annonces.</p></li><li><strong>Lance <code>/setup-auto</code> dans ton serveur.</strong><p>Sélectionne les plateformes souhaitées, puis valide la création ou la mise à jour de la configuration.</p></li></ol><div class="notice notice-warn"><strong>À savoir</strong><p>La disponibilité de l'instance et son URL d'invitation ne sont pas encore connectées au site. Le code source reste consultable sur GitHub.</p><a class="text-link" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Ouvrir FreeGameDropDev <span aria-hidden="true">↗</span></a></div></section>
+      <section class="doc-section" id="installation"><p class="eyebrow">01 · DÉMARRER</p><h2>Installer le bot</h2><ol class="numbered-steps"><li><strong>Ajoute FreeGameDrop à ton serveur.</strong><p>Suis le guide d'installation ci-dessous, puis vérifie l'application et les permissions affichées par Discord.</p></li><li><strong>Choisis un serveur où tu peux gérer les applications.</strong><p>Discord demande la permission de gérer le serveur pour autoriser l'installation d'un bot.</p></li><li><strong>Vérifie les permissions puis autorise.</strong><p>Le bot a besoin des permissions documentées ci-dessous pour créer les salons, rôles et annonces.</p></li><li><strong>Lance <code>/setup-auto</code> dans ton serveur.</strong><p>Sélectionne les plateformes souhaitées, puis valide la création ou la mise à jour de la configuration.</p></li></ol><div class="docs-install-action"><a class="button button-primary" data-install-cta href="{{ROOT}}install/index.html#ajouter">Guide d'installation <span aria-hidden="true">→</span></a><span>Le statut de l'instance n'est pas présumé.</span></div><div class="code-block"><div class="code-block-header"><span>Dans Discord · première configuration</span><button class="copy-code-button" type="button" data-copy-code aria-label="Copier la commande /setup-auto">Copier</button></div><pre><code>/setup-auto</code></pre></div><div class="notice notice-warn"><strong>À savoir</strong><p>Le site ne mesure pas la disponibilité en temps réel du bot. Consulte la page Statut pour les informations actuellement publiées.</p><a class="text-link" href="{{ROOT}}status/index.html">Voir le statut <span aria-hidden="true">→</span></a><a class="text-link" href="https://github.com/TOFazer/FreeGameDropDev" target="_blank" rel="noopener noreferrer">Ouvrir FreeGameDropDev <span aria-hidden="true">↗</span></a></div></section>
 
       <section class="doc-section" id="configuration"><p class="eyebrow">02 · CONFIGURATION</p><h2>Configurer les notifications</h2><p><code>/setup-auto</code> crée ou met à jour la catégorie de jeux, les rôles de plateforme, les salons dédiés et le panneau de sélection. Les membres peuvent cliquer sur les boutons pour obtenir ou retirer un rôle de plateforme.</p><ul class="doc-bullets"><li>Les salons de jeux sont organisés par plateforme (🔵 Steam, ⚪ Epic,  GOG, 🔷 Ubisoft) et configurés en lecture seule pour les membres.</li><li>Les commandes <code>/config</code> et <code>/acces-salon-roles</code> permettent aux administrateurs d'ajuster la configuration décrite par le bot.</li><li><code>/rappel-salon</code> permet de choisir le salon qui reçoit les rappels de fin d'offre.</li><li>Le bot est documenté comme vérifiant les offres toutes les heures ; l'état réel de l'instance se vérifie avec <code>/sante</code>.</li></ul></section>
 
@@ -1319,10 +1319,9 @@ PAGES.append({
 
 NAV_ITEMS = [
     ("Accueil", "index.html", "home"),
-    ("OverLoad", "overload/index.html", "overload"),
-    ("Bots Discord", "discord-bots/index.html", "bots"),
+    ("Produits", "index.html#projets", "products"),
     ("Documentation", "docs/index.html", "docs"),
-    ("Statut", "status/index.html", "status"),
+    ("À propos", "index.html#apropos", "about"),
 ]
 
 
@@ -1355,7 +1354,8 @@ def expand_body(page: dict) -> str:
 def render_nav(root: str, active: str) -> str:
     links = []
     for label, target, key in NAV_ITEMS:
-        current = ' aria-current="page"' if key == active else ""
+        is_current = key == active or (key == "products" and active in {"overload", "bots", "install"})
+        current = ' aria-current="page"' if is_current else ""
         links.append(f'<a href="{root}{target}"{current}>{label}</a>')
     return "\n        ".join(links)
 
@@ -1400,7 +1400,12 @@ def render_page(page: dict) -> str:
     body = expand_body(page).replace("{{ROOT}}", root).strip()
     if install_url:
         body = body.replace(f'data-install-cta href="{root}install/index.html#ajouter"', f'data-install-cta href="{install_href}"{install_target}')
-        body = body.replace('>Guide d\'installation <span aria-hidden="true">↗</span></a>', '>Ajouter à Discord <span aria-hidden="true">↗</span></a>')
+        body = re.sub(
+            r'(<a\b(?=[^>]*\bdata-install-cta\b)[^>]*>).*?(?=<span aria-hidden="true">)',
+            r'\1Ajouter à Discord ',
+            body,
+            flags=re.S,
+        )
         body = body.replace('data-discord-install href="#ajouter" aria-disabled="true"', f'data-discord-install href="{install_href}"{install_target}')
         body = body.replace('>Invitation Discord à configurer <span aria-hidden="true">↗</span></a>', '>Ajouter à Discord <span aria-hidden="true">↗</span></a>')
         body = body.replace('class="status-pill status-neutral install-state" data-install-state><span></span> Lien de production à configurer', 'class="status-pill status-current install-state" data-install-state><span></span> Invitation prête')
@@ -1434,9 +1439,9 @@ def render_page(page: dict) -> str:
       <a class="brand" href="{root}index.html" aria-label="OverX — accueil"><img src="{root}assets/brand-mark.svg" alt="" width="36" height="36"><span class="brand-word">OVER<span>X</span><small>APPLICATIONS &amp; PROJETS</small></span></a>
       <nav class="site-nav" id="primary-nav" data-site-nav aria-label="Navigation principale">
         {nav}
-        <a class="mobile-nav-cta" href="{root}index.html#projets">Nos projets</a>
+        <a class="mobile-nav-cta" href="{root}index.html#projets">Découvrir les projets <span aria-hidden="true">→</span></a>
       </nav>
-      <div class="header-actions"><a class="button button-header" href="{root}index.html#projets">Nos projets <span aria-hidden="true">→</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle><span></span><span></span><span></span></button></div>
+      <div class="header-actions"><a class="button button-header" href="{root}index.html#projets">Explorer les projets <span aria-hidden="true">→</span></a><button class="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle><span></span><span></span><span></span></button></div>
     </div>
   </header>
 {body}
