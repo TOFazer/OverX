@@ -1,25 +1,8 @@
 {
-  "generated_at": "2026-10-22T23:46:03.851012Z",
+  "generated_at": "2026-10-23T00:10:10.889387Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3805",
-      "title": "Gear.Club Unlimited 3 - Gear.Club Signature Pack Steam Giveaway",
-      "description": "Score Gear.Club Unlimited 3 - Gear.Club Signature Pack (DLC) for free via Steam until until October 22. Please note the base game is required to enjoy this DLC content.",
-      "type": "dlc",
-      "type_label": "DLC / extension",
-      "platform": "steam",
-      "platform_label": "Steam",
-      "store": "PC, Steam",
-      "url": "https://www.gamerpower.com/open/gear-club-unlimited-3-gear-club-signature-pack-steam-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/6ac77cb55089f.jpg",
-      "price_original": "$4.99",
-      "expires_at": "2026-10-22T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "gamerpower-3792",
       "title": "Castlevania: 40th Anniversary (Mobile) Giveaway",
