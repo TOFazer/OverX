@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T23:08:59.948937Z",
+  "generated_at": "2026-10-24T23:41:18.968655Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -186,6 +186,23 @@
       "image": "https://www.gamerpower.com/offers/1b/6993208da38c7.jpg",
       "price_original": "$1.99",
       "expires_at": "2026-10-31T23:59:59Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3825",
+      "title": "MAFIA HOTEL (Epic Games) Giveaway",
+      "description": "Claim MAFIA HOTEL for free via Epic Games Store! MAFIA HOTEL is a 3d multiplayer social deduction game for up to 16 players.",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "epic",
+      "platform_label": "Epic Games Store",
+      "store": "PC, Epic Games Store",
+      "url": "https://www.gamerpower.com/open/mafia-hotel-epic-games-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6add376bc36a0.jpg",
+      "price_original": "$1.99",
+      "expires_at": "2026-11-01T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
