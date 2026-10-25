@@ -1,42 +1,8 @@
 {
-  "generated_at": "2026-10-24T23:41:18.968655Z",
+  "generated_at": "2026-10-25T00:03:23.539477Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3792",
-      "title": "Castlevania: 40th Anniversary (Mobile) Giveaway",
-      "description": "Celebrate Castlevania’s 40th Anniversary and claim the original NES classic for free on the App Store and Google Play until October 24.",
-      "type": "game",
-      "type_label": "Jeu complet",
-      "platform": "other",
-      "platform_label": "Android, iOS",
-      "store": "Android, iOS",
-      "url": "https://www.gamerpower.com/open/castlevania-40th-anniversary-mobile-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/6ab6470a4ddf0.jpg",
-      "price_original": "N/A",
-      "expires_at": "2026-10-24T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
-    {
-      "id": "gamerpower-3100",
-      "title": "The Black Within (itch.io) Giveaway",
-      "description": "Download The Black Within for free via itch.io! The Black Within is a single-player first-person psychological game with creepy atmosphere and puzzles. Check it out!",
-      "type": "game",
-      "type_label": "Jeu complet",
-      "platform": "other",
-      "platform_label": "PC, Itch.io, DRM-Free",
-      "store": "PC, Itch.io, DRM-Free",
-      "url": "https://www.gamerpower.com/open/the-black-within-itch-io-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/67cb0e32bf51c.jpg",
-      "price_original": "$5.99",
-      "expires_at": "2026-10-24T23:59:59Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "gamerpower-3818",
       "title": "Squad Weapon Skins - Recon Team Pack (Steam) Giveaway",
