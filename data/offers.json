@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T17:26:52.492658Z",
+  "generated_at": "2026-10-26T18:21:32.117963Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -168,6 +168,23 @@
       "url": "https://www.gamerpower.com/open/gethigh-exe-epic-games-giveaway",
       "image": "https://www.gamerpower.com/offers/1b/6ad63cd807641.jpg",
       "price_original": "$1.99",
+      "expires_at": "2026-11-02T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3826",
+      "title": "V Rising - Haunted Nights Castle Pack (Steam) Giveaway",
+      "description": "Claim V Rising - Haunted Nights Castle Pack (DLC) for free via Steam until November 2! Please note the base game is required to enjoy this content DLC.",
+      "type": "dlc",
+      "type_label": "DLC / extension",
+      "platform": "steam",
+      "platform_label": "Steam",
+      "store": "PC, Steam",
+      "url": "https://www.gamerpower.com/open/v-rising-haunted-nights-castle-pack-steam-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6adf8f9e94cd7.jpg",
+      "price_original": "N/A",
       "expires_at": "2026-11-02T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
