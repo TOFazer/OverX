@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T13:36:44.632031Z",
+  "generated_at": "2026-10-26T15:23:33.305412Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -304,6 +304,23 @@
       "url": "https://www.gamerpower.com/open/age-of-wonders-4-special-godir-helmet-steam-key-giveaway",
       "image": "https://www.gamerpower.com/offers/1b/6452677147a74.jpg",
       "price_original": "N/A",
+      "expires_at": null,
+      "availability": "unknown",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3340",
+      "title": "ANCIENT EVIL (IndieGala) Giveaway",
+      "description": "Download ANCIENT EVIL for free via IndieGala! Ancient Evil is a 2d tactical RPG with puzzle elements. Don´t miss it!",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "other",
+      "platform_label": "PC, DRM-Free",
+      "store": "PC, DRM-Free",
+      "url": "https://www.gamerpower.com/open/ancient-evil-pc-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/69024dade7c16.jpg",
+      "price_original": "$4.99",
       "expires_at": null,
       "availability": "unknown",
       "is_permanent": false,
