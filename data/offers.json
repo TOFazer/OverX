@@ -1,25 +1,8 @@
 {
-  "generated_at": "2026-10-25T23:42:40.871188Z",
+  "generated_at": "2026-10-26T00:05:34.505729Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3818",
-      "title": "Squad Weapon Skins - Recon Team Pack (Steam) Giveaway",
-      "description": "Claim Squad Weapon Skins - Recon Team Pack (DLC) for free on Steam! Please note the base game Squad is required to enjoy this DLC content.",
-      "type": "dlc",
-      "type_label": "DLC / extension",
-      "platform": "steam",
-      "platform_label": "Steam",
-      "store": "PC, Steam",
-      "url": "https://www.gamerpower.com/open/squad-weapon-skins-recon-team-pack-steam-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/6ad116e31362f.jpg",
-      "price_original": "$11.99",
-      "expires_at": "2026-10-25T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "gamerpower-3822",
       "title": "Terraspace (Epic Games) Giveaway",
