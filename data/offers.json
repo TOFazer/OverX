@@ -1,25 +1,8 @@
 {
-  "generated_at": "2026-10-27T23:48:46.109344Z",
+  "generated_at": "2026-10-28T01:21:50.295346Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3822",
-      "title": "Terraspace (Epic Games) Giveaway",
-      "description": "Download Terraspace for free via Epic Games Store! Terraspace is a casual city builder game about creating conditions for life on unsuitable planets.",
-      "type": "game",
-      "type_label": "Jeu complet",
-      "platform": "epic",
-      "platform_label": "Epic Games Store",
-      "store": "PC, Epic Games Store",
-      "url": "https://www.gamerpower.com/open/terraspace-epic-games-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/6ad9256e3eef5.jpg",
-      "price_original": "$7.99",
-      "expires_at": "2026-10-27T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "epic-06190191cede42afb633fe89ef08c27e",
       "title": "Home - A Unique Horror Adventure",
