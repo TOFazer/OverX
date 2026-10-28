@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-28T21:21:51.268678Z",
+  "generated_at": "2026-10-28T22:22:32.153047Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -458,6 +458,23 @@
       "image": "https://www.gamerpower.com/offers/1b/6acfc46e08a35.jpg",
       "price_original": "N/A",
       "expires_at": "2026-11-10T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3830",
+      "title": "Free itch.io Games Bundle",
+      "description": "Claim this bundle (worth $384) and download 116 games for free on itch.io! No strings attached!",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "other",
+      "platform_label": "PC, Itch.io, DRM-Free",
+      "store": "PC, Itch.io, DRM-Free",
+      "url": "https://www.gamerpower.com/open/free-itch-io-games-bundle",
+      "image": "https://www.gamerpower.com/offers/1b/6ae264e50edb5.jpg",
+      "price_original": "$384.00",
+      "expires_at": "2026-11-22T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
