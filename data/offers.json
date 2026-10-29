@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-29T13:43:34.700473Z",
+  "generated_at": "2026-10-29T14:39:33.151946Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -458,6 +458,23 @@
       "image": "https://www.gamerpower.com/offers/1b/6acfc46e08a35.jpg",
       "price_original": "N/A",
       "expires_at": "2026-11-10T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3831",
+      "title": "Hunting Simulator 3 - Classic American Hunter Pack (Steam) Giveaway",
+      "description": "Score Hunting Simulator 3 - Classic American Hunter Pack (DLC) for free on Steam! Please note the base game is required to enjoy this content DLC.",
+      "type": "dlc",
+      "type_label": "DLC / extension",
+      "platform": "steam",
+      "platform_label": "Steam",
+      "store": "PC, Steam",
+      "url": "https://www.gamerpower.com/open/hunting-simulator-3-classic-american-hunter-pack-steam-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6ae34f8e4b036.jpg",
+      "price_original": "$4.99",
+      "expires_at": "2026-11-12T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
