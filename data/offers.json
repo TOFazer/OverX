@@ -1,25 +1,8 @@
 {
-  "generated_at": "2026-10-30T20:52:33.400316Z",
+  "generated_at": "2026-10-31T00:52:45.756432Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3783",
-      "title": "Aniimo Gift Pack Key Giveaway",
-      "description": "Claim your free Aniimo Gift Pack Key and unlock 66,666 Credits, 6 Aniipod Pros, and 6 Growth Flowers. Please note that this giveaway requires 10 ARP (Arena Reward Points) to claim a key. Fortunately, you can earn ARP for free every day simply by logging into the website.",
-      "type": "dlc",
-      "type_label": "DLC / extension",
-      "platform": "other",
-      "platform_label": "PC, Playstation 5, Xbox Series X|S, Android, iOS",
-      "store": "PC, Playstation 5, Xbox Series X|S, Android, iOS",
-      "url": "https://www.gamerpower.com/open/aniimo-gift-pack-key-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/aniimo.jpg",
-      "price_original": "N/A",
-      "expires_at": "2026-10-30T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "gamerpower-3834",
       "title": "Hexologic (Steam) Giveaway",
