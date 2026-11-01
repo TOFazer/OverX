@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T19:14:21.080161Z",
+  "generated_at": "2026-11-01T22:55:05.858588Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -371,6 +371,23 @@
       "store": "PC, Epic Games Store",
       "url": "https://www.gamerpower.com/open/gladiator-blades-of-fury-epic-games-giveaway",
       "image": "https://www.gamerpower.com/offers/1b/6ae6414cb0f67.jpg",
+      "price_original": "$9.99",
+      "expires_at": "2026-11-08T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3840",
+      "title": "Horse Racing (Epic Games) Giveaway",
+      "description": "Download Horse Racing for free via Epic Games Store until Nov 8.",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "epic",
+      "platform_label": "Epic Games Store",
+      "store": "PC, Epic Games Store",
+      "url": "https://www.gamerpower.com/open/horse-racing-epic-games-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6ae7b210288b2.jpg",
       "price_original": "$9.99",
       "expires_at": "2026-11-08T23:59:00Z",
       "availability": "temporary",
