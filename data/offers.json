@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-01T14:20:59.886611Z",
+  "generated_at": "2026-11-01T19:14:21.080161Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -339,6 +339,23 @@
       "image": "https://www.gamerpower.com/offers/1b/61c3b92ec8e9f.jpg",
       "price_original": "$7.99",
       "expires_at": "2026-11-05T23:59:59Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3839",
+      "title": "Epic World - Hunt For Quest (Epic Games) Giveaway",
+      "description": "Save 100% on Claim Epic World - Hunt For Quest via Epic Games Store! Epic World is a 2d platformer action game with hidden treasures and dangerous enemies.",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "epic",
+      "platform_label": "Epic Games Store",
+      "store": "PC, Epic Games Store",
+      "url": "https://www.gamerpower.com/open/epic-world-hunt-for-quest-epic-games-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6ae74d1a29ca6.jpg",
+      "price_original": "$6.99",
+      "expires_at": "2026-11-08T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
