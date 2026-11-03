@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T10:08:06.650581Z",
+  "generated_at": "2026-11-03T17:54:10.688901Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -1800,23 +1800,6 @@
       "url": "https://www.gamerpower.com/open/without-a-hitch-ufo-hat-key-giveaway",
       "image": "https://www.gamerpower.com/offers/1b/69fa23daacfcb.jpg",
       "price_original": "N/A",
-      "expires_at": null,
-      "availability": "unknown",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
-    {
-      "id": "gamerpower-3313",
-      "title": "Wordle (IndieGala) Giveaway",
-      "description": "Dreaming about Wordle? What a coincidence, it’s on IndieGala for free! Download it now and make your dreams come true.",
-      "type": "game",
-      "type_label": "Jeu complet",
-      "platform": "other",
-      "platform_label": "PC, DRM-Free",
-      "store": "PC, DRM-Free",
-      "url": "https://www.gamerpower.com/open/wordle-pc-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/68e15e986da99.jpg",
-      "price_original": "$29.99",
       "expires_at": null,
       "availability": "unknown",
       "is_permanent": false,
