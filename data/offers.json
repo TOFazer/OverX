@@ -1,25 +1,8 @@
 {
-  "generated_at": "2026-11-03T23:29:19.006884Z",
+  "generated_at": "2026-11-04T03:22:19.882676Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3828",
-      "title": "Octane100 (itch.io) Giveaway",
-      "description": "Join the war against the oil corporation! Grab Octane100 for free via itch.io! Octane100 is a cool 2d turn-based action game with roguelike elements.",
-      "type": "game",
-      "type_label": "Jeu complet",
-      "platform": "other",
-      "platform_label": "PC, Itch.io, DRM-Free",
-      "store": "PC, Itch.io, DRM-Free",
-      "url": "https://www.gamerpower.com/open/octane100-itch-io-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/6ae25d5c6c327.jpg",
-      "price_original": "$0.99",
-      "expires_at": "2026-11-03T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "gamerpower-3827",
       "title": "Heirloom (itch.io) Giveaway",
