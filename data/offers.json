@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04T11:37:17.913983Z",
+  "generated_at": "2026-11-04T18:53:37.937262Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -220,6 +220,23 @@
       "image": "https://www.gamerpower.com/offers/1b/61c3b92ec8e9f.jpg",
       "price_original": "$7.99",
       "expires_at": "2026-11-05T23:59:59Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3843",
+      "title": "Letter Quest: Grimm's Journey Remastered Steam Key Giveaway",
+      "description": "Grab free Steam keys for Letter Quest: Grimm's Journey Remastered via Fanatical! Letter Quest: Grimm's Journey Remastered is a 2d turn-based RPG with clever wordplay. Don´t miss it!",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "steam",
+      "platform_label": "Steam",
+      "store": "PC, Steam",
+      "url": "https://www.gamerpower.com/open/letter-quest-grimm-s-journey-remastered-steam-key-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6aeb27dbc0e38.jpg",
+      "price_original": "$6.99",
+      "expires_at": "2026-11-06T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
