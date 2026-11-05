@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05T07:27:13.063932Z",
+  "generated_at": "2026-11-05T15:51:01.904529Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -38,23 +38,6 @@
       "source": "GamerPower"
     },
     {
-      "id": "gamerpower-3422",
-      "title": "Do You Have a Moment to Talk About Our Lord and Savior? (Itch.io) Giveaway",
-      "description": "Grab “Do You Have a Moment to Talk About Our Lord and Savior?” for free on itch.io! A short 3D roguelike deckbuilder with retro PSX-style graphics.",
-      "type": "game",
-      "type_label": "Jeu complet",
-      "platform": "other",
-      "platform_label": "PC, Itch.io, DRM-Free",
-      "store": "PC, Itch.io, DRM-Free",
-      "url": "https://www.gamerpower.com/open/do-you-have-a-moment-to-talk-about-our-lord-and-savior-itch-io-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/6946b8c46bc9b.jpg",
-      "price_original": "$2.99",
-      "expires_at": "2026-11-05T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
-    {
       "id": "gamerpower-3832",
       "title": "Galaxy Kart (Mobile) Giveaway",
       "description": "Galaxy Kart (Mobile version) is free until November 5 on the Epic Games Store App for iPhone, iPad, and Android.\r\n\r\nNote: May not be available in all regions.",
@@ -66,23 +49,6 @@
       "url": "https://www.gamerpower.com/open/galaxy-kart-mobile-giveaway",
       "image": "https://www.gamerpower.com/offers/1b/6ae3661d090e9.jpg",
       "price_original": "$4.99",
-      "expires_at": "2026-11-05T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
-    {
-      "id": "gamerpower-3180",
-      "title": "Solace Inc. (itchio) Giveaway",
-      "description": "Hack, slash, shoot, and blast! Download Solace Inc. for free on itchi.o. Solace Inc. is a 2D survivors-like game where you recruit your employees against endless hordes of enemies.",
-      "type": "game",
-      "type_label": "Jeu complet",
-      "platform": "other",
-      "platform_label": "PC, Itch.io, DRM-Free",
-      "store": "PC, Itch.io, DRM-Free",
-      "url": "https://www.gamerpower.com/open/solace-inc-itchio-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/684151ffd5fd6.jpg",
-      "price_original": "$3.99",
       "expires_at": "2026-11-05T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
