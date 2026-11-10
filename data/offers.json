@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T11:51:13.433296Z",
+  "generated_at": "2026-11-10T19:50:45.472596Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -949,6 +949,23 @@
       "store": "PC",
       "url": "https://www.gamerpower.com/open/kards-special-bundle-key-giveaway",
       "image": "https://www.gamerpower.com/offers/1b/698b92396a0fc.jpg",
+      "price_original": "N/A",
+      "expires_at": null,
+      "availability": "unknown",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3849",
+      "title": "Kettlebell: Inferno Hotel Afterimage Effect Key Giveaway",
+      "description": "Claim your free Kettlebell: Inferno Hotel Afterimage Effect Key! Please note that this giveaway requires 10 ARP (Arena Reward Points) to claim a key.",
+      "type": "dlc",
+      "type_label": "DLC / extension",
+      "platform": "other",
+      "platform_label": "PC",
+      "store": "PC",
+      "url": "https://www.gamerpower.com/open/kettlebell-inferno-hotel-afterimage-effect-key-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6af362798d714.jpg",
       "price_original": "N/A",
       "expires_at": null,
       "availability": "unknown",
