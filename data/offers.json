@@ -1,25 +1,8 @@
 {
-  "generated_at": "2026-11-10T19:50:45.472596Z",
+  "generated_at": "2026-11-11T00:42:18.210696Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3814",
-      "title": "Dungeons And Dragons Online: Bigby’s Better Gift Coupon Code",
-      "description": "Dungeons And Dragons Online Bigby’s Better Gift code is available until November 10, for all players! The code unlocks content packs, adventure packs, new character types, and much more. Enter BIGBYISBETTER within the “redeem coupon” area of the DDO in-game store!\n\nCODE: BIGBYISBETTER",
-      "type": "dlc",
-      "type_label": "DLC / extension",
-      "platform": "other",
-      "platform_label": "PC",
-      "store": "PC",
-      "url": "https://www.gamerpower.com/open/dungeons-and-dragons-online-bigby-s-better-gift-coupon-code",
-      "image": "https://www.gamerpower.com/offers/1b/6acfc46e08a35.jpg",
-      "price_original": "N/A",
-      "expires_at": "2026-11-10T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "epic-3be0a0d8479946d78f60d90c9442a0b4",
       "title": "Flotsam",
