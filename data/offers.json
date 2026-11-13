@@ -1,25 +1,8 @@
 {
-  "generated_at": "2026-11-12T20:05:05.694327Z",
+  "generated_at": "2026-11-13T01:11:32.939478Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3831",
-      "title": "Hunting Simulator 3 - Classic American Hunter Pack (Steam) Giveaway",
-      "description": "Score Hunting Simulator 3 - Classic American Hunter Pack (DLC) for free on Steam! Please note the base game is required to enjoy this content DLC.",
-      "type": "dlc",
-      "type_label": "DLC / extension",
-      "platform": "steam",
-      "platform_label": "Steam",
-      "store": "PC, Steam",
-      "url": "https://www.gamerpower.com/open/hunting-simulator-3-classic-american-hunter-pack-steam-giveaway",
-      "image": "https://www.gamerpower.com/offers/1b/6ae34f8e4b036.jpg",
-      "price_original": "$4.99",
-      "expires_at": "2026-11-12T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "epic-9975548b6d404a94b8a9bdb34cad49e9",
       "title": "Knightica",
