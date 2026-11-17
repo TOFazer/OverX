@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T09:18:14.700763Z",
+  "generated_at": "2026-11-17T18:46:56.115485Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -50,6 +50,23 @@
       "image": "https://www.gamerpower.com/offers/1b/6ae264e50edb5.jpg",
       "price_original": "$384.00",
       "expires_at": "2026-11-22T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3852",
+      "title": "Contractor: The Clean Up Part 2 (Epic Games) Giveaway",
+      "description": "Score Contractor: The Clean Up Part 2 for free via Epic Games Store! Take control of a powerful loader and clear construction sites filled with rubble, broken concrete, and debris.",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "epic",
+      "platform_label": "Epic Games Store",
+      "store": "PC, Epic Games Store",
+      "url": "https://www.gamerpower.com/open/contractor-the-clean-up-part-2-epic-games-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6afc554f06761.jpg",
+      "price_original": "$4.99",
+      "expires_at": "2026-12-02T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
