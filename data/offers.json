@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T17:26:13.755451Z",
+  "generated_at": "2026-11-19T23:54:37.513529Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -84,6 +84,23 @@
       "image": "https://www.gamerpower.com/offers/1b/6afc554f06761.jpg",
       "price_original": "$4.99",
       "expires_at": "2026-12-02T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3855",
+      "title": "World of Warships: Black Friday Giveaway",
+      "description": "New World of Warships players can unlock $300 worth of in-game rewards, including a Premium battleship, Premium Account time, Supercontainers and more.",
+      "type": "dlc",
+      "type_label": "DLC / extension",
+      "platform": "other",
+      "platform_label": "PC",
+      "store": "PC",
+      "url": "https://www.gamerpower.com/open/world-of-warships-black-friday-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6aff32359a14c.jpg",
+      "price_original": "N/A",
+      "expires_at": "2026-12-04T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
