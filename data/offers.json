@@ -1,25 +1,8 @@
 {
-  "generated_at": "2026-11-22T21:19:25.295017Z",
+  "generated_at": "2026-11-23T02:00:25.844851Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
-    {
-      "id": "gamerpower-3830",
-      "title": "Free itch.io Games Bundle",
-      "description": "Claim this bundle (worth $384) and download 116 games for free on itch.io! No strings attached!",
-      "type": "game",
-      "type_label": "Jeu complet",
-      "platform": "other",
-      "platform_label": "PC, Itch.io, DRM-Free",
-      "store": "PC, Itch.io, DRM-Free",
-      "url": "https://www.gamerpower.com/open/free-itch-io-games-bundle",
-      "image": "https://www.gamerpower.com/offers/1b/6ae264e50edb5.jpg",
-      "price_original": "$384.00",
-      "expires_at": "2026-11-22T23:59:00Z",
-      "availability": "temporary",
-      "is_permanent": false,
-      "source": "GamerPower"
-    },
     {
       "id": "epic-1f9a12b06b4f437790b6913ad136a08c",
       "title": "Mark of the Deep",
