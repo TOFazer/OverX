@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T15:38:57.932870Z",
+  "generated_at": "2026-11-27T23:45:37.398702Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -140,6 +140,23 @@
       "source": "GamerPower"
     },
     {
+      "id": "gamerpower-3862",
+      "title": "Ba Bị (itch.io) Giveaway",
+      "description": "Download Ba Bị for free on itch.io! Ba Bị 3D is a puzzle game based on Vietnamese folklore.",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "other",
+      "platform_label": "PC, Itch.io",
+      "store": "PC, Itch.io",
+      "url": "https://www.gamerpower.com/open/n-a",
+      "image": "https://www.gamerpower.com/offers/1b/6b0a1024d09c7.jpg",
+      "price_original": "$4.99",
+      "expires_at": "2026-12-04T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
       "id": "gamerpower-3855",
       "title": "World of Warships: Black Friday Giveaway",
       "description": "New World of Warships players can unlock $300 worth of in-game rewards, including a Premium battleship, Premium Account time, Supercontainers and more.",
@@ -185,6 +202,23 @@
       "url": "https://www.gamerpower.com/open/dave-the-diver-godzilla-content-pack-steam-giveaway",
       "image": "https://www.gamerpower.com/offers/1b/664f58a123dcd.jpg",
       "price_original": "N/A",
+      "expires_at": "2026-12-31T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3861",
+      "title": "Rulebound (itch.io) Giveaway",
+      "description": "Score Rulebound for free via itch.io! Rulebound is a 3d surreal incremental game where survival depends on split attention.",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "other",
+      "platform_label": "PC, Itch.io",
+      "store": "PC, Itch.io",
+      "url": "https://www.gamerpower.com/open/rulebound-itch-io-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6b0a0de4276dc.jpg",
+      "price_original": "$6.99",
       "expires_at": "2026-12-31T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
