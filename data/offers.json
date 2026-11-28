@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T23:45:37.398702Z",
+  "generated_at": "2026-11-28T05:01:38.319285Z",
   "source": "FreeGameDrop — GamerPower + Epic Games Store",
   "notice": "Offres en cours collectées automatiquement. Chaque lien mène à la page de l'offre ou au produit sur sa boutique officielle.",
   "offers": [
@@ -38,6 +38,23 @@
       "source": "GamerPower"
     },
     {
+      "id": "gamerpower-2478",
+      "title": "Boots Quest DX (itch.io) Giveaway",
+      "description": "Download Boots Quest DX for free on itch.io! Boots Quest DX is a small adventure game with lots of puzzles and items to collect!",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "other",
+      "platform_label": "PC, Itch.io",
+      "store": "PC, Itch.io",
+      "url": "https://www.gamerpower.com/open/boots-quest-dx-itch-io-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/64cd77c7ac5fe.jpg",
+      "price_original": "$9.99",
+      "expires_at": "2026-11-30T23:59:59Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
       "id": "gamerpower-3852",
       "title": "Contractor: The Clean Up Part 2 (Epic Games) Giveaway",
       "description": "Score Contractor: The Clean Up Part 2 for free via Epic Games Store! Take control of a powerful loader and clear construction sites filled with rubble, broken concrete, and debris.",
@@ -50,6 +67,23 @@
       "image": "https://www.gamerpower.com/offers/1b/6afc554f06761.jpg",
       "price_original": "$4.99",
       "expires_at": "2026-12-02T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-2109",
+      "title": "Tim-Tim 2: The Almighty Gnome (itch.io) Giveaway",
+      "description": "Score Tim-Tim 2: The Almighty Gnome for free on itch.io! Tim-Tim 2: The Almighty Gnome is a 2d adventure game with over 100 maps to explore.",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "other",
+      "platform_label": "PC",
+      "store": "PC",
+      "url": "https://www.gamerpower.com/open/tim-tim-2-the-almighty-gnome-itch-io-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/63a7d58806279.jpg",
+      "price_original": "$3.99",
+      "expires_at": "2026-12-02T23:59:01Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
@@ -169,6 +203,23 @@
       "image": "https://www.gamerpower.com/offers/1b/6aff32359a14c.jpg",
       "price_original": "N/A",
       "expires_at": "2026-12-04T23:59:00Z",
+      "availability": "temporary",
+      "is_permanent": false,
+      "source": "GamerPower"
+    },
+    {
+      "id": "gamerpower-3863",
+      "title": "Lonely in the Winter (itch.io) Giveaway",
+      "description": "Claim Lonely in the Winter for free via itch.io! Lonely in the Winter is a small 2d rpg game with casual gameplay.",
+      "type": "game",
+      "type_label": "Jeu complet",
+      "platform": "other",
+      "platform_label": "PC, Itch.io, DRM-Free",
+      "store": "PC, Itch.io, DRM-Free",
+      "url": "https://www.gamerpower.com/open/lonely-in-the-winter-itch-io-giveaway",
+      "image": "https://www.gamerpower.com/offers/1b/6b0a113ba497d.jpg",
+      "price_original": "$2.99",
+      "expires_at": "2026-12-06T23:59:00Z",
       "availability": "temporary",
       "is_permanent": false,
       "source": "GamerPower"
